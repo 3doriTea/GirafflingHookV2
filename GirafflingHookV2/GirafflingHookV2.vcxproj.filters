@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GirafflingHook.cpp" />
+    <ClCompile Include="PlayScene.cpp" />
+    <ClCompile Include="TheMain.cpp" />
+    <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="MiniEngine\Attachment.cpp" />
+    <ClCompile Include="MiniEngine\Box2.cpp" />
+    <ClCompile Include="MiniEngine\DxLibManager.cpp" />
+    <ClCompile Include="MiniEngine\Entity.cpp" />
+    <ClCompile Include="MiniEngine\Frame.cpp" />
+    <ClCompile Include="MiniEngine\FrameManager.cpp" />
+    <ClCompile Include="MiniEngine\Game.cpp" />
+    <ClCompile Include="MiniEngine\GameObject.cpp" />
+    <ClCompile Include="MiniEngine\GameScene.cpp" />
+    <ClCompile Include="MiniEngine\Image.cpp" />
+    <ClCompile Include="MiniEngine\ImageManager.cpp" />
+    <ClCompile Include="MiniEngine\Input.cpp" />
+    <ClCompile Include="MiniEngine\InputManager.cpp" />
+    <ClCompile Include="MiniEngine\Manager.cpp" />
+    <ClCompile Include="MiniEngine\SceneManager.cpp" />
+    <ClCompile Include="MiniEngine\Screen.cpp" />
+    <ClCompile Include="MiniEngine\Transform.cpp" />
+    <ClCompile Include="MiniEngine\Vector2.cpp" />
+    <ClCompile Include="Player.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GirafflingHook.h" />
+    <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="MiniEngine\Attachment.h" />
+    <ClInclude Include="MiniEngine\Box2.h" />
+    <ClInclude Include="MiniEngine\CarGameEngine.h" />
+    <ClInclude Include="MiniEngine\DxLibManager.h" />
+    <ClInclude Include="MiniEngine\Entity.h" />
+    <ClInclude Include="MiniEngine\Frame.h" />
+    <ClInclude Include="MiniEngine\FrameManager.h" />
+    <ClInclude Include="MiniEngine\Game.h" />
+    <ClInclude Include="MiniEngine\GameObject.h" />
+    <ClInclude Include="MiniEngine\GameScene.h" />
+    <ClInclude Include="MiniEngine\Image.h" />
+    <ClInclude Include="MiniEngine\ImageManager.h" />
+    <ClInclude Include="MiniEngine\Input.h" />
+    <ClInclude Include="MiniEngine\InputManager.h" />
+    <ClInclude Include="MiniEngine\Manager.h" />
+    <ClInclude Include="MiniEngine\SceneManager.h" />
+    <ClInclude Include="MiniEngine\Screen.h" />
+    <ClInclude Include="MiniEngine\Transform.h" />
+    <ClInclude Include="MiniEngine\Vector2.h" />
+    <ClInclude Include="Player.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MiniEngine\Rule.md" />
+  </ItemGroup>
+</Project>
