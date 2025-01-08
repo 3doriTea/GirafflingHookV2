@@ -1,4 +1,5 @@
 #include "Manager.h"
+#include <DxLib.h>
 
 Manager::Manager(const CalledType& calledType) :
 	order_{ 0 },
@@ -14,6 +15,7 @@ Manager::~Manager()
 
 void Manager::UpdateFrame()
 {
+	printfDx("\n\nManager\n");
 	for (auto&& manager : managers_)
 	{
 		if (manager->calledType_ == CalledType::Frame)

@@ -35,8 +35,9 @@ void DxLibManager::Init()
 
 void DxLibManager::Update()
 {
-	ClearDrawScreen();
+	printfDx("DxLibManager\n");
 	ScreenFlip();
+	ClearDrawScreen();
 	if (ProcessMessage() || CheckHitKey(KEY_INPUT_ESCAPE))
 	{
 		Game::Exit();

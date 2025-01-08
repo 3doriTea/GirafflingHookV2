@@ -11,11 +11,11 @@ class SceneManager : public Manager
 
 public:
 	SceneManager() :
-		Manager::Manager{ CalledType::Cycle },
+		Manager::Manager{ CalledType::Frame },
 		readyScene_{ nullptr },
 		activeScene_{ nullptr }
 	{
-		SetOrder(7);
+		SetOrder(11);
 		instance = this;
 	}
 	~SceneManager();

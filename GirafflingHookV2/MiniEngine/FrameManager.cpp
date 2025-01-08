@@ -1,5 +1,6 @@
 #include "FrameManager.h"
 #include "Frame.h"
+#include <DxLib.h>
 
 #pragma comment(lib, "Winmm.lib")
 
