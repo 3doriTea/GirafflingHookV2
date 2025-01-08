@@ -5,56 +5,143 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="MiniEngine">
+      <UniqueIdentifier>{879c25fa-c2ad-427d-a8db-20c2d03a1bc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MiniEngine\Manager">
+      <UniqueIdentifier>{10983b75-c533-48db-b1a9-87265a4a1a28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MiniEngine\Utility">
+      <UniqueIdentifier>{ff080889-c3f9-4995-a0ca-8dcd7124970f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GirafflingHook.cpp" />
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="TheMain.cpp" />
     <ClCompile Include="TitleScene.cpp" />
-    <ClCompile Include="MiniEngine\Attachment.cpp" />
-    <ClCompile Include="MiniEngine\Box2.cpp" />
-    <ClCompile Include="MiniEngine\DxLibManager.cpp" />
-    <ClCompile Include="MiniEngine\Entity.cpp" />
-    <ClCompile Include="MiniEngine\Frame.cpp" />
-    <ClCompile Include="MiniEngine\FrameManager.cpp" />
-    <ClCompile Include="MiniEngine\Game.cpp" />
-    <ClCompile Include="MiniEngine\GameObject.cpp" />
-    <ClCompile Include="MiniEngine\GameScene.cpp" />
-    <ClCompile Include="MiniEngine\Image.cpp" />
-    <ClCompile Include="MiniEngine\ImageManager.cpp" />
-    <ClCompile Include="MiniEngine\Input.cpp" />
-    <ClCompile Include="MiniEngine\InputManager.cpp" />
-    <ClCompile Include="MiniEngine\Manager.cpp" />
-    <ClCompile Include="MiniEngine\SceneManager.cpp" />
-    <ClCompile Include="MiniEngine\Screen.cpp" />
-    <ClCompile Include="MiniEngine\Transform.cpp" />
-    <ClCompile Include="MiniEngine\Vector2.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="MiniEngine\Attachment.cpp">
+      <Filter>MiniEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Entity.cpp">
+      <Filter>MiniEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Frame.cpp">
+      <Filter>MiniEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Game.cpp">
+      <Filter>MiniEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\GameObject.cpp">
+      <Filter>MiniEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\GameScene.cpp">
+      <Filter>MiniEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Image.cpp">
+      <Filter>MiniEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Input.cpp">
+      <Filter>MiniEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Manager.cpp">
+      <Filter>MiniEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Screen.cpp">
+      <Filter>MiniEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Transform.cpp">
+      <Filter>MiniEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\FrameManager.cpp">
+      <Filter>MiniEngine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\DxLibManager.cpp">
+      <Filter>MiniEngine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\ImageManager.cpp">
+      <Filter>MiniEngine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\InputManager.cpp">
+      <Filter>MiniEngine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\SceneManager.cpp">
+      <Filter>MiniEngine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Vector3.cpp">
+      <Filter>MiniEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Vector2.cpp">
+      <Filter>MiniEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Box2.cpp">
+      <Filter>MiniEngine\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GirafflingHook.h" />
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="TitleScene.h" />
-    <ClInclude Include="MiniEngine\Attachment.h" />
-    <ClInclude Include="MiniEngine\Box2.h" />
     <ClInclude Include="MiniEngine\CarGameEngine.h" />
-    <ClInclude Include="MiniEngine\DxLibManager.h" />
-    <ClInclude Include="MiniEngine\Entity.h" />
-    <ClInclude Include="MiniEngine\Frame.h" />
-    <ClInclude Include="MiniEngine\FrameManager.h" />
-    <ClInclude Include="MiniEngine\Game.h" />
-    <ClInclude Include="MiniEngine\GameObject.h" />
-    <ClInclude Include="MiniEngine\GameScene.h" />
-    <ClInclude Include="MiniEngine\Image.h" />
-    <ClInclude Include="MiniEngine\ImageManager.h" />
-    <ClInclude Include="MiniEngine\Input.h" />
-    <ClInclude Include="MiniEngine\InputManager.h" />
-    <ClInclude Include="MiniEngine\Manager.h" />
-    <ClInclude Include="MiniEngine\SceneManager.h" />
-    <ClInclude Include="MiniEngine\Screen.h" />
-    <ClInclude Include="MiniEngine\Transform.h" />
-    <ClInclude Include="MiniEngine\Vector2.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="MiniEngine\Attachment.h">
+      <Filter>MiniEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Entity.h">
+      <Filter>MiniEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Frame.h">
+      <Filter>MiniEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Game.h">
+      <Filter>MiniEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\GameObject.h">
+      <Filter>MiniEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\GameScene.h">
+      <Filter>MiniEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Image.h">
+      <Filter>MiniEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Input.h">
+      <Filter>MiniEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Manager.h">
+      <Filter>MiniEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Screen.h">
+      <Filter>MiniEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Transform.h">
+      <Filter>MiniEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\FrameManager.h">
+      <Filter>MiniEngine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\DxLibManager.h">
+      <Filter>MiniEngine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\ImageManager.h">
+      <Filter>MiniEngine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\InputManager.h">
+      <Filter>MiniEngine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\SceneManager.h">
+      <Filter>MiniEngine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Vector3.h">
+      <Filter>MiniEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Vector2.h">
+      <Filter>MiniEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Box2.h">
+      <Filter>MiniEngine\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

@@ -15,6 +15,7 @@ public:
 		readyScene_{ nullptr },
 		activeScene_{ nullptr }
 	{
+		SetOrder(7);
 		instance = this;
 	}
 	~SceneManager();

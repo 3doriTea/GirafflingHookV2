@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 #include "GameObject.h"
 #include <cassert>
+#include <DxLib.h>
 
 //SceneManager::SceneManager() :
 //	Manager::Manager{ CalledType::Cycle },
@@ -19,6 +20,7 @@ void SceneManager::Init()
 
 void SceneManager::Update()
 {
+	printfDx("")
 	if (readyScene_ != nullptr)
 	{
 		if (activeScene_ != nullptr)

@@ -38,6 +38,7 @@
     <ClCompile Include="MiniEngine\Screen.cpp" />
     <ClCompile Include="MiniEngine\Transform.cpp" />
     <ClCompile Include="MiniEngine\Vector2.cpp" />
+    <ClCompile Include="MiniEngine\Vector3.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="TheMain.cpp" />
@@ -64,6 +65,7 @@
     <ClInclude Include="MiniEngine\Screen.h" />
     <ClInclude Include="MiniEngine\Transform.h" />
     <ClInclude Include="MiniEngine\Vector2.h" />
+    <ClInclude Include="MiniEngine\Vector3.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="TitleScene.h" />
