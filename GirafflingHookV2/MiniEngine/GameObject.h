@@ -2,6 +2,7 @@
 #include <string>
 #include "Entity.h"
 #include "Vector3.h"
+#include "Vector2.h"
 
 class GameScene;
 class Attachment;
@@ -40,7 +41,7 @@ public:
 protected:
 	std::string name;
 	std::string tag;
-	Vector3 position;
+	Vector2 position;
 
 private:
 	GameScene& gameScene_;

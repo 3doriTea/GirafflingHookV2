@@ -62,11 +62,11 @@ Vector3& Vector3::operator-=(const Vector3& other)
 
 	return *this;
 }
-
-Vector3::operator VECTOR() const
-{
-	return VECTOR{ this->x, this->y, this->z };
-}
+//
+//Vector3::operator VECTOR() const
+//{
+//	return VECTOR{ this->x, this->y, this->z };
+//}
 
 float Vector3::Length() const
 {

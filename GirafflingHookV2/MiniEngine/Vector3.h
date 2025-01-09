@@ -14,7 +14,7 @@ struct Vector3 : public DirectX::XMFLOAT3
 	Vector3& operator+=(const Vector3& other);
 	Vector3& operator-=(const Vector3& other);
 
-	explicit operator VECTOR() const;
+	//explicit operator VECTOR() const;
 
 	float Length() const;
 	Vector3& Normalize();

@@ -20,11 +20,11 @@ void Player::Init()
 	VECTOR cameraPosition{ VGet(0, 200, -600) };
 
 	MV1SetRotationXYZ(hGiraffeMV1_, VGet(0.f, 0.f, 0.f));
-	MV1SetPosition(hGiraffeMV1_, playerPosition);
+	//MV1SetPosition(hGiraffeMV1_, playerPosition);
 
 	ChangeLightTypeDir(VGet(1.f, -1.f, 0.5f));
 
-	SetCameraPositionAndTarget_UpVecY(cameraPosition, playerPosition);
+	SetCameraPositionAndTarget_UpVecY(cameraPosition, );
 }
 
 void Player::Update()
