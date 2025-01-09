@@ -14,5 +14,6 @@ public:
 
 private:
 	int hGiraffeMV1_;
+	VECTOR playerPosition_{ VGet(0, 0, 0) };
 };
 

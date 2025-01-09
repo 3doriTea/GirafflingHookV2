@@ -1,5 +1,6 @@
 #include "Vector3.h"
 #include <cmath>
+#include <DxLib.h>
 
 Vector3::Vector3() :
 	Vector3::Vector3{ 0.f, 0.f, 0.f }
@@ -60,6 +61,11 @@ Vector3& Vector3::operator-=(const Vector3& other)
 	this->z -= other.z;
 
 	return *this;
+}
+
+Vector3::operator VECTOR() const
+{
+	return VECTOR{ this->x, this->y, this->z };
 }
 
 float Vector3::Length() const

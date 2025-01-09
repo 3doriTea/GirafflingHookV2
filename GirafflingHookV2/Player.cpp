@@ -18,7 +18,6 @@ void Player::Init()
 	assert(hGiraffeMV1_ != -1);
 
 	VECTOR cameraPosition{ VGet(0, 200, -600) };
-	VECTOR playerPosition{ VGet(0, 0, 0) };
 
 	MV1SetRotationXYZ(hGiraffeMV1_, VGet(0.f, 0.f, 0.f));
 	MV1SetPosition(hGiraffeMV1_, playerPosition);

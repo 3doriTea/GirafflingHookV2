@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include "Entity.h"
-#include "Vector2.h"
+#include "Vector3.h"
 
 class GameScene;
 class Attachment;
@@ -40,7 +40,7 @@ public:
 protected:
 	std::string name;
 	std::string tag;
-	Vector2 position;
+	Vector3 position;
 
 private:
 	GameScene& gameScene_;
