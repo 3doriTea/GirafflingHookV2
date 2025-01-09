@@ -24,7 +24,7 @@ void Player::Init()
 
 	ChangeLightTypeDir(VGet(1.f, -1.f, 0.5f));
 
-	SetCameraPositionAndTarget_UpVecY(cameraPosition, );
+	SetCameraPositionAndTarget_UpVecY(cameraPosition,VGet(0.f, 0.f, 0.f));
 }
 
 void Player::Update()
