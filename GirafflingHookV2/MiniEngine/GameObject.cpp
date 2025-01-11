@@ -7,6 +7,17 @@ GameObject::GameObject() :
 {
 }
 
+GameObject::GameObject(const GameObjectBuilder& builder) :
+	position{ builder.position },
+	rotate{ builder.rotate },
+	scale{ builder.scale },
+	name{ builder.name },
+	tag{ builder.tag },
+	gameScene_{ SceneManager::RefActiveGameScene() },
+	toDestroy_{ false }
+{
+}
+
 GameObject::GameObject(
 	const std::string& name) :
 	GameObject::GameObject{ name, "" }
@@ -16,19 +27,21 @@ GameObject::GameObject(
 GameObject::GameObject(
 	const std::string& name,
 	const std::string& tag) :
-	GameObject::GameObject{ name, tag, { 0.f, 0.f } }
+	GameObject::GameObject{ name, tag, WorldModeVector{} }
 {
 }
 
 GameObject::GameObject(
 	const std::string& name,
 	const std::string& tag,
-	const Vector2& position) :
+	const WorldModeVector& position) :
 	name{ name },
 	tag{ tag },
 	position{ position },
+	rotate{ Vector3::Zero() },
+	scale{ Vector3::One() },
 	gameScene_{ SceneManager::RefActiveGameScene() },
-	toDestroy_{}
+	toDestroy_{ false }
 {
 }
 
@@ -44,4 +57,14 @@ void GameObject::Destroy()
 std::string GameObject::ToString()
 {
 	return "{" + name + "}";
+}
+
+GameObject* GameObject::FindGameObject(const std::string& name)
+{
+	return GetGameScene().FindGameObject(name);
+}
+
+std::vector<GameObject*> GameObject::FindGameObjects(const std::string& tag)
+{
+	return FindGameObjects(tag);
 }

@@ -1,8 +1,9 @@
 #include "PlayScene.h"
-#include "CarGameEngine.h"
+#include "MiniEngine.h"
 #include "TitleScene.h"
 #include <DxLib.h>
 #include "Player.h"
+#include "Camera.h"
 
 namespace
 {
@@ -19,6 +20,9 @@ PlayScene::~PlayScene()
 void PlayScene::Init()
 {
 	AddGameObject<Player>();
+	AddGameObject<Camera>();
+
+	ChangeLightTypeDir(VGet(1.f, -1.f, 0.5f));
 }
 
 void PlayScene::Update()

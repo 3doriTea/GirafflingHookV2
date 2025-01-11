@@ -1,10 +1,10 @@
 #pragma once
 #include <string>
 #include "Entity.h"
-#include "Vector3.h"
-#include "Vector2.h"
+#include "GameScene.h"
+#include "WorldModeVector.h"
+#include "GameObjectBuilder.h"
 
-class GameScene;
 class Attachment;
 
 class GameObject : public Entity
@@ -13,6 +13,7 @@ class GameObject : public Entity
 
 public:
 	GameObject();
+	GameObject(const GameObjectBuilder& builder);
 	GameObject(
 		const std::string& name);
 	GameObject(
@@ -21,7 +22,7 @@ public:
 	GameObject(
 		const std::string& name,
 		const std::string& tag,
-		const Vector2& position);
+		const WorldModeVector& position);
 	virtual ~GameObject();
 
 	virtual void Init() {};
@@ -39,9 +40,58 @@ public:
 	std::string ToString() override;
 
 protected:
+	/// <summary>
+	/// 所属シーンにゲームオブジェクトをインスタンスする
+	/// </summary>
+	/// <typeparam name="GameObjectT">ゲームオブジェクトのクラス</typeparam>
+	/// <typeparam name="...Args">コンストラクタ引数(可変長)</typeparam>
+	/// <returns>インスタンスされたゲームオブジェクトの参照</returns>
+	template<typename GameObjectT, typename ...Args>
+	GameObjectT& Instantiate()
+	{
+		return GetGameScene().AddGameObject<GameObjectT>(Args...);
+	}
+	/// <summary>
+	/// 所属シーンからゲームオブジェクトをただ１つ取得
+	/// </summary>
+	/// <typeparam name="GameObjectT">ゲームオブジェクトのクラス</typeparam>
+	/// <returns>見つかったゲームオブジェクトのポインタ / 見つからなかった nullptr</returns>
+	template<typename GameObjectT>
+	GameObjectT* FindGameObject()
+	{
+		return GetGameScene().FindGameObject<GameObjectT>();
+	}
+	/// <summary>
+	/// 所属シーンからゲームオブジェクトを複数取得
+	/// </summary>
+	/// <typeparam name="GameObjectT">ゲームオブジェクトのクラス</typeparam>
+	/// <returns>見つかったゲームオブジェクトの参照配列</returns>
+	template<typename GameObjectT>
+	std::vector<GameObjectT&> FindGameObjects()
+	{
+		return GetGameScene().FindGameObjects<GameObjectT>();
+	}
+	/// <summary>
+	/// 所属シーンからゲームオブジェクトをただ１つ取得
+	/// </summary>
+	/// <param name="name">ゲームオブジェクト名</param>
+	/// <returns>見つかったゲームオブジェクトのポインタ / 見つからなかった nullptr</returns>
+	GameObject* FindGameObject(const std::string& name);
+	/// <summary>
+	/// 所属シーンからゲームオブジェクトを複数取得
+	/// </summary>
+	/// <param name="tag">ゲームオブジェクトタグ</param>
+	/// <returns>見つかったゲームオブジェクトのポインタ配列</returns>
+	std::vector<GameObject*> FindGameObjects(const std::string& tag);
+	
+public:
+	Vector3 position;
+	Vector3 rotate;
+	Vector3 scale;
+
+protected:
 	std::string name;
 	std::string tag;
-	Vector2 position;
 
 private:
 	GameScene& gameScene_;

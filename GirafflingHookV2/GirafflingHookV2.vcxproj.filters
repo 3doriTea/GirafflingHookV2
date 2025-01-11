@@ -14,13 +14,24 @@
     <Filter Include="MiniEngine\Utility">
       <UniqueIdentifier>{ff080889-c3f9-4995-a0ca-8dcd7124970f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GH">
+      <UniqueIdentifier>{e820ffae-9d68-4b7c-840c-9395ff9bfa86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GH\GameObject">
+      <UniqueIdentifier>{b745a7e6-a5bc-40a4-ab5b-74b962187ab8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MiniEngine\Attachment">
+      <UniqueIdentifier>{06899fec-2507-484c-b8f6-e78208e44b93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MiniEngine\Builder">
+      <UniqueIdentifier>{6c59d9f7-5548-4e17-8b57-7cce844357e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GirafflingHook.cpp" />
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="TheMain.cpp" />
     <ClCompile Include="TitleScene.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="MiniEngine\Attachment.cpp">
       <Filter>MiniEngine</Filter>
     </ClCompile>
@@ -51,9 +62,6 @@
     <ClCompile Include="MiniEngine\Screen.cpp">
       <Filter>MiniEngine</Filter>
     </ClCompile>
-    <ClCompile Include="MiniEngine\Transform.cpp">
-      <Filter>MiniEngine</Filter>
-    </ClCompile>
     <ClCompile Include="MiniEngine\FrameManager.cpp">
       <Filter>MiniEngine\Manager</Filter>
     </ClCompile>
@@ -78,13 +86,29 @@
     <ClCompile Include="MiniEngine\Box2.cpp">
       <Filter>MiniEngine\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GH\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>GH\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Transform.cpp">
+      <Filter>MiniEngine\Attachment</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\AABBCollider.cpp">
+      <Filter>MiniEngine\Attachment</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Box3.cpp">
+      <Filter>MiniEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\GameObjectBuilder.cpp">
+      <Filter>MiniEngine\Builder</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GirafflingHook.h" />
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="TitleScene.h" />
-    <ClInclude Include="MiniEngine\CarGameEngine.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="MiniEngine\Attachment.h">
       <Filter>MiniEngine</Filter>
     </ClInclude>
@@ -115,9 +139,6 @@
     <ClInclude Include="MiniEngine\Screen.h">
       <Filter>MiniEngine</Filter>
     </ClInclude>
-    <ClInclude Include="MiniEngine\Transform.h">
-      <Filter>MiniEngine</Filter>
-    </ClInclude>
     <ClInclude Include="MiniEngine\FrameManager.h">
       <Filter>MiniEngine\Manager</Filter>
     </ClInclude>
@@ -140,6 +161,36 @@
       <Filter>MiniEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="MiniEngine\Box2.h">
+      <Filter>MiniEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GH\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\WorldModeVector.h">
+      <Filter>MiniEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>GH\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Transform.h">
+      <Filter>MiniEngine\Attachment</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Box3.h">
+      <Filter>MiniEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Collider.h">
+      <Filter>MiniEngine\Attachment</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\AABBCollider.h">
+      <Filter>MiniEngine\Attachment</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\MiniEngine.h">
+      <Filter>MiniEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\GameObjectBuilder.h">
+      <Filter>MiniEngine\Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Draw3D.h">
       <Filter>MiniEngine\Utility</Filter>
     </ClInclude>
   </ItemGroup>

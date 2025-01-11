@@ -10,14 +10,7 @@ class SceneManager : public Manager
 	friend GameObject;
 
 public:
-	SceneManager() :
-		Manager::Manager{ CalledType::Frame },
-		readyScene_{ nullptr },
-		activeScene_{ nullptr }
-	{
-		SetOrder(11);
-		instance = this;
-	}
+	SceneManager();
 	~SceneManager();
 
 	void Init() override;

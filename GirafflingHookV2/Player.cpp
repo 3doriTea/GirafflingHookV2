@@ -3,7 +3,15 @@
 #include <cassert>
 
 Player::Player() :
-	GameObject::GameObject{ "Player", "player" },
+	GameObject::GameObject
+	{ 
+		GameObjectBuilder{}
+			.Name("Player")
+			.Tag("player")
+			.Scale({ 30.f, 30.f, 30.f })
+	},
+	transform_{ *this },
+	collider_{ *this, transform_ },
 	hGiraffeMV1_{ -1 }
 {
 }
@@ -17,14 +25,8 @@ void Player::Init()
 	hGiraffeMV1_ = MV1LoadModel("Assets/cube001.mv1");
 	assert(hGiraffeMV1_ != -1);
 
-	VECTOR cameraPosition{ VGet(0, 200, -600) };
-
 	MV1SetRotationXYZ(hGiraffeMV1_, VGet(0.f, 0.f, 0.f));
-	//MV1SetPosition(hGiraffeMV1_, playerPosition);
-
-	ChangeLightTypeDir(VGet(1.f, -1.f, 0.5f));
-
-	SetCameraPositionAndTarget_UpVecY(cameraPosition,VGet(0.f, 0.f, 0.f));
+	MV1SetPosition(hGiraffeMV1_, position);
 }
 
 void Player::Update()
@@ -34,7 +36,7 @@ void Player::Update()
 void Player::Draw() const
 {
 	MV1DrawModel(hGiraffeMV1_);
-	DrawBox(0, 500, 0, 500, 0xff00ff, TRUE);
+	collider_.Draw();
 }
 
 void Player::End()

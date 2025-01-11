@@ -1,45 +1,78 @@
 #include "Transform.h"
+#include "GameObject.h"
+
+using namespace DirectX;
 
 Transform::Transform(GameObject& gameObject) :
 	Attachment::Attachment{ gameObject },
-	rotate{},
-	scale{},
+	position{ gameObject.position },
+	rotate{ gameObject.rotate },
+	scale{ gameObject.scale },
 	positionMatrix_{},
 	rotateMatrix_{},
-	scaleMatrix_{}
+	scaleMatrix_{},
+	parent_{ nullptr },
+	childs_{}
 {
-	Calculate();
+	UpdateCalculate();
 }
 
-void Transform::Calculate()
+void Transform::Draw() const
 {
-	positionMatrix_ = DirectX::XMMatrixTranslation(position.x, position.y, 0.f);
-
-	rotateMatrix_ = DirectX::XMMatrixRotationZ(rotate);
-
-	scaleMatrix_ = DirectX::XMMatrixScaling(scale.x, scale.y, 1.f);
 }
 
-DirectX::XMFLOAT2 Transform::ToWorldPosition(const DirectX::XMFLOAT2& localPosition)
+void Transform::UpdateCalculate()
 {
-	DirectX::XMVECTOR localPositionVector{ DirectX::XMLoadFloat2(&localPosition) };
+	positionMatrix_ = XMMatrixTranslation(
+		position.x,
+		position.y,
+		position.z);
+
+	XMMATRIX
+		rotateX{ XMMatrixRotationX(XMConvertToRadians(rotate.x)) },
+		rotateY{ XMMatrixRotationY(XMConvertToRadians(rotate.y)) },
+		rotateZ{ XMMatrixRotationZ(XMConvertToRadians(rotate.z)) };
+	
+	rotateMatrix_ = rotateZ * rotateX * rotateY;
+
+	scaleMatrix_ = XMMatrixScaling(
+		scale.x,
+		scale.y,
+		scale.z);
+}
+
+Vector3 Transform::ToWorldPosition(const Vector3& localPosition)
+{
+	DirectX::XMVECTOR localPositionVector
+	{
+		DirectX::XMLoadFloat3(&localPosition)
+	};
 
 	DirectX::XMVECTOR worldPositionVector
 	{
-		DirectX::XMVector2Transform(localPositionVector, GetWorldMatrix())
+		DirectX::XMVector3Transform(localPositionVector, GetWorldMatrix())
 	};
 
-	DirectX::XMFLOAT2 worldPosition{};
-	DirectX::XMStoreFloat2(&worldPosition, worldPositionVector);
+	DirectX::XMFLOAT3 worldPosition{};
+	DirectX::XMStoreFloat3(&worldPosition, worldPositionVector);
 
-	return worldPosition;
+	return Vector3::From(worldPosition);
+}
+
+void Transform::SetParent(Transform* parent)
+{
+	if (parent_ != nullptr)
+	{
+		parent_->childs_.erase(this);
+	}
+	parent_ = parent;
 }
 
 DirectX::XMMATRIX Transform::GetWorldMatrix()
 {
-	if (parent == nullptr)
+	if (parent_ != nullptr)
 	{
-		return scaleMatrix_ * rotateMatrix_ * positionMatrix_ * parent->GetWorldMatrix();
+		return scaleMatrix_ * rotateMatrix_ * positionMatrix_ * parent_->GetWorldMatrix();
 	}
 	
 	return scaleMatrix_ * rotateMatrix_ * positionMatrix_;

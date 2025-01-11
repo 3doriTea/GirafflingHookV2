@@ -1,6 +1,9 @@
 #pragma once
 #include "DirectXMath.h"
 
+/// <summary>
+/// DirectX::XMFLOAT2‚ğŒp³‚µ‚½2ŸŒ³‚ÌƒxƒNƒgƒ‹
+/// </summary>
 struct Vector2 : public DirectX::XMFLOAT2
 {
 	Vector2();

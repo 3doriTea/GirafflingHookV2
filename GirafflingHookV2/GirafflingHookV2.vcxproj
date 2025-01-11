@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MiniEngine\AABBCollider.cpp" />
+    <ClCompile Include="MiniEngine\Box3.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="MiniEngine\GameObjectBuilder.cpp" />
     <ClCompile Include="GirafflingHook.cpp" />
     <ClCompile Include="MiniEngine\Attachment.cpp" />
     <ClCompile Include="MiniEngine\Box2.cpp" />
@@ -45,10 +49,16 @@
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MiniEngine\Draw3D.h" />
+    <ClInclude Include="MiniEngine\AABBCollider.h" />
+    <ClInclude Include="MiniEngine\Box3.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="MiniEngine\Collider.h" />
+    <ClInclude Include="MiniEngine\GameObjectBuilder.h" />
     <ClInclude Include="GirafflingHook.h" />
+    <ClInclude Include="MiniEngine\MiniEngine.h" />
     <ClInclude Include="MiniEngine\Attachment.h" />
     <ClInclude Include="MiniEngine\Box2.h" />
-    <ClInclude Include="MiniEngine\CarGameEngine.h" />
     <ClInclude Include="MiniEngine\DxLibManager.h" />
     <ClInclude Include="MiniEngine\Entity.h" />
     <ClInclude Include="MiniEngine\Frame.h" />
@@ -69,6 +79,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="MiniEngine\WorldModeVector.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

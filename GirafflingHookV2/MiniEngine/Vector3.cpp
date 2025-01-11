@@ -1,6 +1,6 @@
 #include "Vector3.h"
 #include <cmath>
-#include <DxLib.h>
+#include <cassert>
 
 Vector3::Vector3() :
 	Vector3::Vector3{ 0.f, 0.f, 0.f }
@@ -62,11 +62,26 @@ Vector3& Vector3::operator-=(const Vector3& other)
 
 	return *this;
 }
-//
-//Vector3::operator VECTOR() const
-//{
-//	return VECTOR{ this->x, this->y, this->z };
-//}
+
+float& Vector3::operator[](const size_t& index)
+{
+	assert(0 <= index && index < 3);
+
+	switch (index)
+	{
+	case 0:
+		return this->x;
+	case 1:
+		return this->y;
+	case 2:
+		return this->z;
+	}
+}
+
+Vector3::operator VECTOR() const
+{
+	return VECTOR{ this->x, this->y, this->z };
+}
 
 float Vector3::Length() const
 {
@@ -78,4 +93,9 @@ Vector3& Vector3::Normalize()
 	(*this) / Length();
 
 	return *this;
+}
+
+Vector3 Vector3::From(const DirectX::XMFLOAT3& from)
+{
+	return Vector3{ from.x, from.y, from.z };
 }

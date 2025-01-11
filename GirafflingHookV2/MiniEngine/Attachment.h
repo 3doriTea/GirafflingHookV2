@@ -1,15 +1,16 @@
 #pragma once
-#include "Vector2.h"
+#include "WorldModeVector.h"
 
 class GameObject;
 
 class Attachment
 {
 public:
-	Attachment(GameObject& gameObject);
+	Attachment(GameObject& attachingGameObject);
 	virtual ~Attachment();
+
+	virtual void Draw() const = 0;
 
 protected:
 	GameObject& gameObject;
-	Vector2& position;
 };

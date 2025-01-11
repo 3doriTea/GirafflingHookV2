@@ -3,12 +3,14 @@
 #include <cassert>
 #include <DxLib.h>
 
-//SceneManager::SceneManager() :
-//	Manager::Manager{ CalledType::Cycle },
-//	readyScene_{ nullptr },
-//	activeScene_{ nullptr }
-//{
-//}
+SceneManager::SceneManager() :
+	Manager::Manager{ CalledType::Frame },
+	readyScene_{ nullptr },
+	activeScene_{ nullptr }
+{
+	SetOrder(11);
+	instance = this;
+}
 
 SceneManager::~SceneManager()
 {
