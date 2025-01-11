@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="MiniEngine\AABBCollider.cpp" />
     <ClCompile Include="MiniEngine\Box3.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="MiniEngine\Draw3D.cpp" />
     <ClCompile Include="MiniEngine\GameObjectBuilder.cpp" />
     <ClCompile Include="GirafflingHook.cpp" />
     <ClCompile Include="MiniEngine\Attachment.cpp" />
@@ -49,6 +51,7 @@
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ground.h" />
     <ClInclude Include="MiniEngine\Draw3D.h" />
     <ClInclude Include="MiniEngine\AABBCollider.h" />
     <ClInclude Include="MiniEngine\Box3.h" />

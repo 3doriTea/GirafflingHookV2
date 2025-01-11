@@ -21,5 +21,18 @@ void Camera::Init()
 
 void Camera::Update()
 {
+	if (CheckHitKey(KEY_INPUT_Q))
+		position.y -= 10.f;
+	if (CheckHitKey(KEY_INPUT_E))
+		position.y += 10.f;
+	if (CheckHitKey(KEY_INPUT_W))
+		position.z += 10.f;
+	if (CheckHitKey(KEY_INPUT_A))
+		position.x -= 10.f;
+	if (CheckHitKey(KEY_INPUT_S))
+		position.z -= 10.f;
+	if (CheckHitKey(KEY_INPUT_D))
+		position.x += 10.f;
+
 	SetCameraPositionAndTarget_UpVecY(position, player_->position);
 }

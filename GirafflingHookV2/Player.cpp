@@ -1,6 +1,7 @@
 #include "Player.h"
 #include <DxLib.h>
 #include <cassert>
+#include "Draw3D.h"
 
 Player::Player() :
 	GameObject::GameObject
@@ -8,7 +9,7 @@ Player::Player() :
 		GameObjectBuilder{}
 			.Name("Player")
 			.Tag("player")
-			.Scale({ 30.f, 30.f, 30.f })
+			.Scale({ 300.f, 300.f, 300.f })
 	},
 	transform_{ *this },
 	collider_{ *this, transform_ },
@@ -31,12 +32,14 @@ void Player::Init()
 
 void Player::Update()
 {
+	
 }
 
 void Player::Draw() const
 {
 	MV1DrawModel(hGiraffeMV1_);
-	collider_.Draw();
+	//collider_.Draw();
+	Draw3D::Box(collider_, 0x00ff00);
 }
 
 void Player::End()

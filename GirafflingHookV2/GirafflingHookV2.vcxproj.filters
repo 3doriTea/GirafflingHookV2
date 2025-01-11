@@ -104,6 +104,8 @@
     <ClCompile Include="MiniEngine\GameObjectBuilder.cpp">
       <Filter>MiniEngine\Builder</Filter>
     </ClCompile>
+    <ClCompile Include="MiniEngine\Draw3D.cpp" />
+    <ClCompile Include="Ground.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GirafflingHook.h" />
@@ -193,6 +195,7 @@
     <ClInclude Include="MiniEngine\Draw3D.h">
       <Filter>MiniEngine\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Ground.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

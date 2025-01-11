@@ -1,5 +1,6 @@
 #include "AABBCollider.h"
 #include "GameObject.h"
+#include "Draw3D.h"
 
 AABBCollider::AABBCollider(GameObject& gameObject, Transform& transform) :
 	Attachment::Attachment{ gameObject },
@@ -11,5 +12,5 @@ AABBCollider::AABBCollider(GameObject& gameObject, Transform& transform) :
 
 void AABBCollider::Draw() const
 {
-	DrawLine3D(min, max, 0x00ff00);
+	Draw3D::Box(*this, 0x00ff00);
 }

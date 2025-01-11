@@ -16,5 +16,5 @@ public:
 		WireFrame,  // ワイヤーフレームモデル
 	};
 
-	static void Box(AABBCollider& aABB, const Color& color);
+	static void Box(const AABBCollider& aABB, const Color& color);
 };
