@@ -21,7 +21,7 @@ TitleScene::~TitleScene()
 
 void TitleScene::Init()
 {
-	SetBackgroundColor(0x10, 0xf0, 0x10);
+	SetBackgroundColor(0xf0, 0xf0, 0xf0);
 
 	TitleString& titleString{ AddGameObject<TitleString>() };
 	TitleCamera& titleCamera{ AddGameObject<TitleCamera>() };
