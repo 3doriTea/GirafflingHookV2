@@ -131,7 +131,10 @@
     <ClCompile Include="Title\SelectButton.cpp">
       <Filter>GH\GameObject\Title</Filter>
     </ClCompile>
-    <ClCompile Include="Play\Camera.cpp" />
+    <ClCompile Include="Play\Camera.cpp">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Title\TitleCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\Attachment.h">
@@ -239,7 +242,10 @@
     <ClInclude Include="Title\SelectButton.h">
       <Filter>GH\GameObject\Title</Filter>
     </ClInclude>
-    <ClInclude Include="Play\Camera.h" />
+    <ClInclude Include="Play\Camera.h">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Title\TitleCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

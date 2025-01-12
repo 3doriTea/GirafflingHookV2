@@ -6,6 +6,8 @@
 
 namespace Title
 {
+	class TitleCamera;
+
 	class SelectButton : public GameObject
 	{
 	public:
@@ -23,5 +25,6 @@ namespace Title
 		std::string buttonId_;
 		Transform transform_;
 		int hButtonModel_;
+		TitleCamera* camera_;
 	};
 }
