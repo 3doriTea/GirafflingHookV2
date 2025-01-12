@@ -8,11 +8,11 @@ Play::Camera::Camera() :
 	{
 		GameObjectBuilder{}
 			.Name("MainCamera")
-			.Position({ 0.f, 200.f, -1000.f })
+			.Position({ 0.f, 200.f, -2000.f })
 	},
 	cameraMoveRate{ 1.01f },
-	cameraDistance{ 1001.f },  // MEMO: ‹——£‚ªL‚ª‚é‚Ù‚Çã‚©‚ç–Úü‚É‚È‚é
-	cameraDistanceZ{ -1000.f },
+	cameraDistance{ 2001.f },  // MEMO: ‹——£‚ªL‚ª‚é‚Ù‚Çã‚©‚ç–Úü‚É‚È‚é
+	cameraDistanceZ{ -2000.f },
 	player_{ nullptr },
 	transform_{ *this }
 {
@@ -52,7 +52,10 @@ void Play::Camera::Update()
 	//     : y = +-root(r^2 - x^2) ‚É‚È‚é‚½‚ßA
 	//     : z=100‚Ì‚Æ‚«‚ÌyÀ•W‚ð‹‚ß‚ç‚ê‚éII
 
-	float diffX = player_->position.x - position.x;
+	Vector3 targetPosition{ player_->position };
+	player_->TryGetHookTargetPosition(targetPosition);
+
+	float diffX = targetPosition.x - position.x;
 	diffX /= cameraMoveRate;
 
 	transform_.position = Vector3
@@ -62,7 +65,7 @@ void Play::Camera::Update()
 		cameraDistanceZ
 	};
 
-	transform_.LookAt({ 0.f, 0.f, 1.f }, player_->position);
+	transform_.LookAt({ 0.f, 0.f, 1.f }, targetPosition);
 
 	/*Vector3 rotation{ Vector3::Zero() };
 	if (CheckHitKey(KEY_INPUT_LEFT))

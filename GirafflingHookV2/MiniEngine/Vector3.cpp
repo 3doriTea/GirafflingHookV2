@@ -100,6 +100,11 @@ Vector3& Vector3::Normalize()
 	return *this;
 }
 
+float Vector3::Distance(const Vector3& to) const
+{
+	return (to - (*this)).Length();
+}
+
 Vector3 Vector3::From(const DirectX::XMFLOAT3& from)
 {
 	return Vector3{ from.x, from.y, from.z };

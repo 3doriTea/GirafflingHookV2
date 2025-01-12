@@ -28,6 +28,7 @@ struct Vector3 : public DirectX::XMFLOAT3
 
 	float Length() const;
 	Vector3& Normalize();
+	float Distance(const Vector3& to) const;
 
 	/// <summary>
 	/// DirectX::XMFLOAT3‚©‚çVector3‚É•ÏŠ·
@@ -61,5 +62,5 @@ inline Vector3 operator-(const Vector3& v1, const Vector3& v3) { return Vector3{
 
 inline float Length(const Vector3& v) { return v.Length(); }
 inline Vector3 Normalize(const Vector3& v) { return Vector3{ v }.Normalize(); }
-
+inline float Distance(const Vector3& a, const Vector3& b) { return a.Distance(b); }
 
