@@ -1,4 +1,6 @@
 #include "Ground.h"
+#include <DxLib.h>
+#include <cassert>
 
 Play::Ground::Ground() :
 	GameObject::GameObject
@@ -6,10 +8,11 @@ Play::Ground::Ground() :
 		GameObjectBuilder{}
 			.Name("Ground")
 			.Position({ 0.f, -400.f, 0.f })
-			.Scale({ 1000.f, 10.f, 100.f })
+			.Scale({ 3000.f, 100.f, 1000.f })
 	},
 	transform_{ *this },
-	collider_{ *this, transform_ }
+	collider_{ *this, transform_ },
+	hBoxModel_{ -1 }
 {
 }
 
@@ -19,9 +22,23 @@ Play::Ground::~Ground()
 
 void Play::Ground::Init()
 {
+	hBoxModel_ = MV1LoadModel("Assets/Play/box.mv1");
+	assert(hBoxModel_ != -1);
+}
+
+void Play::Ground::Update()
+{
+	MV1SetPosition(hBoxModel_, transform_.ToWorldPosition({}));
+	MV1SetScale(hBoxModel_, scale * 0.005f);
 }
 
 void Play::Ground::Draw() const
 {
 	collider_.Draw();
+	MV1DrawModel(hBoxModel_);
+}
+
+void Play::Ground::End()
+{
+	MV1DeleteModel(hBoxModel_);
 }

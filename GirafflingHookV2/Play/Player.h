@@ -24,6 +24,7 @@ namespace Play
 	private:
 		Transform transform_;
 		AABBCollider collider_;
+		float animationTime_;
 		int hGiraffeMV1_;
 		bool isHooking_;
 	};

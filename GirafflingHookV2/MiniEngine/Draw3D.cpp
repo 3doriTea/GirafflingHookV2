@@ -5,6 +5,8 @@
 
 void Draw3D::Box(const AABBCollider& a, const Color& color)
 {
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
+
 #pragma region è„ï”
 	/*Vector3 worldUA{ a.transform.ToWorldPosition({ a.max.x, a.max.y, a.max.z }) };
 	Vector3 worldUB{ a.transform.ToWorldPosition({ a.min.x, a.max.y, a.max.z }) };
@@ -45,4 +47,6 @@ void Draw3D::Box(const AABBCollider& a, const Color& color)
 	DrawLine3D(worldDC, worldUC, color);
 	DrawLine3D(worldDD, worldUD, color);
 #pragma endregion
+
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 }

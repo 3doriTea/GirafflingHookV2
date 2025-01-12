@@ -8,15 +8,15 @@ Play::Camera::Camera() :
 	{
 		GameObjectBuilder{}
 			.Name("MainCamera")
-			.Position({ 0.f, 200.f, -600.f })
+			.Position({ 0.f, 200.f, -1000.f })
 	},
 	cameraMoveRate{ 1.01f },
-	cameraDistance{ 501.f },  // MEMO: ‹——£‚ªL‚ª‚é‚Ù‚Çã‚©‚ç–Úü‚É‚È‚é
-	cameraDistanceZ{ -500.f },
+	cameraDistance{ 1001.f },  // MEMO: ‹——£‚ªL‚ª‚é‚Ù‚Çã‚©‚ç–Úü‚É‚È‚é
+	cameraDistanceZ{ -1000.f },
 	player_{ nullptr },
 	transform_{ *this }
 {
-	// NOTE: cameraDistance‚ÍcameraDistanceZ‚æ‚è‘å‚«‚¢•K—v‚ª‚ ‚é
+	// NOTE: cameraDistance‚Í cameraDistanceZ‚æ‚è‘å‚«‚¢•K—v‚ª‚ ‚é
 	assert(cameraDistance > std::fabsf(cameraDistanceZ));
 }
 

@@ -1,15 +1,18 @@
 #pragma once
 #include "GameObject.h"
-#include "AABBCollider.h"
+#include "Vector3.h"
 #include "Transform.h"
+#include "AABBCollider.h"
 
 namespace Play
 {
-	class Ground : public GameObject
+	class Player;
+
+	class GiraffePoint : public GameObject
 	{
 	public:
-		Ground();
-		~Ground();
+		GiraffePoint(const Vector3& position);
+		~GiraffePoint();
 
 		void Init() override;
 		void Update() override;
@@ -17,8 +20,10 @@ namespace Play
 		void End() override;
 
 	private:
+		Player* player_;
 		Transform transform_;
 		AABBCollider collider_;
-		int hBoxModel_;
+
+		int hTreeModel_;
 	};
 }

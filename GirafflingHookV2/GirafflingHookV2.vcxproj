@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Play\GiraffePoint.cpp" />
     <ClCompile Include="Play\Camera.cpp" />
     <ClCompile Include="Play\Ground.cpp" />
     <ClCompile Include="MiniEngine\AABBCollider.cpp" />
@@ -55,6 +56,7 @@
     <ClCompile Include="Title\TitleString.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Play\GiraffePoint.h" />
     <ClInclude Include="Play\Camera.h" />
     <ClInclude Include="Play\Ground.h" />
     <ClInclude Include="MiniEngine\KeyCode.h" />

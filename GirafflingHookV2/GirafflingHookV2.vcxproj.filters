@@ -104,9 +104,6 @@
     <ClCompile Include="MiniEngine\GameObjectBuilder.cpp">
       <Filter>MiniEngine\Builder</Filter>
     </ClCompile>
-    <ClCompile Include="MiniEngine\Draw3D.cpp">
-      <Filter>MiniEngine</Filter>
-    </ClCompile>
     <ClCompile Include="PlayScene.cpp">
       <Filter>GH\GameScene</Filter>
     </ClCompile>
@@ -134,7 +131,15 @@
     <ClCompile Include="Play\Camera.cpp">
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
-    <ClCompile Include="Title\TitleCamera.cpp" />
+    <ClCompile Include="Title\TitleCamera.cpp">
+      <Filter>GH\GameObject\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Draw3D.cpp">
+      <Filter>MiniEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Play\GiraffePoint.cpp">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\Attachment.h">
@@ -245,7 +250,12 @@
     <ClInclude Include="Play\Camera.h">
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
-    <ClInclude Include="Title\TitleCamera.h" />
+    <ClInclude Include="Title\TitleCamera.h">
+      <Filter>GH\GameObject\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Play\GiraffePoint.h">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />
