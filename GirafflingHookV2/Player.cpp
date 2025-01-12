@@ -1,6 +1,7 @@
 #include "Player.h"
 #include <DxLib.h>
 #include <cassert>
+#include <cmath>
 #include "Draw3D.h"
 
 Player::Player() :
@@ -25,14 +26,15 @@ void Player::Init()
 {
 	hGiraffeMV1_ = MV1LoadModel("Assets/cube001.mv1");
 	assert(hGiraffeMV1_ != -1);
-
-	MV1SetRotationXYZ(hGiraffeMV1_, VGet(0.f, 0.f, 0.f));
-	MV1SetPosition(hGiraffeMV1_, position);
 }
 
 void Player::Update()
 {
-	
+	rotate.y += Frame::GetDeltaTime() * 1000.f;
+	rotate.y = std::fmodf(rotate.y, 360.f);
+
+	MV1SetRotationXYZ(hGiraffeMV1_, transform_.GetRotateRadian());
+	MV1SetPosition(hGiraffeMV1_, position);
 }
 
 void Player::Draw() const

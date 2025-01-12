@@ -4,6 +4,7 @@
 #include <DxLib.h>
 #include "Player.h"
 #include "Camera.h"
+#include "Ground.h"
 
 namespace
 {
@@ -21,6 +22,7 @@ void PlayScene::Init()
 {
 	AddGameObject<Player>();
 	AddGameObject<Camera>();
+	AddGameObject<Ground>();
 
 	ChangeLightTypeDir(VGet(1.f, -1.f, 0.5f));
 }

@@ -22,6 +22,9 @@ struct Vector3 : public DirectX::XMFLOAT3
 	// DxLibのVECTORへの型変換
 	// MEMO: explicitを付けず、暗黙的な変換が可能
 	operator VECTOR() const;
+	// DirectXのXMVECTORへの型変換
+	// MEMO: explicitを付けず、暗黙的な変換が可能
+	operator DirectX::XMVECTOR() const;
 
 	float Length() const;
 	Vector3& Normalize();
@@ -32,6 +35,12 @@ struct Vector3 : public DirectX::XMFLOAT3
 	/// <param name="from">変換したいDirectX::XMFLOAT3</param>
 	/// <returns>変換後のVector3</returns>
 	static Vector3 From(const DirectX::XMFLOAT3& from);
+	/// <summary>
+	/// DxLib::VECTORからVector3に変換
+	/// </summary>
+	/// <param name="from">変換したいDxLib::VECTOR</param>
+	/// <returns>変換後のVector3</returns>
+	static Vector3 From(const DxLib::VECTOR& from);
 	/// <summary>
 	/// 零ベクトルを取得
 	/// </summary>

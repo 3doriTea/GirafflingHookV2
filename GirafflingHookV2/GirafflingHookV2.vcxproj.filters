@@ -119,6 +119,9 @@
     <ClCompile Include="GirafflingHook.cpp">
       <Filter>GH</Filter>
     </ClCompile>
+    <ClCompile Include="MiniEngine\TransformManager.cpp">
+      <Filter>MiniEngine\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\Attachment.h">
@@ -216,6 +219,9 @@
     </ClInclude>
     <ClInclude Include="GirafflingHook.h">
       <Filter>GH</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\TransformManager.h">
+      <Filter>MiniEngine\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

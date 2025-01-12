@@ -83,6 +83,11 @@ Vector3::operator VECTOR() const
 	return VECTOR{ this->x, this->y, this->z };
 }
 
+Vector3::operator DirectX::XMVECTOR() const
+{
+	return DirectX::XMVECTOR{ this->x, this->y, this->z };
+}
+
 float Vector3::Length() const
 {
 	return std::sqrtf(this->x * this->x + this->y * this->y + this->z * this->z);
@@ -90,12 +95,17 @@ float Vector3::Length() const
 
 Vector3& Vector3::Normalize()
 {
-	(*this) / Length();
+	(*this) /= Length();
 
 	return *this;
 }
 
 Vector3 Vector3::From(const DirectX::XMFLOAT3& from)
+{
+	return Vector3{ from.x, from.y, from.z };
+}
+
+Vector3 Vector3::From(const DxLib::VECTOR& from)
 {
 	return Vector3{ from.x, from.y, from.z };
 }

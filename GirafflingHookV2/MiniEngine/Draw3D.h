@@ -7,8 +7,6 @@ class AABBCollider;
 
 class Draw3D
 {
-	friend AABBCollider;
-
 public:
 	enum struct Type
 	{

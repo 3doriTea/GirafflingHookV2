@@ -63,7 +63,7 @@ float Vector2::Length() const
 
 Vector2& Vector2::Normalize()
 {
-	(*this) / Length();
+	(*this) /= Length();
 
 	return *this;
 }

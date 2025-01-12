@@ -49,6 +49,7 @@
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="TheMain.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="MiniEngine\TransformManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ground.h" />
@@ -83,6 +84,7 @@
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="MiniEngine\WorldModeVector.h" />
+    <ClInclude Include="MiniEngine\TransformManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

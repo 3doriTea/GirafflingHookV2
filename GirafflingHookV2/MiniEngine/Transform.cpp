@@ -1,5 +1,7 @@
 #include "Transform.h"
 #include "GameObject.h"
+#include "TransformManager.h"
+#include <cmath>
 
 using namespace DirectX;
 
@@ -14,7 +16,14 @@ Transform::Transform(GameObject& gameObject) :
 	parent_{ nullptr },
 	childs_{}
 {
+	TransformManager::Register(this);
+
 	UpdateCalculate();
+}
+
+Transform::~Transform()
+{
+	TransformManager::Unregister(this);
 }
 
 void Transform::Draw() const
@@ -50,13 +59,56 @@ Vector3 Transform::ToWorldPosition(const Vector3& localPosition)
 
 	DirectX::XMVECTOR worldPositionVector
 	{
-		DirectX::XMVector3Transform(localPositionVector, GetWorldMatrix())
+		DirectX::XMVector3Transform(localPositionVector, GetWorldTranslateMatrix())
 	};
 
 	DirectX::XMFLOAT3 worldPosition{};
 	DirectX::XMStoreFloat3(&worldPosition, worldPositionVector);
 
 	return Vector3::From(worldPosition);
+}
+
+void Transform::LookAt(Vector3 forwardDirection, const Vector3& targetPosition)
+{
+	// SRC: http://www.yz-learning.com:8080/knowledge/open.knowledge/view/36?offset=0
+	
+	// 向けたい軸
+	Vector3 forward{ forwardDirection.Normalize() };
+
+	// 対象への方向ベクトル
+	Vector3 direction{ (targetPosition - this->position).Normalize() };
+
+	// 2軸に垂直なベクトル = 法線ベクトル
+	Vector3 normal{ Vector3::From(VCross(forward, direction)) };
+
+	float rotationAngle
+	{
+		XMVectorGetX(
+			XMVector3AngleBetweenVectors(
+				forward, direction))
+	};
+	rotateMatrix_ = XMMatrixRotationAxis(normal, rotationAngle);
+
+	XMFLOAT4X4 m{};
+	XMStoreFloat4x4(&m, rotateMatrix_);
+
+	if (std::abs(m._32) < 0.99999f)
+	{
+		rotate.x = std::asin(-m._32);
+		rotate.y = std::atan2(m._31, m._33);
+		rotate.z = std::atan2(m._12, m._22);
+	}
+	else  // ジンバルロック回避
+	{
+		rotate.x = std::copysign(XM_PIDIV2, -m._32);
+		rotate.y = std::atan2(-m._13, m._11);
+		rotate.z = 0.0f;
+	}
+
+	// MEMO: ラジアンから度数に変換
+	rotate.x = XMConvertToDegrees(rotate.x);
+	rotate.y = XMConvertToDegrees(rotate.y);
+	rotate.z = XMConvertToDegrees(rotate.z);
 }
 
 void Transform::SetParent(Transform* parent)
@@ -68,11 +120,11 @@ void Transform::SetParent(Transform* parent)
 	parent_ = parent;
 }
 
-DirectX::XMMATRIX Transform::GetWorldMatrix()
+DirectX::XMMATRIX Transform::GetWorldTranslateMatrix()
 {
 	if (parent_ != nullptr)
 	{
-		return scaleMatrix_ * rotateMatrix_ * positionMatrix_ * parent_->GetWorldMatrix();
+		return scaleMatrix_ * rotateMatrix_ * positionMatrix_ * parent_->GetWorldTranslateMatrix();
 	}
 	
 	return scaleMatrix_ * rotateMatrix_ * positionMatrix_;

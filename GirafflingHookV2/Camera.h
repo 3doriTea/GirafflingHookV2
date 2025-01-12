@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "Transform.h"
 
 class Player;
 
@@ -14,5 +15,6 @@ public:
 
 private:
 	Player* player_;
+	Transform transform_;
 };
 
