@@ -22,7 +22,6 @@ void SceneManager::Init()
 
 void SceneManager::Update()
 {
-	printfDx("SceneManager\n");
 	if (readyScene_ != nullptr)
 	{
 		if (activeScene_ != nullptr)

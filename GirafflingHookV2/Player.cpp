@@ -30,8 +30,24 @@ void Player::Init()
 
 void Player::Update()
 {
-	rotate.y += Frame::GetDeltaTime() * 1000.f;
-	rotate.y = std::fmodf(rotate.y, 360.f);
+	/*rotate.y += Frame::GetDeltaTime() * 1000.f;
+	rotate.y = std::fmodf(rotate.y, 360.f);*/
+
+	Vector3 move{ Vector3::Zero() };
+	if (CheckHitKey(KEY_INPUT_Q))
+		move.y -= 10.f;
+	if (CheckHitKey(KEY_INPUT_E))
+		move.y += 10.f;
+	if (CheckHitKey(KEY_INPUT_W))
+		move.z += 10.f;
+	if (CheckHitKey(KEY_INPUT_A))
+		move.x -= 10.f;
+	if (CheckHitKey(KEY_INPUT_S))
+		move.z -= 10.f;
+	if (CheckHitKey(KEY_INPUT_D))
+		move.x += 10.f;
+
+	position += move;
 
 	MV1SetRotationXYZ(hGiraffeMV1_, transform_.GetRotateRadian());
 	MV1SetPosition(hGiraffeMV1_, position);

@@ -14,6 +14,10 @@ public:
 	void Update() override;
 
 private:
+	float cameraMoveRate;
+	float cameraDistance;
+	float cameraDistanceZ;
+
 	Player* player_;
 	Transform transform_;
 };

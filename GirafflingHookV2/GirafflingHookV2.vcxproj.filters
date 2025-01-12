@@ -223,6 +223,9 @@
     <ClInclude Include="MiniEngine\TransformManager.h">
       <Filter>MiniEngine\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="MiniEngine\KeyCode.h">
+      <Filter>MiniEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

@@ -4,6 +4,7 @@
 #include <DirectXMath.h>
 //#include "DxLib.h"
 //#include "XInput.h"
+#include "KeyCode.h"
 
 #pragma comment(lib, "dxguid.lib")
 #pragma comment(lib, "dInput8.lib")
@@ -30,16 +31,19 @@ namespace Input
 	//引数：keyCode	調べたいキーのコード
 	//戻値：押されていれば true
 	bool IsKey(int keyCode);
+	bool IsKey(KeyCode keyCode);
 
 	//キーを今押したか調べる（押しっぱなしは無効）
 	//引数：keyCode	調べたいキーのコード
 	//戻値：押した瞬間だったら true
 	bool IsKeyDown(int keyCode);
+	bool IsKeyDown(KeyCode keyCode);
 
 	//キーを今放したか調べる
 	//引数：keyCode	調べたいキーのコード
 	//戻値：放した瞬間だったら true
 	bool IsKeyUp(int keyCode);
+	bool IsKeyUp(KeyCode keyCode);
 
 
 	///////////////////////////　マウス　//////////////////////////////////

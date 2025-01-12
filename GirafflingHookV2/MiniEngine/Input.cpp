@@ -101,6 +101,11 @@ namespace Input
 		return false;
 	}
 
+	bool IsKey(KeyCode keyCode)
+	{
+		return IsKey(static_cast<int>(keyCode));
+	}
+
 
 	//キーを今押したか調べる（押しっぱなしは無効）
 	bool IsKeyDown(int keyCode)
@@ -113,6 +118,11 @@ namespace Input
 		return false;
 	}
 
+	bool IsKeyDown(KeyCode keyCode)
+	{
+		return IsKeyDown(static_cast<int>(keyCode));
+	}
+
 
 	//キーを今放したか調べる
 	bool IsKeyUp(int keyCode)
@@ -123,6 +133,11 @@ namespace Input
 			return true;
 		}
 		return false;
+	}
+
+	bool IsKeyUp(KeyCode keyCode)
+	{
+		return IsKeyUp(static_cast<int>(keyCode));
 	}
 
 

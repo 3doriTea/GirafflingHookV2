@@ -16,8 +16,13 @@ public:
 	void End() override;
 
 private:
+	void MoveDefault();
+	void MoveHooking();
+
+private:
 	Transform transform_;
 	AABBCollider collider_;
 	int hGiraffeMV1_;
+	bool isHooking_;
 };
 

@@ -1,6 +1,7 @@
 #include "Camera.h"
 #include "Player.h"
 #include <cassert>
+#include <cmath>
 
 Camera::Camera() :
 	GameObject::GameObject
@@ -9,9 +10,14 @@ Camera::Camera() :
 			.Name("MainCamera")
 			.Position({ 0.f, 200.f, -600.f })
 	},
+	cameraMoveRate{ 1.01f },
+	cameraDistance{ 501.f },  // MEMO: 距離が広がるほど上から目線になる
+	cameraDistanceZ{ -500.f },
 	player_{ nullptr },
 	transform_{ *this }
 {
+	// NOTE: cameraDistanceはcameraDistanceZより大きい必要がある
+	assert(cameraDistance > std::fabsf(cameraDistanceZ));
 }
 
 Camera::~Camera()
@@ -26,7 +32,7 @@ void Camera::Init()
 
 void Camera::Update()
 {
-	Vector3 move{ Vector3::Zero() };
+	/*Vector3 move{ Vector3::Zero() };
 	if (CheckHitKey(KEY_INPUT_Q))
 		move.y -= 10.f;
 	if (CheckHitKey(KEY_INPUT_E))
@@ -40,11 +46,25 @@ void Camera::Update()
 	if (CheckHitKey(KEY_INPUT_D))
 		move.x += 10.f;
 
-	position = transform_.ToWorldPosition(move);
+	position = transform_.ToWorldPosition(move);*/
 
-	//transform_.LookAt({ 0.f, 0.f, 1.f }, player_->position);
+	// MEMO: 円の公式 x^2 + y^2 = r^2 により
+	//     : y = +-root(r^2 - x^2) になるため、
+	//     : z=100のときのy座標を求められる！！
 
-	Vector3 rotation{ Vector3::Zero() };
+	float diffX = player_->position.x - position.x;
+	diffX /= cameraMoveRate;
+
+	transform_.position = Vector3
+	{
+		diffX * Frame::GetDeltaTime() + position.x,
+		std::sqrtf(cameraDistance * cameraDistance - cameraDistanceZ * cameraDistanceZ) + player_->position.y,
+		cameraDistanceZ
+	};
+
+	transform_.LookAt({ 0.f, 0.f, 1.f }, player_->position);
+
+	/*Vector3 rotation{ Vector3::Zero() };
 	if (CheckHitKey(KEY_INPUT_LEFT))
 		rotation.y -= Frame::GetDeltaTime() * 100.f;
 	if (CheckHitKey(KEY_INPUT_RIGHT))
@@ -54,7 +74,7 @@ void Camera::Update()
 	if (CheckHitKey(KEY_INPUT_DOWN))
 		rotation.x += Frame::GetDeltaTime() * 100.f;
 
-	rotate += rotation;
+	rotate += rotation;*/
 
 	Vector3 angles{ transform_.GetRotateRadian() };
 	SetCameraPositionAndAngle(position, angles.x, angles.y, angles.z);

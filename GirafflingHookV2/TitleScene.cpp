@@ -18,9 +18,18 @@ void TitleScene::Init()
 
 void TitleScene::Update()
 {
-	if (Input::IsKey(DIK_H))
+	if (Input::IsKey(KeyCode::Space))
 	{
 		printfDx("タイトルシーン%f\n", Frame::GetDeltaTime());
+	}
+
+	if (Input::IsKeyDown(KeyCode::J))
+	{
+		printfDx("テステスDown%f\n", Frame::GetDeltaTime());
+	}
+	if (Input::IsKeyUp(KeyCode::J))
+	{
+		printfDx("テステスUp%f\n", Frame::GetDeltaTime());
 	}
 	
 	if (CheckHitKey(KEY_INPUT_P))

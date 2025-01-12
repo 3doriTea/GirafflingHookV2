@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ground.h" />
+    <ClInclude Include="MiniEngine\KeyCode.h" />
     <ClInclude Include="MiniEngine\Draw3D.h" />
     <ClInclude Include="MiniEngine\AABBCollider.h" />
     <ClInclude Include="MiniEngine\Box3.h" />
