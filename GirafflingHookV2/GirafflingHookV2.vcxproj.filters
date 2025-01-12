@@ -29,6 +29,12 @@
     <Filter Include="GH\GameScene">
       <UniqueIdentifier>{c1edc495-a22c-4c5b-92ee-60acf424bd3a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GH\GameObject\Title">
+      <UniqueIdentifier>{86ed1a53-4c23-408e-b532-bd9378108ca3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GH\GameObject\Play">
+      <UniqueIdentifier>{1031e004-d162-454d-9a2f-d27c21361729}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TheMain.cpp" />
@@ -86,12 +92,6 @@
     <ClCompile Include="MiniEngine\Box2.cpp">
       <Filter>MiniEngine\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>GH\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>GH\GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="MiniEngine\Transform.cpp">
       <Filter>MiniEngine\Attachment</Filter>
     </ClCompile>
@@ -107,9 +107,6 @@
     <ClCompile Include="MiniEngine\Draw3D.cpp">
       <Filter>MiniEngine</Filter>
     </ClCompile>
-    <ClCompile Include="Ground.cpp">
-      <Filter>GH\GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="PlayScene.cpp">
       <Filter>GH\GameScene</Filter>
     </ClCompile>
@@ -122,6 +119,19 @@
     <ClCompile Include="MiniEngine\TransformManager.cpp">
       <Filter>MiniEngine\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="Play\Ground.cpp">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Play\Player.cpp">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Title\TitleString.cpp">
+      <Filter>GH\GameObject\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Title\SelectButton.cpp">
+      <Filter>GH\GameObject\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Play\Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\Attachment.h">
@@ -178,14 +188,8 @@
     <ClInclude Include="MiniEngine\Box2.h">
       <Filter>MiniEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>GH\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="MiniEngine\WorldModeVector.h">
       <Filter>MiniEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>GH\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="MiniEngine\Transform.h">
       <Filter>MiniEngine\Attachment</Filter>
@@ -208,9 +212,6 @@
     <ClInclude Include="MiniEngine\Draw3D.h">
       <Filter>MiniEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Ground.h">
-      <Filter>GH\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="PlayScene.h">
       <Filter>GH\GameScene</Filter>
     </ClInclude>
@@ -226,6 +227,19 @@
     <ClInclude Include="MiniEngine\KeyCode.h">
       <Filter>MiniEngine</Filter>
     </ClInclude>
+    <ClInclude Include="Play\Ground.h">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Play\Player.h">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Title\TitleString.h">
+      <Filter>GH\GameObject\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Title\SelectButton.h">
+      <Filter>GH\GameObject\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Play\Camera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

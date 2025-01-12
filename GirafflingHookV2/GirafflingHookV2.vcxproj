@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="Play\Camera.cpp" />
+    <ClCompile Include="Play\Ground.cpp" />
     <ClCompile Include="MiniEngine\AABBCollider.cpp" />
     <ClCompile Include="MiniEngine\Box3.cpp" />
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="MiniEngine\Draw3D.cpp" />
     <ClCompile Include="MiniEngine\GameObjectBuilder.cpp" />
     <ClCompile Include="GirafflingHook.cpp" />
@@ -45,19 +45,21 @@
     <ClCompile Include="MiniEngine\Transform.cpp" />
     <ClCompile Include="MiniEngine\Vector2.cpp" />
     <ClCompile Include="MiniEngine\Vector3.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Play\Player.cpp" />
     <ClCompile Include="PlayScene.cpp" />
+    <ClCompile Include="Title\SelectButton.cpp" />
     <ClCompile Include="TheMain.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="MiniEngine\TransformManager.cpp" />
+    <ClCompile Include="Title\TitleString.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ground.h" />
+    <ClInclude Include="Play\Camera.h" />
+    <ClInclude Include="Play\Ground.h" />
     <ClInclude Include="MiniEngine\KeyCode.h" />
     <ClInclude Include="MiniEngine\Draw3D.h" />
     <ClInclude Include="MiniEngine\AABBCollider.h" />
     <ClInclude Include="MiniEngine\Box3.h" />
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="MiniEngine\Collider.h" />
     <ClInclude Include="MiniEngine\GameObjectBuilder.h" />
     <ClInclude Include="GirafflingHook.h" />
@@ -81,11 +83,13 @@
     <ClInclude Include="MiniEngine\Transform.h" />
     <ClInclude Include="MiniEngine\Vector2.h" />
     <ClInclude Include="MiniEngine\Vector3.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="Play\Player.h" />
     <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="Title\SelectButton.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="MiniEngine\WorldModeVector.h" />
     <ClInclude Include="MiniEngine\TransformManager.h" />
+    <ClInclude Include="Title\TitleString.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

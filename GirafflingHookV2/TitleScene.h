@@ -14,6 +14,12 @@ public:
 	void End() override;
 
 private:
+	int hPointLight_;
+	int hDirectional_;
+
+	int hPlayButtonModel_;
+	int hInfoButtonModel_;
+	int hQuitButtonModel_;
 
 	enum TITLE_ELEMENT
 	{

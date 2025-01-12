@@ -1,6 +1,6 @@
 #include "Ground.h"
 
-Ground::Ground() :
+Play::Ground::Ground() :
 	GameObject::GameObject
 	{
 		GameObjectBuilder{}
@@ -13,15 +13,15 @@ Ground::Ground() :
 {
 }
 
-Ground::~Ground()
+Play::Ground::~Ground()
 {
 }
 
-void Ground::Init()
+void Play::Ground::Init()
 {
 }
 
-void Ground::Draw() const
+void Play::Ground::Draw() const
 {
 	collider_.Draw();
 }

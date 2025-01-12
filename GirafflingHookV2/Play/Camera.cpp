@@ -3,7 +3,7 @@
 #include <cassert>
 #include <cmath>
 
-Camera::Camera() :
+Play::Camera::Camera() :
 	GameObject::GameObject
 	{
 		GameObjectBuilder{}
@@ -20,17 +20,17 @@ Camera::Camera() :
 	assert(cameraDistance > std::fabsf(cameraDistanceZ));
 }
 
-Camera::~Camera()
+Play::Camera::~Camera()
 {
 }
 
-void Camera::Init()
+void Play::Camera::Init()
 {
 	player_ = FindGameObject<Player>();
 	assert(player_ != nullptr);  // NOTE: ƒvƒŒƒCƒ„[‚ÍŒ©‚Â‚©‚é
 }
 
-void Camera::Update()
+void Play::Camera::Update()
 {
 	/*Vector3 move{ Vector3::Zero() };
 	if (CheckHitKey(KEY_INPUT_Q))

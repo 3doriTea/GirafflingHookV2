@@ -2,13 +2,11 @@
 #include "MiniEngine.h"
 #include "TitleScene.h"
 #include <DxLib.h>
-#include "Player.h"
-#include "Camera.h"
-#include "Ground.h"
+#include "Play/Player.h"
+#include "Play/Camera.h"
+#include "Play/Ground.h"
 
-namespace
-{
-}
+using namespace Play;
 
 PlayScene::PlayScene()
 {
@@ -20,6 +18,8 @@ PlayScene::~PlayScene()
 
 void PlayScene::Init()
 {
+	SetBackgroundColor(0x00, 0x00, 0x00);
+
 	AddGameObject<Player>();
 	AddGameObject<Camera>();
 	AddGameObject<Ground>();

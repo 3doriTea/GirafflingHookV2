@@ -4,7 +4,7 @@
 #include <cmath>
 #include "Draw3D.h"
 
-Player::Player() :
+Play::Player::Player() :
 	GameObject::GameObject
 	{ 
 		GameObjectBuilder{}
@@ -14,21 +14,22 @@ Player::Player() :
 	},
 	transform_{ *this },
 	collider_{ *this, transform_ },
-	hGiraffeMV1_{ -1 }
+	hGiraffeMV1_{ -1 },
+	isHooking_{ false }
 {
 }
 
-Player::~Player()
+Play::Player::~Player()
 {
 }
 
-void Player::Init()
+void Play::Player::Init()
 {
 	hGiraffeMV1_ = MV1LoadModel("Assets/cube001.mv1");
 	assert(hGiraffeMV1_ != -1);
 }
 
-void Player::Update()
+void Play::Player::Update()
 {
 	/*rotate.y += Frame::GetDeltaTime() * 1000.f;
 	rotate.y = std::fmodf(rotate.y, 360.f);*/
@@ -53,14 +54,14 @@ void Player::Update()
 	MV1SetPosition(hGiraffeMV1_, position);
 }
 
-void Player::Draw() const
+void Play::Player::Draw() const
 {
 	MV1DrawModel(hGiraffeMV1_);
 	//collider_.Draw();
 	Draw3D::Box(collider_, 0x00ff00);
 }
 
-void Player::End()
+void Play::Player::End()
 {
 	MV1DeleteModel(hGiraffeMV1_);
 }
