@@ -3,6 +3,11 @@
 #include <cassert>
 #include <cmath>
 
+namespace
+{
+	const float PI{ std::acosf(-1.f) };
+}
+
 Play::Camera::Camera() :
 	GameObject::GameObject
 	{
@@ -13,6 +18,7 @@ Play::Camera::Camera() :
 	cameraMoveRate{ 1.01f },
 	cameraDistance{ 2001.f },  // MEMO: ãóó£Ç™çLÇ™ÇÈÇŸÇ«è„Ç©ÇÁñ⁄ê¸Ç…Ç»ÇÈ
 	cameraDistanceZ{ -2000.f },
+	hSoptLight_{ -1 },
 	player_{ nullptr },
 	transform_{ *this }
 {
@@ -26,6 +32,14 @@ Play::Camera::~Camera()
 
 void Play::Camera::Init()
 {
+	hSoptLight_ = CreateSpotLightHandle(
+		position,
+		transform_.GetRotateRadian(),
+		PI / 1.f,
+		0.f,//PI / 5.f,
+		5000.f,
+		0.f, 0.0001f, 0.f);
+
 	player_ = FindGameObject<Player>();
 	assert(player_ != nullptr);  // NOTE: ÉvÉåÉCÉÑÅ[ÇÕå©Ç¬Ç©ÇÈ
 }
@@ -82,6 +96,14 @@ void Play::Camera::Update()
 	Vector3 angles{ transform_.GetRotateRadian() };
 	SetCameraPositionAndAngle(position, angles.x, angles.y, angles.z);
 
+	SetLightPositionHandle(hSoptLight_, position);
+	SetLightDirectionHandle(hSoptLight_, angles);
+
 	//SetCameraPositionAndTarget_UpVecY(position, player_->position);
 
+}
+
+void Play::Camera::End()
+{
+	DeleteLightHandle(hSoptLight_);
 }

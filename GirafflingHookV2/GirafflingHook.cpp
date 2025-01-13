@@ -3,6 +3,7 @@
 #include "FrameManager.h"
 #include "InputManager.h"
 #include "ImageManager.h"
+#include "PhysicsManager.h"
 #include "TransformManager.h"
 
 #include "SceneManager.h"
@@ -19,6 +20,7 @@ void GirafflingHook::Init()
 		{
 			Manager::UpdateFrame();
 		});
+	new PhysicsManager{};
 	new TransformManager{};
 	new DxLibManager{};
 	(new SceneManager{})->Move<TitleScene>();

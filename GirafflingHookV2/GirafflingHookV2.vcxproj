@@ -48,6 +48,8 @@
     <ClCompile Include="MiniEngine\Vector3.cpp" />
     <ClCompile Include="Play\Player.cpp" />
     <ClCompile Include="PlayScene.cpp" />
+    <ClCompile Include="MiniEngine\Rigidbody.cpp" />
+    <ClCompile Include="MiniEngine\PhysicsManager.cpp" />
     <ClCompile Include="Title\TitleCamera.cpp" />
     <ClCompile Include="Title\SelectButton.cpp" />
     <ClCompile Include="TheMain.cpp" />
@@ -88,6 +90,8 @@
     <ClInclude Include="MiniEngine\Vector3.h" />
     <ClInclude Include="Play\Player.h" />
     <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="MiniEngine\Rigidbody.h" />
+    <ClInclude Include="MiniEngine\PhysicsManager.h" />
     <ClInclude Include="Title\TitleCamera.h" />
     <ClInclude Include="Title\SelectButton.h" />
     <ClInclude Include="TitleScene.h" />

@@ -7,6 +7,8 @@
 
 #include "GameObject.h"
 
+#include "Rigidbody.h"
+
 #include "SceneManager.h"
 
 #include "Vector2.h"

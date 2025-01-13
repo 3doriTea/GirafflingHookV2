@@ -14,11 +14,14 @@ namespace Play
 
 		void Init() override;
 		void Update() override;
+		void End() override;
 
 	private:
 		float cameraMoveRate;
 		float cameraDistance;
 		float cameraDistanceZ;
+
+		int hSoptLight_;
 
 		Player* player_;
 		Transform transform_;
