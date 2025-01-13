@@ -149,6 +149,7 @@
     <ClCompile Include="MiniEngine\Vector2Int.cpp">
       <Filter>MiniEngine\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Play\Goal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\Attachment.h">
@@ -274,6 +275,7 @@
     <ClInclude Include="MiniEngine\Vector2Int.h">
       <Filter>MiniEngine\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Play\Goal.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

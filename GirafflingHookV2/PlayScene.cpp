@@ -6,6 +6,7 @@
 #include "Play/Camera.h"
 #include "Play/Ground.h"
 #include "Play/GiraffePoint.h"
+#include "Play/Goal.h"
 
 using namespace Play;
 
@@ -25,6 +26,7 @@ void PlayScene::Init()
 	AddGameObject<Camera>();
 	AddGameObject<Ground>();
 	AddGameObject<GiraffePoint>(Vector3{ 0.f, 0.f, 0.f });
+	AddGameObject<Goal>();
 
 	ChangeLightTypeDir(VGet(1.f, -1.f, 0.5f));
 }
