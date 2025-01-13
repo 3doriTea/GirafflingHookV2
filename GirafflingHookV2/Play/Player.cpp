@@ -41,6 +41,7 @@ void Play::Player::Init()
 	assert(hGiraffeMV1_ != -1);
 
 	rigidbody_.resistance = 1.f;
+	rigidbody_.resistanceTorque = 1.f;
 }
 
 void Play::Player::Update()
@@ -113,6 +114,7 @@ void Play::Player::StartHooking()
 	{
 		MV1AttachAnim(hGiraffeMV1_, 0);
 		animationTime_ = 0.f;
+		rigidbody_.velocityTorque = Vector3::Zero();
 
 		state_ = State::Shooting;
 	}
@@ -124,6 +126,14 @@ void Play::Player::FinishHooking()
 	transform_.rotate = { 0.f, 0.f, 0.f };
 	hookTarget_ = nullptr;
 	hookDistance_ = 0.f;
+	if (move_.x < 0.f)
+	{
+		rigidbody_.velocityTorque.z += 3600.f;
+	}
+	else
+	{
+		rigidbody_.velocityTorque.z -= 3600.f;
+	}
 
 	state_ = State::Defualt;
 }

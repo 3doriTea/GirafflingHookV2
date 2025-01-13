@@ -9,6 +9,7 @@ Rigidbody::Rigidbody(
 	transform_{ transform },
 	colliderPtr_{ colliderPtr },
 	position_{ transform.position },
+	rotate_{ transform.rotate },
 	velocity{ Vector3::Zero() },
 	resistance{ 0.f }
 {
@@ -17,6 +18,7 @@ Rigidbody::Rigidbody(
 
 Rigidbody::~Rigidbody()
 {
+	PhysicsManager::Unregister(this);
 }
 
 void Rigidbody::Draw() const

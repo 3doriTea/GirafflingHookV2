@@ -25,9 +25,17 @@ void PhysicsManager::Update()
 		Vector3& position{ rigidbody->position_ };
 		Vector3& velocity{ rigidbody->velocity };
 		float& resistance{ rigidbody->resistance };
-
+		
 		position += velocity * deltaTime;
 		velocity += velocity * -resistance * deltaTime;
+		
+		Vector3& rotate{ rigidbody->rotate_ };
+		Vector3& velocityTorque{ rigidbody->velocityTorque };
+		float& resistanceTorque{ rigidbody->resistanceTorque };
+
+		rotate += velocityTorque * deltaTime;
+		velocityTorque += velocityTorque * -resistanceTorque * deltaTime;
+		rotate %= 360.f;  // 360“x“à‚ÉŽû‚ß‚é
 	}
 }
 
