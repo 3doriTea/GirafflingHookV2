@@ -146,6 +146,9 @@
     <ClCompile Include="MiniEngine\PhysicsManager.cpp">
       <Filter>MiniEngine\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="MiniEngine\Vector2Int.cpp">
+      <Filter>MiniEngine\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\Attachment.h">
@@ -267,6 +270,9 @@
     </ClInclude>
     <ClInclude Include="MiniEngine\PhysicsManager.h">
       <Filter>MiniEngine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Vector2Int.h">
+      <Filter>MiniEngine\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

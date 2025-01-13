@@ -74,6 +74,10 @@ namespace Input
 		//	XInputGetState(i, &controllerState_[i]);
 		//}
 
+		/*int mouseX{}, mouseY{};
+		GetMousePoint(&mouseX, &mouseY);
+		mousePos_.x = mouseX;
+		mousePos_.y = mouseY;*/
 	}
 
 

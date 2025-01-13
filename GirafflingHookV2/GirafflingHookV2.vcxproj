@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MiniEngine\Vector2Int.cpp" />
     <ClCompile Include="Play\GiraffePoint.cpp" />
     <ClCompile Include="Play\Camera.cpp" />
     <ClCompile Include="Play\Ground.cpp" />
@@ -58,6 +59,7 @@
     <ClCompile Include="Title\TitleString.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MiniEngine\Vector2Int.h" />
     <ClInclude Include="Play\GiraffePoint.h" />
     <ClInclude Include="Play\Camera.h" />
     <ClInclude Include="Play\Ground.h" />

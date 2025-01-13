@@ -2,6 +2,8 @@
 #include <DirectXMath.h>
 #include <DxLib.h>
 
+struct Vector2;
+
 /// <summary>
 /// DirectX::XMFLOAT3の継承、DxLib::VECTORへ変換可能な3次元のベクトル
 /// </summary>
@@ -17,6 +19,11 @@ struct Vector3 : public DirectX::XMFLOAT3
 	Vector3& operator+=(const Vector3& other);
 	Vector3& operator-=(const Vector3& other);
 
+	inline Vector3 Copy() const { return *this; }
+	Vector3& Set(const Vector3& other);
+	Vector3& Set(Vector3 other);
+	Vector3& Set(const float& x, const float& y, const float& z);
+
 	float& operator[](const size_t& index);
 
 	// DxLibのVECTORへの型変換
@@ -30,6 +37,14 @@ struct Vector3 : public DirectX::XMFLOAT3
 	Vector3& Normalize();
 	float Distance(const Vector3& to) const;
 
+	/// <summary>
+	/// Vector2からVector3に変換
+	/// NOTE: Vector2 と Vector3 は要素が異なるためキャストを避けたい
+	/// </summary>
+	/// <param name="source">変換したいVector2</param>
+	/// <param name="z">z成分</param>
+	/// <returns>変換後のVector3</returns>
+	static Vector3 From(const Vector2& from, const float& z = 0.f);
 	/// <summary>
 	/// DirectX::XMFLOAT3からVector3に変換
 	/// </summary>

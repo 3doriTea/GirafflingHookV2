@@ -1,6 +1,7 @@
 #include "Vector3.h"
 #include <cmath>
 #include <cassert>
+#include "Vector2.h"
 
 Vector3::Vector3() :
 	Vector3::Vector3{ 0.f, 0.f, 0.f }
@@ -63,6 +64,33 @@ Vector3& Vector3::operator-=(const Vector3& other)
 	return *this;
 }
 
+Vector3& Vector3::Set(const Vector3& other)
+{
+	this->x = other.x;
+	this->y = other.y;
+	this->z = other.z;
+
+	return *this;
+}
+
+Vector3& Vector3::Set(Vector3 other)
+{
+	this->x = other.x;
+	this->y = other.y;
+	this->z = other.z;
+
+	return *this;
+}
+
+Vector3& Vector3::Set(const float& x, const float& y, const float& z)
+{
+	this->x = x;
+	this->y = y;
+	this->z = z;
+
+	return *this;
+}
+
 float& Vector3::operator[](const size_t& index)
 {
 	assert(0 <= index && index < 3);
@@ -103,6 +131,11 @@ Vector3& Vector3::Normalize()
 float Vector3::Distance(const Vector3& to) const
 {
 	return (to - (*this)).Length();
+}
+
+Vector3 Vector3::From(const Vector2& from, const float& z)
+{
+	return Vector3{ from.x, from.y, z };
 }
 
 Vector3 Vector3::From(const DirectX::XMFLOAT3& from)
