@@ -66,5 +66,5 @@ GameObject* GameObject::FindGameObject(const std::string& name)
 
 std::vector<GameObject*> GameObject::FindGameObjects(const std::string& tag)
 {
-	return FindGameObjects(tag);
+	return GetGameScene().FindGameObjects(tag);
 }

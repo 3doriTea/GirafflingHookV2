@@ -47,9 +47,9 @@ protected:
 	/// <typeparam name="...Args">コンストラクタ引数(可変長)</typeparam>
 	/// <returns>インスタンスされたゲームオブジェクトの参照</returns>
 	template<typename GameObjectT, typename ...Args>
-	GameObjectT& Instantiate()
+	GameObjectT& Instantiate(Args... args)
 	{
-		return GetGameScene().AddGameObject<GameObjectT>(Args...);
+		return GetGameScene().AddGameObject<GameObjectT>(args);
 	}
 	/// <summary>
 	/// 所属シーンからゲームオブジェクトをただ１つ取得
