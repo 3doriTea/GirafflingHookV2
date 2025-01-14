@@ -150,6 +150,9 @@
       <Filter>MiniEngine\Utility</Filter>
     </ClCompile>
     <ClCompile Include="Play\Goal.cpp" />
+    <ClCompile Include="MiniEngine\Event.cpp">
+      <Filter>MiniEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\Attachment.h">
@@ -276,6 +279,9 @@
       <Filter>MiniEngine\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Play\Goal.h" />
+    <ClInclude Include="MiniEngine\Event.h">
+      <Filter>MiniEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

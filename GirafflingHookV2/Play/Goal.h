@@ -3,6 +3,8 @@
 
 namespace Play
 {
+	class Player;
+
 	class Goal : public GameObject
 	{
 	public:
@@ -16,5 +18,6 @@ namespace Play
 
 	private:
 		int hRocketModel_;
+		Player* player_;
 	};
 }

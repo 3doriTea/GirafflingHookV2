@@ -1,5 +1,6 @@
 #include "Goal.h"
 #include "MiniEngine.h"
+#include "Player.h"
 
 Play::Goal::Goal() :
 	GameObject::GameObject
@@ -9,7 +10,8 @@ Play::Goal::Goal() :
 			.Position({ 2000.f, 0.f, 0.f })
 			//.Scale({})
 	},
-	hRocketModel_{ -1 }
+	hRocketModel_{ -1 },
+	player_{ nullptr }
 {
 }
 
@@ -19,6 +21,9 @@ Play::Goal::~Goal()
 
 void Play::Goal::Init()
 {
+	player_ = FindGameObject<Player>();
+	assert(player_ != nullptr);  // ƒvƒŒƒCƒ„[‚ÍŒ©‚Â‚©‚é
+
 	hRocketModel_ = MV1LoadModel("Assets/Play/RetroToyRocket.mv1");
 
 	MV1SetPosition(hRocketModel_, position);
@@ -26,6 +31,10 @@ void Play::Goal::Init()
 
 void Play::Goal::Update()
 {
+	if (position.Distance(player_->position) <= 30.f)
+	{
+
+	}
 }
 
 void Play::Goal::Draw() const

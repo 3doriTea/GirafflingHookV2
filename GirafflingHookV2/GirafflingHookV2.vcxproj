@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MiniEngine\Event.cpp" />
     <ClCompile Include="Play\Goal.cpp" />
     <ClCompile Include="MiniEngine\Vector2Int.cpp" />
     <ClCompile Include="Play\GiraffePoint.cpp" />
@@ -60,6 +61,7 @@
     <ClCompile Include="Title\TitleString.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MiniEngine\Event.h" />
     <ClInclude Include="Play\Goal.h" />
     <ClInclude Include="MiniEngine\Vector2Int.h" />
     <ClInclude Include="Play\GiraffePoint.h" />
