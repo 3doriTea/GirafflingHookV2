@@ -27,7 +27,8 @@ Play::Player::Player() :
 	hookTarget_{ nullptr },
 	hookDistance_{ 0.f },
 	state_{ State::Defualt },
-	move_{ Vector3::Zero() }
+	move_{ Vector3::Zero() },
+	moveSign_{ +1 }
 {
 }
 
@@ -115,6 +116,14 @@ void Play::Player::StartHooking()
 		MV1AttachAnim(hGiraffeMV1_, 0);
 		animationTime_ = 0.f;
 		rigidbody_.velocityTorque = Vector3::Zero();
+		if (position.y < hookTarget_->position.y)
+		{
+			moveSign_ = 1.f;
+		}
+		else
+		{
+			moveSign_ = -1.f;
+		}
 
 		state_ = State::Shooting;
 	}
@@ -210,7 +219,7 @@ void Play::Player::MoveHooking()
 		std::cosf(angles.z - PI / 2.f),
 		0.f
 	};
-	rigidbody_.velocity += direction * move_.x;
+	rigidbody_.velocity += direction * move_.x * moveSign_;
 #pragma endregion
 
 	animationTime_ = LengthToAnimationTime(currentDistance);

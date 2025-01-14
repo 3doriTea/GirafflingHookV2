@@ -84,6 +84,7 @@ namespace Play
 
 		State state_;  // プレイヤーの状態
 		Vector3 move_;
+		int moveSign_;
 
 	private:
 		// MEMO: キリンの首は5000伸びる
