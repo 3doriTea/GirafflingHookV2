@@ -1,28 +1,44 @@
 #pragma once
 #include <functional>
+#include <map>
 
 using EventHandle = int;
+using EventCallback = std::function<void()>;
 
 class Event
 {
+	enum struct EventType : char
+	{
+		Interval,
+		Timeout,
+	};
 	struct EventElement
 	{
-		void Invoke();
+		EventElement(
+			const EventHandle& _handle,
+			const float& _timeMax,
+			const EventCallback& _callback);
 
+		void Invoke() const;
 
-		std::function<void()> callback;
-		float milliseconds;
+		EventCallback callback;
+		const float TIME_MAX;
+		const EventHandle HANDLE;
+		const EventType
+		float timeLeft;
 	};
 
 public:
 	static EventHandle SetInterval(
-		const std::function<void()>& callback,
-		const float& milliseconds);
+		const EventCallback& callback,
+		const float& seconds);
 	static EventHandle SetTimeout(
-		const std::function<void()>& callback,
-		const float& milliseconds);
+		const EventCallback& callback,
+		const float& seconds);
+	static void Delete(const EventHandle& handle);
 
 private:
-
+	static std::map<EventHandle, EventElement> events;
+	static EventHandle handleCounter;
 };
 
