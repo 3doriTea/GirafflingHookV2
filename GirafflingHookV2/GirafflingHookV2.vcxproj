@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MiniEngine\Collider.cpp" />
     <ClCompile Include="MiniEngine\Event.cpp" />
     <ClCompile Include="Play\Goal.cpp" />
     <ClCompile Include="MiniEngine\Vector2Int.cpp" />

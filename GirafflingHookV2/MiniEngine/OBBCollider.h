@@ -8,6 +8,7 @@ class Draw3D;
 
 class OBBCollider : public Attachment, public Collider, public Box3
 {
+	friend Collider;
 	friend Draw3D;
 public:
 	OBBCollider(GameObject& attachingGameObject, Transform& transform);
