@@ -18,6 +18,9 @@ void DxLibManager::Init()
 {
 	SetWindowText("Giraffling Hook ver1.0.0");
 
+	// ログを出力しない
+	SetOutApplicationLogValidFlag(FALSE);
+
 	// MEMO: Windowの最大サイズを決める
 	SetGraphMode(Screen::WIDTH, Screen::HEIGHT, Screen::COLOR_DEPTH);
 
@@ -31,6 +34,9 @@ void DxLibManager::Init()
 
 	SetBackgroundColor(0, 0, 0);
 	SetDrawScreen(DX_SCREEN_BACK);
+	SetUseZBuffer3D(TRUE);
+	SetWriteZBuffer3D(TRUE);
+	SetAlwaysRunFlag(TRUE);
 }
 
 void DxLibManager::Update()
