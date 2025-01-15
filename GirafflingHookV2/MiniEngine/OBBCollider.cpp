@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "Draw3D.h"
 
-AABBCollider::AABBCollider(GameObject& gameObject, Transform& transform) :
+OBBCollider::OBBCollider(GameObject& gameObject, Transform& transform) :
 	Attachment::Attachment{ gameObject },
 	transform{ transform }
 {
@@ -10,7 +10,7 @@ AABBCollider::AABBCollider(GameObject& gameObject, Transform& transform) :
 	min = gameObject.scale / -2.f;
 }
 
-void AABBCollider::Draw() const
+void OBBCollider::Draw() const
 {
 	Draw3D::Box(*this, 0x00ff00);
 }

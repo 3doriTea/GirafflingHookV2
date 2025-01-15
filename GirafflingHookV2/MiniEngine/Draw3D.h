@@ -3,7 +3,7 @@
 
 using Color = unsigned int;
 
-class AABBCollider;
+class OBBCollider;
 
 class Draw3D
 {
@@ -14,5 +14,5 @@ public:
 		WireFrame,  // ワイヤーフレームモデル
 	};
 
-	static void Box(const AABBCollider& aABB, const Color& color);
+	static void Box(const OBBCollider& aABB, const Color& color);
 };

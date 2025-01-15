@@ -22,7 +22,7 @@ namespace Play
 	private:
 		Player* player_;
 		Transform transform_;
-		AABBCollider collider_;
+		OBBCollider collider_;
 
 		int hTreeModel_;
 	};

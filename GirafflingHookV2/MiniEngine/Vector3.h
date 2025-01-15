@@ -67,6 +67,7 @@ struct Vector3 : public DirectX::XMFLOAT3
 	/// </summary>
 	/// <returns>¬•ª‚ª‚·‚×‚Ä1‚ÌƒxƒNƒgƒ‹</returns>
 	static inline Vector3 One() { return { 1.f, 1.f, 1.f }; }
+	static inline Vector3 Down() { return { 0.f, -1.f, 0.f }; }
 };
 
 inline Vector3 operator*(const Vector3& v, const float& scale) { return Vector3{ v } *= scale; }

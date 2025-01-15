@@ -71,7 +71,7 @@ namespace Play
 
 	private:
 		Transform transform_;
-		AABBCollider collider_;
+		OBBCollider collider_;
 		Rigidbody rigidbody_;
 
 		float animationTime_;     // グラッフリング中のアニメーション時間

@@ -25,9 +25,14 @@ void PhysicsManager::Update()
 		Vector3& position{ rigidbody->position_ };
 		Vector3& velocity{ rigidbody->velocity };
 		float& resistance{ rigidbody->resistance };
+		float& gravity{ rigidbody->gravity };
+
 		
 		position += velocity * deltaTime;
 		velocity += velocity * -resistance * deltaTime;
+		
+		// d—Í‚Ì“K—p
+		velocity += Vector3::Down() * gravity * deltaTime;
 		
 		Vector3& rotate{ rigidbody->rotate_ };
 		Vector3& velocityTorque{ rigidbody->velocityTorque };

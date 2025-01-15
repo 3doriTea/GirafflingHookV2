@@ -3,7 +3,7 @@
 #include "AABBCollider.h"
 #include <DxLib.h>
 
-void Draw3D::Box(const AABBCollider& a, const Color& color)
+void Draw3D::Box(const OBBCollider& a, const Color& color)
 {
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
 

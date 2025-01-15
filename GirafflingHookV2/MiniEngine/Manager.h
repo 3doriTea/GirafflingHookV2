@@ -21,11 +21,24 @@ public:
 	virtual void Update() = 0;
 	virtual void End() = 0;
 
+	/// <summary>
+	/// 1フレームの更新処理
+	/// </summary>
 	static void UpdateFrame();
+	/// <summary>
+	/// 1サイクルの更新処理
+	/// </summary>
 	static void UpdateCycle();
+	/// <summary>
+	/// すべての動的メモリ確保したやつを解放
+	/// </summary>
 	static void ReleaseAll();
 
 protected:
+	/// <summary>
+	/// 更新順番をお願いする
+	/// </summary>
+	/// <param name="">更新順番低いほど順番が早い</param>
 	void SetOrder(const int&);
 
 private:

@@ -30,6 +30,8 @@ public:
 	Vector3 velocityTorque;
 	// 1•bŠÔ‚ ‚½‚è‚Ì‰ñ“]’ïR
 	float resistanceTorque;
+	// 1•bŠÔ‚ ‚½‚è‚Ìd—Í‰Á‘¬“x
+	float gravity;
 
 private:
 	Transform& transform_;

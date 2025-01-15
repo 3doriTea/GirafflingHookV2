@@ -18,7 +18,7 @@ namespace Play
 
 	private:
 		Transform transform_;
-		AABBCollider collider_;
+		OBBCollider collider_;
 		int hBoxModel_;
 	};
 }

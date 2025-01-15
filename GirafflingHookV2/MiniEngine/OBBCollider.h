@@ -6,11 +6,11 @@
 
 class Draw3D;
 
-class AABBCollider : public Attachment, public Collider, public Box3
+class OBBCollider : public Attachment, public Collider, public Box3
 {
 	friend Draw3D;
 public:
-	AABBCollider(GameObject& attachingGameObject, Transform& transform);
+	OBBCollider(GameObject& attachingGameObject, Transform& transform);
 
 	void Draw() const override;
 
