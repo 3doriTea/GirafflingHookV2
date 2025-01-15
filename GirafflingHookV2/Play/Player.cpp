@@ -24,6 +24,7 @@ Play::Player::Player() :
 	animationTime_{ 0.f },
 	animationTimeMax_{ 0.f },
 	hGiraffeMV1_{ -1 },
+	hTextureImage_{ -1 },
 	hookTarget_{ nullptr },
 	hookDistance_{ 0.f },
 	state_{ State::Defualt },
@@ -39,6 +40,8 @@ Play::Player::~Player()
 void Play::Player::Init()
 {
 	hGiraffeMV1_ = MV1LoadModel("Assets/Play/giraffeee.mv1");
+	hTextureImage_ = LoadGraph("Assets/Play/cube001.png");
+	MV1SetTextureGraphHandle(hGiraffeMV1_, 0, hTextureImage_, FALSE);
 	assert(hGiraffeMV1_ != -1);
 
 	rigidbody_.resistance = 1.f;
@@ -238,6 +241,7 @@ void Play::Player::Draw() const
 void Play::Player::End()
 {
 	MV1DeleteModel(hGiraffeMV1_);
+	DeleteGraph(hTextureImage_);
 }
 
 bool Play::Player::TryGetHookTargetPosition(Vector3& outPosition)

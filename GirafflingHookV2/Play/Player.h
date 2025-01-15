@@ -79,6 +79,7 @@ namespace Play
 		float animationTimeMax_;  // グラッフリング中のアニメーション時間最大
 		int hGiraffeMV1_;
 		float hookDistance_;
+		int hTextureImage_;
 
 		GiraffePoint* hookTarget_;  // グラッフリングするターゲット
 

@@ -81,6 +81,11 @@ void Transform::LookAt(Vector3 forwardDirection, const Vector3& targetPosition)
 	// 2軸に垂直なベクトル = 法線ベクトル
 	Vector3 normal{ Vector3::From(VCross(forward, direction)) };
 
+	if (normal.Length() <= FLT_EPSILON)
+	{
+		return;
+	}
+
 	float rotationAngle
 	{
 		XMVectorGetX(

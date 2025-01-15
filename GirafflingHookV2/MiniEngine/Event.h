@@ -17,14 +17,15 @@ class Event
 		EventElement(
 			const EventHandle& _handle,
 			const float& _timeMax,
-			const EventCallback& _callback);
+			const EventCallback& _callback,
+			const EventType& _type);
 
 		void Invoke() const;
 
 		EventCallback callback;
 		const float TIME_MAX;
 		const EventHandle HANDLE;
-		const EventType
+		const EventType TYPE;
 		float timeLeft;
 	};
 
