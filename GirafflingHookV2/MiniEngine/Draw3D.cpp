@@ -1,6 +1,6 @@
 #pragma once
 #include "Draw3D.h"
-#include "AABBCollider.h"
+#include "OBBCollider.h"
 #include <DxLib.h>
 
 void Draw3D::Box(const OBBCollider& a, const Color& color)

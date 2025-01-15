@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "Vector3.h"
 #include "Transform.h"
-#include "AABBCollider.h"
+#include "OBBCollider.h"
 
 namespace Play
 {

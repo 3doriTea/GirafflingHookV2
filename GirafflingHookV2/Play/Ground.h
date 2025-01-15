@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-#include "AABBCollider.h"
+#include "OBBCollider.h"
 #include "Transform.h"
 
 namespace Play
