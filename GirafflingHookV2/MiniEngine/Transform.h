@@ -74,12 +74,36 @@ public:
 	/// <returns>大きさ(コピー値)</returns>
 	inline Vector3 GetScale() const { return scale; }
 	/// <summary>
+	/// ローカル右方向軸のワールド方向軸(単位ベクトル)を取得
+	/// </summary>
+	/// <returns>ワールド方向軸(単位ベクトル)</returns>
+	inline Vector3 RightUnit() const
+	{
+		return ToWorldDirection({ 1.f, 0.f, 0.f });
+	};
+	/// <summary>
+	/// ローカル上方向軸のワールド方向軸(単位ベクトル)を取得
+	/// </summary>
+	/// <returns>ワールド方向軸(単位ベクトル)</returns>
+	inline Vector3 UpUnit() const
+	{
+		return ToWorldDirection({ 0.f, 1.f, 0.f });
+	};
+	/// <summary>
+	/// ローカル前方向軸のワールド方向軸(単位ベクトル)を取得
+	/// </summary>
+	/// <returns>ワールド方向軸(単位ベクトル)</returns>
+	inline Vector3 ForwardUnit() const
+	{
+		return ToWorldDirection({ 0.f, 0.f, 1.f });
+	};
+	/// <summary>
 	/// ローカル右方向軸のワールド方向軸を取得
 	/// </summary>
 	/// <returns>ワールド方向軸</returns>
 	inline Vector3 Right() const
 	{
-		return ToWorldDirection({ 1.f, 0.f, 0.f });
+		return ToWorldDirection({ scale.x / 2.f, 0.f, 0.f });
 	};
 	/// <summary>
 	/// ローカル上方向軸のワールド方向軸を取得
@@ -87,7 +111,7 @@ public:
 	/// <returns>ワールド方向軸</returns>
 	inline Vector3 Up() const
 	{
-		return ToWorldDirection({ 0.f, 1.f, 0.f });
+		return ToWorldDirection({ 0.f, scale.y / 2.f, 0.f });
 	};
 	/// <summary>
 	/// ローカル前方向軸のワールド方向軸を取得
@@ -95,7 +119,7 @@ public:
 	/// <returns>ワールド方向軸</returns>
 	inline Vector3 Forward() const
 	{
-		return ToWorldDirection({ 0.f, 0.f, 1.f });
+		return ToWorldDirection({ 0.f, 0.f, scale.z / 2.f });
 	};
 
 private:

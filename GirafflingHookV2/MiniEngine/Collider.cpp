@@ -2,6 +2,7 @@
 #include "Vector3.h"
 #include <cfloat>
 #include <DirectXMath.h>
+#include <cmath>
 #include "OBBCollider.h"
 
 #pragma region ƒRƒsƒy‚Á‚½1
@@ -255,8 +256,7 @@ bool TestOBBOBB(OBB& a, OBB& b)
 
 bool Collider::IsHit_OBB2OBB(OBBCollider& colliderA, OBBCollider& colliderB)
 {
-	
+	float rA =
 
-	return TestOBBOBB(
-		);
+	return false;
 }

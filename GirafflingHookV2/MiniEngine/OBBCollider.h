@@ -16,11 +16,17 @@ public:
 
 	void Draw() const override;
 
+	/// <summary>
+	/// Še²-“Š‰eü•ª‚Ì’·‚³‚Ì”¼•ª‚É•ÏŠ·
+	/// </summary>
+	/// <returns></returns>
+	Vector3 ToProjectionSize();
+
 public:
 	using Box3::max;
 	using Box3::min;
 
 private:
-	Transform& transform;
+	Transform& transform_;
 	DirectX::XMMATRIX& rotateMatrix_;
 };
