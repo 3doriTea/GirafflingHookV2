@@ -3,6 +3,7 @@
 #include "Collider.h"
 #include "Box3.h"
 #include "Transform.h"
+#include <DirectXMath.h>
 
 class Draw3D;
 
@@ -21,4 +22,5 @@ public:
 
 private:
 	Transform& transform;
+	DirectX::XMMATRIX& rotateMatrix_;
 };

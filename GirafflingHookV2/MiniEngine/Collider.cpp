@@ -2,6 +2,7 @@
 #include "Vector3.h"
 #include <cfloat>
 #include <DirectXMath.h>
+#include "OBBCollider.h"
 
 #pragma region コピペった1
 	//// OBB v.s. OBB
@@ -155,6 +156,8 @@
 
 using namespace DirectX;
 
+
+
 struct OBB
 {
 	Vector3 c;     // 中心点の座標
@@ -162,7 +165,7 @@ struct OBB
 	Vector3 e;     // OBB の各座標軸に沿った長さの半分（中心点から面までの長さ）
 };
 
-bool TestOBBOBB(const OBB& a, const OBB& b)
+bool TestOBBOBB(OBB& a, OBB& b)
 {
 	const float EPSILON = 1.175494e-37;
 
@@ -250,8 +253,10 @@ bool TestOBBOBB(const OBB& a, const OBB& b)
 }
 #pragma endregion
 
-bool Collider::IsHit_OBB2OBB(const OBBCollider& a, const OBBCollider& b)
+bool Collider::IsHit_OBB2OBB(OBBCollider& colliderA, OBBCollider& colliderB)
 {
+	
 
-	return false;
+	return TestOBBOBB(
+		);
 }

@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "TransformManager.h"
 #include <cmath>
+#include "OBBCollider.h"
 
 using namespace DirectX;
 
@@ -23,6 +24,10 @@ Transform::Transform(GameObject& gameObject) :
 
 Transform::~Transform()
 {
+	if (parent_ != nullptr)
+	{
+		parent_->childs_.erase(this);
+	}
 	TransformManager::Unregister(this);
 }
 
@@ -50,7 +55,7 @@ void Transform::UpdateCalculate()
 		scale.z);
 }
 
-Vector3 Transform::ToWorldPosition(const Vector3& localPosition)
+Vector3 Transform::ToWorldPosition(const Vector3& localPosition) const
 {
 	DirectX::XMVECTOR localPositionVector
 	{
@@ -64,6 +69,24 @@ Vector3 Transform::ToWorldPosition(const Vector3& localPosition)
 
 	DirectX::XMFLOAT3 worldPosition{};
 	DirectX::XMStoreFloat3(&worldPosition, worldPositionVector);
+
+	return Vector3::From(worldPosition);
+}
+
+Vector3 Transform::ToWorldDirection(const Vector3& localDirection) const
+{
+	DirectX::XMVECTOR localDirectionVector
+	{
+		DirectX::XMLoadFloat3(&localDirection)
+	};
+
+	DirectX::XMVECTOR worldDirectionVector
+	{
+		DirectX::XMVector3Transform(localDirectionVector, GetWorldDirectionMatrix())
+	};
+
+	DirectX::XMFLOAT3 worldPosition{};
+	DirectX::XMStoreFloat3(&worldPosition, worldDirectionVector);
 
 	return Vector3::From(worldPosition);
 }
@@ -125,7 +148,7 @@ void Transform::SetParent(Transform* parent)
 	parent_ = parent;
 }
 
-DirectX::XMMATRIX Transform::GetWorldTranslateMatrix()
+DirectX::XMMATRIX Transform::GetWorldTranslateMatrix() const
 {
 	if (parent_ != nullptr)
 	{
@@ -133,4 +156,14 @@ DirectX::XMMATRIX Transform::GetWorldTranslateMatrix()
 	}
 	
 	return scaleMatrix_ * rotateMatrix_ * positionMatrix_;
+}
+
+DirectX::XMMATRIX Transform::GetWorldDirectionMatrix() const
+{
+	if (parent_ != nullptr)
+	{
+		return rotateMatrix_ * parent_->GetWorldDirectionMatrix();
+	}
+
+	return rotateMatrix_;
 }
