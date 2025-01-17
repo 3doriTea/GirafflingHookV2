@@ -6,10 +6,14 @@
 #include <cmath>
 #include "Vector3.h"
 
+//class OBBCollider;
+class AABBCollider;
 class GameObject;
 
 class Transform : public Attachment
 {
+	//friend OBBCollider;
+	friend AABBCollider;
 public:
 	/// <summary>
 	/// 座標変換をするアタッチメント
@@ -29,7 +33,13 @@ public:
 	/// </summary>
 	/// <param name="localPosition">アタッチされたゲームオブジェクト基準のローカル座標</param>
 	/// <returns>ワールド座標</returns>
-	Vector3 ToWorldPosition(const Vector3& localPosition);
+	Vector3 ToWorldPosition(const Vector3& localPosition) const;
+	/// <summary>
+	/// ローカル方向軸をワールド方向軸に変換
+	/// </summary>
+	/// <param name="localDirection">方向軸</param>
+	/// <returns>ワールド方向軸</returns>
+	Vector3 ToWorldDirection(const Vector3& localDirection) const;
 	/// <summary>
 	/// 任意の軸を指定座標の方向に向ける
 	/// </summary>
@@ -66,9 +76,58 @@ public:
 	/// </summary>
 	/// <returns>大きさ(コピー値)</returns>
 	inline Vector3 GetScale() const { return scale; }
+	/// <summary>
+	/// ローカル右方向軸のワールド方向軸(単位ベクトル)を取得
+	/// </summary>
+	/// <returns>ワールド方向軸(単位ベクトル)</returns>
+	inline Vector3 RightUnit() const
+	{
+		return ToWorldDirection({ 1.f, 0.f, 0.f });
+	};
+	/// <summary>
+	/// ローカル上方向軸のワールド方向軸(単位ベクトル)を取得
+	/// </summary>
+	/// <returns>ワールド方向軸(単位ベクトル)</returns>
+	inline Vector3 UpUnit() const
+	{
+		return ToWorldDirection({ 0.f, 1.f, 0.f });
+	};
+	/// <summary>
+	/// ローカル前方向軸のワールド方向軸(単位ベクトル)を取得
+	/// </summary>
+	/// <returns>ワールド方向軸(単位ベクトル)</returns>
+	inline Vector3 ForwardUnit() const
+	{
+		return ToWorldDirection({ 0.f, 0.f, 1.f });
+	};
+	/// <summary>
+	/// ローカル右方向軸のワールド方向軸を取得
+	/// </summary>
+	/// <returns>ワールド方向軸</returns>
+	inline Vector3 Right() const
+	{
+		return ToWorldDirection({ scale.x / 2.f, 0.f, 0.f });
+	};
+	/// <summary>
+	/// ローカル上方向軸のワールド方向軸を取得
+	/// </summary>
+	/// <returns>ワールド方向軸</returns>
+	inline Vector3 Up() const
+	{
+		return ToWorldDirection({ 0.f, scale.y / 2.f, 0.f });
+	};
+	/// <summary>
+	/// ローカル前方向軸のワールド方向軸を取得
+	/// </summary>
+	/// <returns>ワールド方向軸</returns>
+	inline Vector3 Forward() const
+	{
+		return ToWorldDirection({ 0.f, 0.f, scale.z / 2.f });
+	};
 
 private:
-	DirectX::XMMATRIX GetWorldTranslateMatrix();
+	DirectX::XMMATRIX GetWorldTranslateMatrix() const;
+	DirectX::XMMATRIX GetWorldDirectionMatrix() const;
 
 public:
 	Vector3& position;
