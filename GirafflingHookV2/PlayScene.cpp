@@ -28,6 +28,8 @@ void PlayScene::Init()
 	AddGameObject<GiraffePoint>(Vector3{ 0.f, 0.f, 0.f });
 	AddGameObject<Goal>();
 
+	player_ = FindGameObject<Player>();
+
 	ChangeLightTypeDir(VGet(1.f, -1.f, 0.5f));
 }
 
@@ -46,7 +48,7 @@ void PlayScene::Update()
 
 void PlayScene::Draw() const
 {
-
+	DrawFormatString(0, 10, 0xffffff, "x = %f\ny = %f\nz = %f", player_->position.x, player_->position.y, player_->position.z);
 }
 
 void PlayScene::End()

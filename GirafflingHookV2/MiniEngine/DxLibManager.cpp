@@ -37,6 +37,7 @@ void DxLibManager::Init()
 	SetUseZBuffer3D(TRUE);
 	SetWriteZBuffer3D(TRUE);
 	SetAlwaysRunFlag(TRUE);
+	SetLightEnable(TRUE);
 }
 
 void DxLibManager::Update()

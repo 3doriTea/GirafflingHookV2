@@ -22,6 +22,7 @@ namespace Play
 		float cameraDistanceZ;
 
 		int hSoptLight_;
+		int hDirLight_;
 
 		Player* player_;
 		Transform transform_;

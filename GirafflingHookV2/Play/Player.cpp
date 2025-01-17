@@ -105,7 +105,7 @@ void Play::Player::UpdateMove()
 void Play::Player::StartHooking()
 {
 	hookTarget_ = FindGameObject<GiraffePoint>();
-	assert(hookTarget_ != nullptr);  // ギラッフポイントは見つかる
+	assert(hookTarget_ != nullptr); // ギラッフポイントは見つかる
 
 	hookDistance_ = position.Distance(hookTarget_->position);
 
