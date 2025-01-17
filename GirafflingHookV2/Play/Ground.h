@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-#include "OBBCollider.h"
+#include "AABBCollider.h"
 #include "Transform.h"
 
 namespace Play
@@ -18,7 +18,7 @@ namespace Play
 
 	private:
 		Transform transform_;
-		OBBCollider collider_;
+		AABBCollider collider_;
 		int hBoxModel_;
 	};
 }

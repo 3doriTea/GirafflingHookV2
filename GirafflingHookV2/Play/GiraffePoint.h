@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "Vector3.h"
 #include "Transform.h"
-#include "OBBCollider.h"
+#include "AABBCollider.h"
 
 namespace Play
 {
@@ -22,7 +22,7 @@ namespace Play
 	private:
 		Player* player_;
 		Transform transform_;
-		OBBCollider collider_;
+		AABBCollider collider_;
 
 		int hTreeModel_;
 	};

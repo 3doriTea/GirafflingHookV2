@@ -14,8 +14,8 @@ public:
 	Rigidbody( 
 		GameObject& attachingGameObject,
 		Transform& transform,
-		Collider* colliderPtr
-		);
+		Collider* colliderPtr,
+		const bool& isDynamic = false);
 	~Rigidbody();
 
 	void Draw() const override;

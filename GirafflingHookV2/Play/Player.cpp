@@ -20,7 +20,7 @@ Play::Player::Player() :
 	},
 	transform_{ *this },
 	collider_{ *this, transform_ },
-	rigidbody_{ *this, transform_, &collider_ },
+	rigidbody_{ *this, transform_, &collider_, true },
 	animationTime_{ 0.f },
 	animationTimeMax_{ 0.f },
 	hGiraffeMV1_{ -1 },

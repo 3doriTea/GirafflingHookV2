@@ -133,6 +133,16 @@ float Vector3::Distance(const Vector3& to) const
 	return (to - (*this)).Length();
 }
 
+Vector3 Vector3::Abs() const
+{
+	return
+	{
+		std::fabsf(this->x),
+		std::fabsf(this->y),
+		std::fabsf(this->z)
+	};
+}
+
 Vector3 Vector3::From(const Vector2& from, const float& z)
 {
 	return Vector3{ from.x, from.y, z };

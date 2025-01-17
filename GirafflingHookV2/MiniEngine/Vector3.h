@@ -1,6 +1,7 @@
 #pragma once
 #include <DirectXMath.h>
 #include <DxLib.h>
+#include <string>
 
 struct Vector2;
 
@@ -36,6 +37,7 @@ struct Vector3 : public DirectX::XMFLOAT3
 	float Length() const;
 	Vector3& Normalize();
 	float Distance(const Vector3& to) const;
+	Vector3 Abs() const;
 
 	/// <summary>
 	/// Vector2‚©‚çVector3‚É•ÏŠ·
@@ -68,6 +70,23 @@ struct Vector3 : public DirectX::XMFLOAT3
 	/// <returns>¬•ª‚ª‚·‚×‚Ä1‚ÌƒxƒNƒgƒ‹</returns>
 	static inline Vector3 One() { return { 1.f, 1.f, 1.f }; }
 	static inline Vector3 Down() { return { 0.f, -1.f, 0.f }; }
+
+	static inline Vector3 Right() { return { 1.f, 0.f, 0.f }; }
+	static inline Vector3 Up() { return { 0.f, 1.f, 0.f }; }
+	static inline Vector3 Forward() { return { 0.f, 0.f, 1.f }; }
+
+	inline std::string ToString() const
+	{
+		std::string str{};
+			str += "(";
+			str += std::to_string(this->x);
+			str += ", ";
+			str += std::to_string(this->y);
+			str += ", ";
+			str += std::to_string(this->z);
+			str += ")";
+		return str;
+	};
 };
 
 inline Vector3 operator*(const Vector3& v, const float& scale) { return Vector3{ v } *= scale; }
@@ -79,4 +98,3 @@ inline Vector3 operator-(const Vector3& v1, const Vector3& v3) { return Vector3{
 inline float Length(const Vector3& v) { return v.Length(); }
 inline Vector3 Normalize(const Vector3& v) { return Vector3{ v }.Normalize(); }
 inline float Distance(const Vector3& a, const Vector3& b) { return a.Distance(b); }
-

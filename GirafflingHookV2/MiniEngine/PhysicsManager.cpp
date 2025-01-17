@@ -1,10 +1,14 @@
 #include "PhysicsManager.h"
 #include "Rigidbody.h"
 #include "Frame.h"
+#include "AABBCollider.h"
+#include "Collider.h"
 
 PhysicsManager::PhysicsManager() :
 	Manager::Manager{ CalledType::Frame },
-	rigidBodies_{}
+	rigidBodies_{},
+	dynamicRigidBodies_{},
+	colliders_{}
 {
 	instance = this;
 }
@@ -20,7 +24,7 @@ void PhysicsManager::Init()
 void PhysicsManager::Update()
 {
 	float deltaTime = Frame::GetDeltaTime();
-	for (auto&& rigidbody : rigidBodies_)
+	for (auto&& rigidbody : dynamicRigidBodies_)
 	{
 		Vector3& position{ rigidbody->position_ };
 		Vector3& velocity{ rigidbody->velocity };
@@ -42,20 +46,61 @@ void PhysicsManager::Update()
 		velocityTorque += velocityTorque * -resistanceTorque * deltaTime;
 		rotate %= 360.f;  // 360“x“à‚ÉŽû‚ß‚é
 	}
+
+	for (auto&& self : dynamicRigidBodies_)
+	{
+		for (auto&& targetCollider : colliders_)
+		{
+			if (self->colliderPtr_ == targetCollider)
+			{
+				continue;
+			}
+
+			if (static_cast<AABBCollider*>(self->colliderPtr_)
+				->IsHitAABB(*static_cast<AABBCollider*>(targetCollider)))
+			{
+				printfDx("“–‚½‚Á‚Ä‚éI");
+			}
+			else
+			{
+				printfDx("“–‚½‚Á‚Ä‚È‚¢I");
+			}
+		}
+	}
 }
 
 void PhysicsManager::End()
 {
 }
 
-void PhysicsManager::Register(Rigidbody* rigidbody)
+void PhysicsManager::RegisterRigidbody(Rigidbody* rigidbody, const bool& isDynamic)
 {
 	instance->rigidBodies_.insert(rigidbody);
+	if (isDynamic)
+	{
+		instance->dynamicRigidBodies_.insert(rigidbody);
+	}
 }
 
-void PhysicsManager::Unregister(Rigidbody* rigidbody)
+void PhysicsManager::UnregisterRigidbody(Rigidbody* rigidbody)
 {
 	instance->rigidBodies_.erase(rigidbody);
+
+	// “®“I„‘Ì‚Æ‚µ‚Ä“o˜^Ï‚Ý‚È‚çÁ‚·
+	if (instance->dynamicRigidBodies_.count(rigidbody))
+	{
+		instance->dynamicRigidBodies_.erase(rigidbody);
+	}
+}
+
+void PhysicsManager::RegisterCollider(Collider* collider)
+{
+	instance->colliders_.insert(collider);
+}
+
+void PhysicsManager::UnregisterCollider(Collider* collider)
+{
+	instance->colliders_.erase(collider);
 }
 
 PhysicsManager* PhysicsManager::instance{ nullptr };

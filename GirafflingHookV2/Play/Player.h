@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "MiniEngine.h"
 #include "Transform.h"
-#include "OBBCollider.h"
+#include "AABBCollider.h"
 
 namespace Play
 {
@@ -71,7 +71,7 @@ namespace Play
 
 	private:
 		Transform transform_;
-		OBBCollider collider_;
+		AABBCollider collider_;
 		Rigidbody rigidbody_;
 
 		float animationTime_;     // グラッフリング中のアニメーション時間

@@ -2,7 +2,8 @@
 #include "GameObject.h"
 #include "TransformManager.h"
 #include <cmath>
-#include "OBBCollider.h"
+//#include "OBBCollider.h"
+#include "AABBCollider.h"
 
 using namespace DirectX;
 

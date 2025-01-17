@@ -6,11 +6,14 @@
 #include <cmath>
 #include "Vector3.h"
 
-class OBBCollider;
+//class OBBCollider;
+class AABBCollider;
 class GameObject;
 
 class Transform : public Attachment
 {
+	//friend OBBCollider;
+	friend AABBCollider;
 public:
 	/// <summary>
 	/// 座標変換をするアタッチメント

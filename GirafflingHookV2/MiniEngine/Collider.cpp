@@ -3,7 +3,12 @@
 #include <cfloat>
 #include <DirectXMath.h>
 #include <cmath>
-#include "OBBCollider.h"
+#include <DxLib.h>
+#include "AABBCollider.h"
+#include "GameObject.h"
+#include "PhysicsManager.h"
+
+/*#include "OBBCollider.h"
 
 #pragma region コピペった1
 	//// OBB v.s. OBB
@@ -256,7 +261,80 @@ bool TestOBBOBB(OBB& a, OBB& b)
 
 bool Collider::IsHit_OBB2OBB(OBBCollider& colliderA, OBBCollider& colliderB)
 {
-	float rA =
+	Vector3 D{ (colliderB.transform_.position - colliderA.transform_.position).Abs() };  // 差分ベクトル
+	Vector3 L{};  // 分離軸
 
+	float rA
+	{
+		std::fabsf(VDot(colliderA.transform_.Right(), L)) +
+		std::fabsf(VDot(colliderA.transform_.Up(), L))
+	};
+	float rB
+	{
+		std::fabsf(VDot(colliderB.transform_.Right(), L)) +
+		std::fabsf(VDot(colliderB.transform_.Up(), L))
+	};
+
+	if (D.x >= rA + rB)
+	{
+		return true;
+	}
+	
 	return false;
+}
+*/
+
+Collider::Collider()
+{
+	PhysicsManager::RegisterCollider(this);
+}
+
+Collider::~Collider()
+{
+	PhysicsManager::UnregisterCollider(this);
+}
+
+bool Collider::IsHit_AABB2AABB(const AABBCollider& a, const AABBCollider& b) const
+{
+	Vector3 distance
+	{
+		(a.transform_.ToWorldPosition(Vector3::Zero())
+		- b.transform_.ToWorldPosition(Vector3::Zero()))
+		.Abs()
+	};
+
+	Vector3 aMin{ a.Min() };
+	Vector3 aMax{ a.Max() };
+
+	Vector3 bMin{ b.Min() };
+	Vector3 bMax{ b.Max() };
+
+	DrawSphere3D(aMin, 50.f, 0, 0xff00ff, 0xff0000, TRUE);
+	DrawSphere3D(aMax, 50.f, 0, 0xff00ff, 0xff0000, TRUE);
+	DrawSphere3D(bMin, 50.f, 0, 0xff00ff, 0xff0000, TRUE);
+	DrawSphere3D(bMax, 50.f, 0, 0xff00ff, 0xff0000, TRUE);
+
+	printfDx("NAMES: a=%s, b=%s\n", a.gameObject.GetName().c_str(), b.gameObject.GetName().c_str());
+
+	printfDx("aMin: %s, aMax: %s\n", aMin.ToString().c_str(), aMax.ToString().c_str());
+	printfDx("bMin: %s, bMax: %s\n", bMin.ToString().c_str(), bMax.ToString().c_str());
+
+	/*bool isNotHit
+	{
+		aMax.x < bMin.x && bMax.x < aMin.x &&
+		aMax.y < bMin.y && bMax.y < aMin.y &&
+		aMax.z < bMin.z && bMax.z < aMin.z
+	};*/
+
+	/*for (int i = 0; i < 3; i++)
+	{
+		isNotHit = isNotHit && (aMax[i] < bMin[i] && bMax[i] < aMin[i]);
+	}*/
+
+	//return !isNotHit;
+
+	for (int i = 0; i < 3; i++)
+	{
+		
+	}
 }

@@ -4,7 +4,8 @@
 Rigidbody::Rigidbody(
 	GameObject& attachingGameObject,
 	Transform& transform,
-	Collider* colliderPtr) :
+	Collider* colliderPtr,
+	const bool& isDynamic) :
 	Attachment::Attachment{ attachingGameObject },
 	transform_{ transform },
 	colliderPtr_{ colliderPtr },
@@ -13,12 +14,12 @@ Rigidbody::Rigidbody(
 	velocity{ Vector3::Zero() },
 	resistance{ 0.f }
 {
-	PhysicsManager::Register(this);
+	PhysicsManager::RegisterRigidbody(this, isDynamic);
 }
 
 Rigidbody::~Rigidbody()
 {
-	PhysicsManager::Unregister(this);
+	PhysicsManager::UnregisterRigidbody(this);
 }
 
 void Rigidbody::Draw() const

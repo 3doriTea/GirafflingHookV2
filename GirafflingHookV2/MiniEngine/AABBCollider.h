@@ -7,12 +7,12 @@
 
 class Draw3D;
 
-class OBBCollider : public Attachment, public Collider, public Box3
+class AABBCollider : public Attachment, public Collider
 {
 	friend Collider;
 	friend Draw3D;
 public:
-	OBBCollider(GameObject& attachingGameObject, Transform& transform);
+	AABBCollider(GameObject& attachingGameObject, Transform& transform);
 
 	void Draw() const override;
 
@@ -22,9 +22,12 @@ public:
 	/// <returns></returns>
 	Vector3 ToProjectionSize();
 
+
 public:
-	using Box3::max;
-	using Box3::min;
+	bool IsHitAABB(const AABBCollider& target) const;
+
+	Vector3 Min() const;
+	Vector3 Max() const;
 
 private:
 	Transform& transform_;
