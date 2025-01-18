@@ -106,6 +106,21 @@ float& Vector3::operator[](const size_t& index)
 	}
 }
 
+Vector3 Vector3::operator-() const
+{
+	return
+	{
+		-this->x,
+		-this->y,
+		-this->z
+	};
+}
+
+Vector3 Vector3::operator+() const
+{
+	return *this;
+}
+
 Vector3::operator VECTOR() const
 {
 	return VECTOR{ this->x, this->y, this->z };

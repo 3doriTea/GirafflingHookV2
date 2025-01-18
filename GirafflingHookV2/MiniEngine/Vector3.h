@@ -27,6 +27,9 @@ struct Vector3 : public DirectX::XMFLOAT3
 
 	float& operator[](const size_t& index);
 
+	Vector3 operator-() const;
+	Vector3 operator+() const;
+
 	// DxLibのVECTORへの型変換
 	// MEMO: explicitを付けず、暗黙的な変換が可能
 	operator VECTOR() const;

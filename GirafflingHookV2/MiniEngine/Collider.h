@@ -1,4 +1,5 @@
 #pragma once
+#include "GameObject.h"
 
 //class OBBCollider;
 class AABBCollider;
@@ -9,7 +10,7 @@ class Collider
 	//friend OBBCollider;
 	friend AABBCollider;
 public:
-	Collider();
+	Collider(const GameObject& _gameObject);
 	~Collider();
 
 	/*bool IsHit_OBB2OBB(
@@ -19,4 +20,6 @@ public:
 	bool IsHit_AABB2AABB(
 		const AABBCollider& a,
 		const AABBCollider& b) const;
+
+	const GameObject& gameObject;
 };

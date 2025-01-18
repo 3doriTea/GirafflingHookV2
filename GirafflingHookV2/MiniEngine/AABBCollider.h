@@ -29,6 +29,8 @@ public:
 	Vector3 Min() const;
 	Vector3 Max() const;
 
+	Vector3 HalfSize() const;
+
 private:
 	Transform& transform_;
 	DirectX::XMMATRIX& rotateMatrix_;

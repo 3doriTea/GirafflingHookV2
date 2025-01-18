@@ -4,6 +4,7 @@
 
 AABBCollider::AABBCollider(GameObject& gameObject, Transform& transform) :
 	Attachment::Attachment{ gameObject },
+	Collider::Collider{ gameObject },
 	transform_{ transform },
 	rotateMatrix_{ transform.rotateMatrix_ }
 {
@@ -39,27 +40,14 @@ bool AABBCollider::IsHitAABB(const AABBCollider& target) const
 
 Vector3 AABBCollider::Min() const
 {
-	float halfX
-	{
-		std::fabsf(VDot(Vector3::Right(), transform_.Right()))
-		+ std::fabsf(VDot(Vector3::Right(), transform_.Up()))
-	};
-	float halfY
-	{
-		std::fabsf(VDot(Vector3::Up(), transform_.Right()))
-		+ std::fabsf(VDot(Vector3::Up(), transform_.Up()))
-	};
-	float halfZ
-	{
-		std::fabsf(VDot(Vector3::Forward(), transform_.Forward()))
-		+ std::fabsf(VDot(Vector3::Forward(), transform_.Up()))
-	};
-
-	printfDx("size=%f\n", halfZ);
-	return Vector3{ -halfX, -halfY, -halfZ } + transform_.ToWorldPosition(Vector3::Zero());
+	return -HalfSize() + transform_.ToWorldPosition(Vector3::Zero());
 }
 
 Vector3 AABBCollider::Max() const
+{
+	return HalfSize() + transform_.ToWorldPosition(Vector3::Zero());
+}
+Vector3 AABBCollider::HalfSize() const
 {
 	float halfX
 	{
@@ -77,8 +65,7 @@ Vector3 AABBCollider::Max() const
 		+ std::fabsf(VDot(Vector3::Forward(), transform_.Up()))
 	};
 
-	printfDx("size=%f\n", halfZ);
-	return Vector3{ halfX, halfY, halfZ } + transform_.ToWorldPosition(Vector3::Zero());
+	return { halfX, halfY, halfZ };
 }
 //
 //bool AABBCollider::IsHit2OBB(AABBCollider& target)

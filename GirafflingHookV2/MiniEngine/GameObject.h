@@ -32,10 +32,10 @@ public:
 
 	void Destroy();
 
-	std::string GetName() { return name; }
-	std::string GetTag() { return tag; }
+	std::string GetName() const { return name; }
+	std::string GetTag() const { return tag; }
 	std::string SetTag(const std::string& _tag) { tag = _tag; }
-	GameScene& GetGameScene() { return gameScene_; }
+	GameScene& GetGameScene() const { return gameScene_; }
 
 	std::string ToString() override;
 
