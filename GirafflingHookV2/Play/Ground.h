@@ -20,5 +20,6 @@ namespace Play
 		Transform transform_;
 		AABBCollider collider_;
 		int hBoxModel_;
+		int hTestCube_;
 	};
 }

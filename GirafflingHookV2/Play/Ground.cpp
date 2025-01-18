@@ -13,7 +13,8 @@ Play::Ground::Ground() :
 	},
 	transform_{ *this },
 	collider_{ *this, transform_ },
-	hBoxModel_{ -1 }
+	hBoxModel_{ -1 },
+	hTestCube_{ -1 }
 {
 }
 
@@ -25,6 +26,8 @@ void Play::Ground::Init()
 {
 	hBoxModel_ = MV1LoadModel("Assets/Play/ground.mv1");
 	assert(hBoxModel_ != -1);
+	hTestCube_ = MV1LoadModel("Assets/Play/testcube.mv1");
+	assert(hTestCube_ != -1);
 }
 
 void Play::Ground::Update()
@@ -35,15 +38,21 @@ void Play::Ground::Update()
 	DxLib::MV1SetRotationXYZ(hBoxModel_, transform_.GetRotateRadian());
 	DxLib::MV1SetPosition(hBoxModel_, position);
 	DxLib::MV1SetScale(hBoxModel_, scale * 0.002f);
+
+	MV1SetPosition(hTestCube_, transform_.ToWorldPosition({}));
+	MV1SetRotationXYZ(hTestCube_, transform_.GetRotateRadian());
+	//MV1SetScale()
 }
 
 void Play::Ground::Draw() const
 {
 	collider_.Draw();
 	MV1DrawModel(hBoxModel_);
+	MV1DrawModel(hTestCube_);
 }
 
 void Play::Ground::End()
 {
 	MV1DeleteModel(hBoxModel_);
+	MV1DeleteModel(hTestCube_);
 }

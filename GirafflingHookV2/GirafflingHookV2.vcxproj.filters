@@ -153,6 +153,8 @@
     <ClCompile Include="MiniEngine\Event.cpp">
       <Filter>MiniEngine</Filter>
     </ClCompile>
+    <ClCompile Include="MiniEngine\Collider.cpp" />
+    <ClCompile Include="GroundCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\Attachment.h">
@@ -282,6 +284,7 @@
     <ClInclude Include="MiniEngine\Event.h">
       <Filter>MiniEngine</Filter>
     </ClInclude>
+    <ClInclude Include="GroundCollider.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

@@ -89,11 +89,14 @@ public:
 	Vector3 rotate;
 	Vector3 scale;
 
+private:
+	// MEMO: メモリレイアウト的にここに配置
+	bool toDestroy_;
+
 protected:
 	std::string name;
 	std::string tag;
 
 private:
 	GameScene& gameScene_;
-	bool toDestroy_;
 };
