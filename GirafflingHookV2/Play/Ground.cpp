@@ -10,6 +10,11 @@ Play::Ground::Ground() :
 			.Position({ 0.f, -400.f, 0.f })
 			.Scale({ 3000.f, 30000.f, 1000.f })
 			.Rotate({0, 90, 0})
+	/*
+	* .Name("Ground")
+			.Position({ 0.f, -400.f, 0.f })
+			.Scale({ 3000.f, 100.f, 1000.f })
+	*/
 	},
 	//transform_{ *this },
 	//collider_{ *this, transform_ },
