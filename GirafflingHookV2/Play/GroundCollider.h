@@ -1,15 +1,19 @@
 #pragma once
 #include "GameObject.h"
+#include "Vector3.h"
 #include "AABBCollider.h"
 #include "Transform.h"
 
 namespace Play
 {
-	class Ground : public GameObject
+	class GroundCollider : public GameObject
 	{
 	public:
-		Ground();
-		~Ground();
+		GroundCollider(
+			const Vector3& _position,
+			const Vector3& _rotate,
+			const Vector3& _scale);
+		~GroundCollider();
 
 		void Init() override;
 		void Update() override;
@@ -17,9 +21,7 @@ namespace Play
 		void End() override;
 
 	private:
-		//Transform transform_;
-		//AABBCollider collider_;
-		int hBoxModel_;
-		int hTestCube_;
+		AABBCollider collider_;
+		Transform transform_;
 	};
 }

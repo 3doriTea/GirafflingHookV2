@@ -25,6 +25,7 @@ public:
 
 public:
 	bool IsHitAABB(const AABBCollider& target) const;
+	Vector3 ReflectionAABB(const AABBCollider& target) const;
 
 	Vector3 Min() const;
 	Vector3 Max() const;

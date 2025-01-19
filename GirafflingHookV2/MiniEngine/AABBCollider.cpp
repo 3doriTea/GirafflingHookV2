@@ -38,6 +38,11 @@ bool AABBCollider::IsHitAABB(const AABBCollider& target) const
 	return IsHit_AABB2AABB(*this, target);
 }
 
+Vector3 AABBCollider::ReflectionAABB(const AABBCollider& target) const
+{
+	return Reflection_AABB2AABB(*this, target);
+}
+
 Vector3 AABBCollider::Min() const
 {
 	return -HalfSize() + transform_.ToWorldPosition(Vector3::Zero());

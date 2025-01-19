@@ -1,6 +1,6 @@
 #include "GroundCollider.h"
 
-GroundCollider::GroundCollider(
+Play::GroundCollider::GroundCollider(
 	const Vector3& _position,
 	const Vector3& _rotate,
 	const Vector3& _scale) :
@@ -18,23 +18,23 @@ GroundCollider::GroundCollider(
 {
 }
 
-GroundCollider::~GroundCollider()
+Play::GroundCollider::~GroundCollider()
 {
 }
 
-void GroundCollider::Init()
+void Play::GroundCollider::Init()
 {
 }
 
-void GroundCollider::Update()
+void Play::GroundCollider::Update()
 {
 }
 
-void GroundCollider::Draw() const
+void Play::GroundCollider::Draw() const
 {
 	collider_.Draw();
 }
 
-void GroundCollider::End()
+void Play::GroundCollider::End()
 {
 }

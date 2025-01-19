@@ -7,6 +7,7 @@
 #include "Play/Ground.h"
 #include "Play/GiraffePoint.h"
 #include "Play/Goal.h"
+#include "Play/GroundCollider.h"
 
 using namespace Play;
 
@@ -27,6 +28,10 @@ void PlayScene::Init()
 	AddGameObject<Ground>();
 	AddGameObject<GiraffePoint>(Vector3{ 0.f, 0.f, 0.f });
 	AddGameObject<Goal>();
+	AddGameObject<GroundCollider>(
+		Vector3{ 0.f, -400.f, 0.f },
+		Vector3{ 0.f, 0.f, 0.f },
+		Vector3{ 200.f, 200.f, 200.f });
 
 	player_ = FindGameObject<Player>();
 

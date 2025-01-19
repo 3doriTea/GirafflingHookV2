@@ -25,39 +25,6 @@ void PhysicsManager::Init()
 void PhysicsManager::Update()
 {
 	float deltaTime = Frame::GetDeltaTime();
-	for (auto&& rigidbody : dynamicRigidBodies_)
-	{
-		// 座標
-		Vector3& position{ rigidbody->position_ };
-		// 移動速度
-		Vector3& velocity{ rigidbody->velocity };
-		// 移動抵抗
-		float& resistance{ rigidbody->resistance };
-		// 重力
-		float& gravity{ rigidbody->gravity };
-
-		// 速度の適用
-		position += velocity * deltaTime;
-		// 移動抵抗の適用
-		velocity += velocity * -resistance * deltaTime;
-		
-		// 重力の適用
-		velocity += Vector3::Down() * gravity * deltaTime;
-		
-		// 角度
-		Vector3& rotate{ rigidbody->rotate_ };
-		// 回転速度
-		Vector3& velocityTorque{ rigidbody->velocityTorque };
-		// 回転抵抗
-		float& resistanceTorque{ rigidbody->resistanceTorque };
-
-		// 回転の適用
-		rotate += velocityTorque * deltaTime;
-		// 回転抵抗の適用
-		velocityTorque += velocityTorque * -resistanceTorque * deltaTime;
-		// 360度内に収める
-		rotate %= 360.f;
-	}
 
 	for (auto&& self : dynamicRigidBodies_)
 	{
@@ -76,12 +43,68 @@ void PhysicsManager::Update()
 					"OnHit %s : %s\n",
 					self->gameObject.GetName().c_str(),
 					targetCollider->gameObject.GetName().c_str());
+				Vector3 reflection
+				{
+					static_cast<AABBCollider*>(self->colliderPtr_)
+						->ReflectionAABB(*static_cast<AABBCollider*>(targetCollider))
+				};
+
+				self->velocity += reflection * 100.f;
 			}
 			else
 			{
 				//printfDx("当たってない！");
 			}
 		}
+	}
+
+	for (auto&& rigidbody : dynamicRigidBodies_)
+	{
+		// 座標
+		Vector3& position{ rigidbody->position_ };
+		// 移動速度
+		Vector3& velocity{ rigidbody->velocity };
+		// 移動抵抗
+		float& resistance{ rigidbody->resistance };
+		// 重力
+		float& gravity{ rigidbody->gravity };
+		// 固定軸
+		bool&
+			fixedX{ rigidbody->fixedX },
+			fixedY{ rigidbody->fixedY },
+			fixedZ{ rigidbody->fixedZ };
+
+		if (fixedX)
+		{
+			velocity.x *= 0.f;
+		}
+		if (fixedY)
+		{
+			velocity.y *= 0.f;
+		}
+		if (fixedZ)
+		{
+			velocity.z *= 0.f;
+		}
+
+		// 速度の適用
+		position += velocity * deltaTime;
+		// 移動抵抗の適用
+		velocity += velocity * -resistance * deltaTime;
+
+		// 角度
+		Vector3& rotate{ rigidbody->rotate_ };
+		// 回転速度
+		Vector3& velocityTorque{ rigidbody->velocityTorque };
+		// 回転抵抗
+		float& resistanceTorque{ rigidbody->resistanceTorque };
+
+		// 回転の適用
+		rotate += velocityTorque * deltaTime;
+		// 回転抵抗の適用
+		velocityTorque += velocityTorque * -resistanceTorque * deltaTime;
+		// 360度内に収める
+		rotate %= 360.f;
 	}
 }
 

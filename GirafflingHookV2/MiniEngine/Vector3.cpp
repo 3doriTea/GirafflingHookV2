@@ -158,6 +158,16 @@ Vector3 Vector3::Abs() const
 	};
 }
 
+Vector3 Vector3::Sign() const
+{
+	return
+	{
+		this->x < 0 ? -1.f : 1.f,
+		this->y < 0 ? -1.f : 1.f,
+		this->z < 0 ? -1.f : 1.f,
+	};
+}
+
 Vector3 Vector3::From(const Vector2& from, const float& z)
 {
 	return Vector3{ from.x, from.y, z };

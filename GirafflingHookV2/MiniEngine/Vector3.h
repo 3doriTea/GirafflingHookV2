@@ -41,6 +41,7 @@ struct Vector3 : public DirectX::XMFLOAT3
 	Vector3& Normalize();
 	float Distance(const Vector3& to) const;
 	Vector3 Abs() const;
+	Vector3 Sign() const;
 
 	/// <summary>
 	/// Vector2‚©‚çVector3‚É•ÏŠ·

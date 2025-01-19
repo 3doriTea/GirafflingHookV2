@@ -32,6 +32,12 @@ public:
 	float resistanceTorque;
 	// 1•bŠÔ‚ ‚½‚è‚Ìd—Í‰Á‘¬“x
 	float gravity;
+	// x²‚Ì“®‚«‚ğŒÅ’è‚·‚é‚©
+	bool fixedX;
+	// y²‚Ì“®‚«‚ğŒÅ’è‚·‚é‚©
+	bool fixedY;
+	// z²‚Ì“®‚«‚ğŒÅ’è‚·‚é‚©
+	bool fixedZ;
 
 private:
 	Transform& transform_;

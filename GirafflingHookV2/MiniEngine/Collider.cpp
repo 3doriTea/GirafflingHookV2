@@ -32,6 +32,7 @@ bool Collider::IsHit_AABB2AABB(const AABBCollider& a, const AABBCollider& b) con
 
 	for (int i = 0; i < 3; i++)
 	{
+		// x y z 成分にインデックスでアクセス
 		if ((abLength[i] <= abDistance[i]))
 		{
 			return false;
@@ -39,4 +40,41 @@ bool Collider::IsHit_AABB2AABB(const AABBCollider& a, const AABBCollider& b) con
 	}
 
 	return true;
+}
+
+Vector3 Collider::Reflection_AABB2AABB(
+	const AABBCollider& self,
+	const AABBCollider& target) const
+{
+	// 自分と相手との位置関係ベクトル
+	Vector3 diff
+	{
+		self.transform_.ToWorldPosition(Vector3::Zero())
+		- target.transform_.ToWorldPosition(Vector3::Zero())
+	};
+
+	// 自分と相手、両方を足したサイズベクトル
+	Vector3 bothSize
+	{
+		self.HalfSize() + target.HalfSize()
+	};
+
+	Vector3 volume
+	{
+		diff.Abs() + bothSize
+	};
+
+	Vector3 reflection{ Vector3::One() };
+
+	float volumeMax{ std::fmaxf(std::fmaxf(volume.x, volume.y), volume.z) };
+	for (int i = 0; i < 3; i++)
+	{
+		if (volume[i] < volumeMax)
+		{
+			reflection[i] = 0.f;
+		}
+	}
+
+
+	return reflection;
 }

@@ -154,7 +154,9 @@
       <Filter>MiniEngine</Filter>
     </ClCompile>
     <ClCompile Include="MiniEngine\Collider.cpp" />
-    <ClCompile Include="GroundCollider.cpp" />
+    <ClCompile Include="Play\GroundCollider.cpp">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\Attachment.h">
@@ -284,7 +286,9 @@
     <ClInclude Include="MiniEngine\Event.h">
       <Filter>MiniEngine</Filter>
     </ClInclude>
-    <ClInclude Include="GroundCollider.h" />
+    <ClInclude Include="Play\GroundCollider.h">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

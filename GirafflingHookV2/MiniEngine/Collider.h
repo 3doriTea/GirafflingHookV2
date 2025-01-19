@@ -21,5 +21,9 @@ public:
 		const AABBCollider& a,
 		const AABBCollider& b) const;
 
+	Vector3 Reflection_AABB2AABB(
+		const AABBCollider& self,
+		const AABBCollider& target) const;
+
 	const GameObject& gameObject;
 };
