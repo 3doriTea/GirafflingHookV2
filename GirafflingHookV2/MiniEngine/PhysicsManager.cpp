@@ -49,7 +49,8 @@ void PhysicsManager::Update()
 						->ReflectionAABB(*static_cast<AABBCollider*>(targetCollider))
 				};
 
-				self->velocity += reflection * 100.f;
+				//self->velocity += reflection * 1.f;
+				self->reflection += reflection;
 			}
 			else
 			{
@@ -64,6 +65,8 @@ void PhysicsManager::Update()
 		Vector3& position{ rigidbody->position_ };
 		// 移動速度
 		Vector3& velocity{ rigidbody->velocity };
+		// コライダーの反発ベクトル
+		Vector3& reflection{ rigidbody->reflection };
 		// 移動抵抗
 		float& resistance{ rigidbody->resistance };
 		// 重力
@@ -77,15 +80,22 @@ void PhysicsManager::Update()
 		if (fixedX)
 		{
 			velocity.x *= 0.f;
+			reflection.x *= 0.f;
 		}
 		if (fixedY)
 		{
 			velocity.y *= 0.f;
+			reflection.y *= 0.f;
 		}
 		if (fixedZ)
 		{
 			velocity.z *= 0.f;
+			reflection.z *= 0.f;
 		}
+
+		// コライダーの反発ベクトルを適用
+		velocity += reflection / deltaTime;  // フレーム間時間で減衰しないように
+		reflection = Vector3::Zero();  // 適用したら次のフレームでは使わないためクリア
 
 		// 速度の適用
 		position += velocity * deltaTime;

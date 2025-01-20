@@ -39,6 +39,9 @@ public:
 	// z軸の動きを固定するか
 	bool fixedZ;
 
+	// 他のコライダーからの反発ベクトル
+	Vector3 reflection{};
+
 private:
 	Transform& transform_;
 	Collider* colliderPtr_;
