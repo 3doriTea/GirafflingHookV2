@@ -52,6 +52,11 @@ public:
 	/// <param name="parent">親の座標変換系 / 親無し nullptr</param>
 	void SetParent(Transform* parent);
 	/// <summary>
+	/// 親の座標変換系を設定
+	/// </summary>
+	/// <param name="parent">親の座標変換系</param>
+	void SetParent(Transform& parent);
+	/// <summary>
 	/// 親の座標変換系を取得
 	/// </summary>
 	/// <returns>親の座標変換系 / 親無し nullptr</returns>

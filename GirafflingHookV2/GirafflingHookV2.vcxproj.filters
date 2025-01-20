@@ -157,6 +157,7 @@
     <ClCompile Include="Play\GroundCollider.cpp">
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
+    <ClCompile Include="Play\GiraffePointRoot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\Attachment.h">
@@ -289,6 +290,7 @@
     <ClInclude Include="Play\GroundCollider.h">
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
+    <ClInclude Include="Play\GiraffePointRoot.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

@@ -25,9 +25,13 @@ Transform::Transform(GameObject& gameObject) :
 
 Transform::~Transform()
 {
-	if (parent_ != nullptr)
+	/*if (parent_ != nullptr)
 	{
 		parent_->childs_.erase(this);
+	}*/
+	for (auto&& child : childs_)
+	{
+		child->parent_ = nullptr;
 	}
 	TransformManager::Unregister(this);
 }
@@ -149,9 +153,14 @@ void Transform::SetParent(Transform* parent)
 	parent_ = parent;
 }
 
+void Transform::SetParent(Transform& parent)
+{
+	SetParent(&parent);
+}
+
 DirectX::XMMATRIX Transform::GetWorldTranslateMatrix() const
 {
-	if (parent_ != nullptr)
+	if (this->parent_ != nullptr)
 	{
 		return scaleMatrix_ * rotateMatrix_ * positionMatrix_ * parent_->GetWorldTranslateMatrix();
 	}

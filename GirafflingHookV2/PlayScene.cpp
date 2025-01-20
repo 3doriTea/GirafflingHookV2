@@ -5,9 +5,9 @@
 #include "Play/Player.h"
 #include "Play/Camera.h"
 #include "Play/Ground.h"
-#include "Play/GiraffePoint.h"
 #include "Play/Goal.h"
 #include "Play/GroundCollider.h"
+#include "Play/GiraffePointRoot.h"
 
 using namespace Play;
 
@@ -27,8 +27,8 @@ void PlayScene::Init()
 	AddGameObject<Player>();
 	AddGameObject<Camera>();
 	AddGameObject<Ground>();
-	AddGameObject<GiraffePoint>(Vector3{ 0.f, 0.f, 0.f });
 	AddGameObject<Goal>();
+	AddGameObject<GiraffePointRoot>(2.f);
 
 #pragma region 地面のコライダー
 	AddGameObject<GroundCollider>(

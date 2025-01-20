@@ -49,7 +49,7 @@ protected:
 	template<typename GameObjectT, typename ...Args>
 	GameObjectT& Instantiate(Args... args)
 	{
-		return GetGameScene().AddGameObject<GameObjectT>(args);
+		return GetGameScene().AddGameObject<GameObjectT>(args...);
 	}
 	/// <summary>
 	/// 所属シーンからゲームオブジェクトをただ１つ取得

@@ -11,7 +11,9 @@ namespace Play
 	class GiraffePoint : public GameObject
 	{
 	public:
-		GiraffePoint(const Vector3& position);
+		GiraffePoint(const Vector3& position,
+			Transform* _rootTransform,
+			const int& _hTreeSource);
 		~GiraffePoint();
 
 		void Init() override;
@@ -24,6 +26,7 @@ namespace Play
 		Transform transform_;
 		AABBCollider collider_;
 
+		int hTreeSource_;
 		int hTreeModel_;
 	};
 }
