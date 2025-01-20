@@ -11,7 +11,8 @@
 
 using namespace Play;
 
-PlayScene::PlayScene()
+PlayScene::PlayScene() :
+	player_{ nullptr }
 {
 }
 
@@ -28,10 +29,13 @@ void PlayScene::Init()
 	AddGameObject<Ground>();
 	AddGameObject<GiraffePoint>(Vector3{ 0.f, 0.f, 0.f });
 	AddGameObject<Goal>();
+
+#pragma region 地面のコライダー
 	AddGameObject<GroundCollider>(
 		Vector3{ 0.f, -400.f, 0.f },
 		Vector3{ 0.f, 0.f, 0.f },
 		Vector3{ 200.f, 200.f, 200.f });
+#pragma endregion
 
 	player_ = FindGameObject<Player>();
 
