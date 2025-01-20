@@ -68,7 +68,7 @@ void FrameManager::Update()
 	}
 
 	// MEMO: 差が 1 / {fps} 秒経過していたら１フレーム
-	if (frameDifferenceTime * fpsLimit >= NANO_SEC_L)
+//	if (frameDifferenceTime * fpsLimit >= NANO_SEC_L)
 	{
 		Frame::deltaTime = static_cast<float>(static_cast<double>(frameDifferenceTime) / NANO_SEC_F);
 
@@ -77,7 +77,7 @@ void FrameManager::Update()
 		frameDifferenceTime = 0;
 
 		// NOTE: ちょっと休ませないと入力等受け取れないらしい?
-		Sleep(1);
+		//Sleep(1);
 	}
 
 	// MEMO: 時間計測の精度アップ終了
