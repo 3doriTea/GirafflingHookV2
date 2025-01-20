@@ -52,8 +52,8 @@ void Play::Ground::Update()
 void Play::Ground::Draw() const
 {
 	//collider_.Draw();
-	MV1DrawModel(hBoxModel_);
-	MV1DrawModel(hTestCube_);
+	/*MV1DrawModel(hBoxModel_);
+	MV1DrawModel(hTestCube_);*/
 }
 
 void Play::Ground::End()
