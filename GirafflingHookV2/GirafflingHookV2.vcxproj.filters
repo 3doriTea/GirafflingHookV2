@@ -158,6 +158,9 @@
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
     <ClCompile Include="Play\GiraffePointRoot.cpp" />
+    <ClCompile Include="Play\StageBoard.cpp">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\Attachment.h">
@@ -291,6 +294,9 @@
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
     <ClInclude Include="Play\GiraffePointRoot.h" />
+    <ClInclude Include="Play\StageBoard.h">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

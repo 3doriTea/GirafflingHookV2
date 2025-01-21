@@ -71,12 +71,24 @@ struct Vector3 : public DirectX::XMFLOAT3
 	/// <summary>
 	/// 成分がすべて1のベクトルを取得
 	/// </summary>
-	/// <returns>成分がすべて1のベクトル</returns>
+	/// <returns>Vector3{ 1.f, 1.f, 1.f }</returns>
 	static inline Vector3 One() { return { 1.f, 1.f, 1.f }; }
+	/// <summary>
+	/// Vector3{ 0.f, -1.f, 0.f }
+	/// </summary>
 	static inline Vector3 Down() { return { 0.f, -1.f, 0.f }; }
 
+	/// <summary>
+	/// Vector3{ 1.f, 0.f, 0.f }
+	/// </summary>
 	static inline Vector3 Right() { return { 1.f, 0.f, 0.f }; }
+	/// <summary>
+	/// Vector3{ 0.f, 1.f, 0.f }
+	/// </summary>
 	static inline Vector3 Up() { return { 0.f, 1.f, 0.f }; }
+	/// <summary>
+	/// Vector3{ 0.f, 0.f, 1.f }
+	/// </summary>
 	static inline Vector3 Forward() { return { 0.f, 0.f, 1.f }; }
 
 	inline std::string ToString() const

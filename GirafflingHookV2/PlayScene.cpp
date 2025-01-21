@@ -28,7 +28,7 @@ void PlayScene::Init()
 	AddGameObject<Camera>();
 	AddGameObject<Ground>();
 	AddGameObject<Goal>();
-	AddGameObject<GiraffePointRoot>(2.f);
+	AddGameObject<GiraffePointRoot>(1.f);
 
 #pragma region 地面のコライダー
 	AddGameObject<GroundCollider>(

@@ -108,8 +108,9 @@ void Play::Player::StartHooking()
 {
 	hookTarget_ = FindGameObject<GiraffePoint>();
 	assert(hookTarget_ != nullptr); // ギラッフポイントは見つかる
+	Vector3 hookPosition{ hookTarget_->GetHookPosition() };
 
-	hookDistance_ = position.Distance(hookTarget_->position);
+	hookDistance_ = position.Distance(hookPosition);
 
 	if (hookDistance_ >= NECK_LENGTH_MAX)
 	{
@@ -121,7 +122,7 @@ void Play::Player::StartHooking()
 		MV1AttachAnim(hGiraffeMV1_, 0);
 		animationTime_ = 0.f;
 		rigidbody_.velocityTorque = Vector3::Zero();
-		if (position.y < hookTarget_->position.y)
+		if (position.y < hookPosition.y)
 		{
 			moveSign_ = 1.f;
 		}
@@ -169,10 +170,12 @@ void Play::Player::MoveDefault()
 
 void Play::Player::Shooting()
 {
+	Vector3 hookPosition{ hookTarget_->GetHookPosition() };
+
 #pragma region 発射中も絶えずターゲットに向けて調整
-	transform_.LookAt({ 0.f, 1.f, 0.f }, hookTarget_->position);
+	transform_.LookAt({ 0.f, 1.f, 0.f }, hookPosition);
 	
-	hookDistance_ = position.Distance(hookTarget_->position);
+	hookDistance_ = position.Distance(hookPosition);
 	
 	animationTimeMax_ = LengthToAnimationTime(hookDistance_);
 #pragma endregion
@@ -193,10 +196,11 @@ void Play::Player::Shooting()
 void Play::Player::MoveHooking()
 {
 	assert(hookTarget_ != nullptr);  // ターゲットはある
+	Vector3 hookPosition{ hookTarget_->GetHookPosition() };
 
 	Vector3 angles{ transform_.GetRotateRadian() };
 
-	float currentDistance{ position.Distance(hookTarget_->position) };
+	float currentDistance{ position.Distance(hookPosition) };
 
 #pragma region 向心力の適用
 	// 2次元上の円の接線から中心への垂線
@@ -231,7 +235,7 @@ void Play::Player::MoveHooking()
 
 	MV1SetAttachAnimTime(hGiraffeMV1_, 0, animationTime_);
 
-	transform_.LookAt({ 0.f, 1.f, 0.f }, hookTarget_->position);
+	transform_.LookAt({ 0.f, 1.f, 0.f }, hookPosition);
 }
 
 void Play::Player::Draw() const
@@ -250,7 +254,7 @@ bool Play::Player::TryGetHookTargetPosition(Vector3& outPosition)
 {
 	if (hookTarget_ != nullptr)
 	{
-		outPosition = hookTarget_->position;
+		outPosition = hookTarget_->GetHookPosition();
 		return true;
 	}
 	else

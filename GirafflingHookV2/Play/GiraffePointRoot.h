@@ -20,8 +20,15 @@ namespace Play
 		void Init() override;
 		void End() override;
 
+		static Transform* GetGroundTransform();
+		static int GetTreeModelSourceHandle();
+		static int GetBoxModelSourceHandle();
+
 	private:
 		Transform transform_;
-		int hTreeModel_;
+
+		static Transform* groundTransform_;
+		static int hTreeModel_;
+		static int hBoxModel_;
 	};
 }

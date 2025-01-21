@@ -11,15 +11,15 @@ namespace Play
 	class GiraffePoint : public GameObject
 	{
 	public:
-		GiraffePoint(const Vector3& position,
-			Transform* _rootTransform,
-			const int& _hTreeSource);
+		GiraffePoint(const Vector3& position);
 		~GiraffePoint();
 
 		void Init() override;
 		void Update() override;
 		void Draw() const override;
 		void End() override;
+
+		Vector3 GetHookPosition() const;
 
 	private:
 		Player* player_;

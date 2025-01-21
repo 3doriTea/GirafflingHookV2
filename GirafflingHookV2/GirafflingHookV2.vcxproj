@@ -56,6 +56,7 @@
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="MiniEngine\Rigidbody.cpp" />
     <ClCompile Include="MiniEngine\PhysicsManager.cpp" />
+    <ClCompile Include="Play\StageBoard.cpp" />
     <ClCompile Include="Title\TitleCamera.cpp" />
     <ClCompile Include="Title\SelectButton.cpp" />
     <ClCompile Include="TheMain.cpp" />
@@ -103,6 +104,7 @@
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="MiniEngine\Rigidbody.h" />
     <ClInclude Include="MiniEngine\PhysicsManager.h" />
+    <ClInclude Include="Play\StageBoard.h" />
     <ClInclude Include="Title\TitleCamera.h" />
     <ClInclude Include="Title\SelectButton.h" />
     <ClInclude Include="TitleScene.h" />
