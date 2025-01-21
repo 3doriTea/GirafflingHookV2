@@ -1,5 +1,7 @@
 #include "GiraffePointRoot.h"
 #include "GiraffePoint.h"
+#include "StageBoard.h"
+#include "Vector2.h"
 
 Play::GiraffePointRoot::GiraffePointRoot(
 	const float& _scale) :
@@ -38,6 +40,12 @@ void Play::GiraffePointRoot::Init()
 	Instantiate<GiraffePoint>(Vector3{ 3430.f, -2022.5f, 0.f });
 	Instantiate<GiraffePoint>(Vector3{ 4519.f, -710.f, 0.f });
 #pragma endregion
+
+#pragma region ï«ê∂ê¨
+	Instantiate<StageBoard>(
+		Vector2{ 1440.f, 240.f },
+		Vector2{ 80.f, 440.f });
+#pragma endregion
 }
 
 void Play::GiraffePointRoot::End()
@@ -63,3 +71,4 @@ int Play::GiraffePointRoot::GetBoxModelSourceHandle()
 
 Transform* Play::GiraffePointRoot::groundTransform_{ nullptr };
 int Play::GiraffePointRoot::hTreeModel_{ -1 };
+int Play::GiraffePointRoot::hBoxModel_{ -1 };
