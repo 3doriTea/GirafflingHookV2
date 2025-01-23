@@ -96,6 +96,24 @@ Vector3 Transform::ToWorldDirection(const Vector3& localDirection) const
 	return Vector3::From(worldPosition);
 }
 
+Vector3 Transform::ToWorldScale(const Vector3& localScale) const
+{
+	DirectX::XMVECTOR localScaleVector
+	{
+		DirectX::XMLoadFloat3(&localScale)
+	};
+
+	DirectX::XMVECTOR worldScaleVector
+	{
+		DirectX::XMVector3Transform(localScaleVector, GetWorldScaleMatrix())
+	};
+
+	DirectX::XMFLOAT3 worldScale{};
+	DirectX::XMStoreFloat3(&worldScale, worldScaleVector);
+
+	return Vector3::From(worldScale);
+}
+
 void Transform::LookAt(Vector3 forwardDirection, const Vector3& targetPosition)
 {
 	// SRC: http://www.yz-learning.com:8080/knowledge/open.knowledge/view/36?offset=0
@@ -176,4 +194,14 @@ DirectX::XMMATRIX Transform::GetWorldDirectionMatrix() const
 	}
 
 	return rotateMatrix_;
+}
+
+DirectX::XMMATRIX Transform::GetWorldScaleMatrix() const
+{
+	if (parent_ != nullptr)
+	{
+		return scaleMatrix_ * parent_->GetWorldScaleMatrix();
+	}
+
+	return scaleMatrix_;
 }

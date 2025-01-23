@@ -2,6 +2,12 @@
 #include "Screen.h"
 #include "GiraffePointRoot.h"
 
+namespace
+{
+	// モデルのサイズ調整率
+	static float MODEL_SIZE_RATE{ 0.005f };
+}
+
 Play::StageBoard::StageBoard(
 	const Vector2& topLeftDrawPosition,
 	const Vector2& widthHeight,
@@ -11,9 +17,10 @@ Play::StageBoard::StageBoard(
 		GameObjectBuilder{}
 			.Name("StageBoard")
 			.Tag("stage-board")
-			.Position(Vector3::From(
-				Vector2{ topLeftDrawPosition.x, Screen::HEIGHT - topLeftDrawPosition.y }
-				+ widthHeight / 2.f))
+			.Position(
+				Vector3::From(
+					Vector2{ topLeftDrawPosition.x, Screen::HEIGHT - topLeftDrawPosition.y }
+					+ widthHeight / 2.f))
 			.Rotate(Vector3::Forward() * angle)
 			.Scale(Vector3::From(widthHeight, 1.f))
 	},
@@ -36,7 +43,7 @@ void Play::StageBoard::Init()
 		hBoxModel_,
 		transform_.ToWorldPosition({ 0.f, 0.f, 0.f }));
 	MV1SetRotationXYZ(hBoxModel_, transform_.GetRotateRadian());
-	MV1SetScale(hBoxModel_, scale);
+	MV1SetScale(hBoxModel_, transform_.GetWorldScale() * MODEL_SIZE_RATE);
 }
 
 void Play::StageBoard::Update()

@@ -41,6 +41,12 @@ public:
 	/// <returns>ワールド方向軸</returns>
 	Vector3 ToWorldDirection(const Vector3& localDirection) const;
 	/// <summary>
+	/// ローカルの大きさをワールド座標系での大きさに変換
+	/// </summary>
+	/// <param name="localScale">大きさ</param>
+	/// <returns>ワールド座標系での大きさ</returns>
+	Vector3 ToWorldScale(const Vector3& localScale) const;
+	/// <summary>
 	/// 任意の軸を指定座標の方向に向ける
 	/// </summary>
 	/// <param name="forwardDirection">向けたい任意の軸</param>
@@ -111,7 +117,7 @@ public:
 	/// <returns>ワールド方向軸</returns>
 	inline Vector3 Right() const
 	{
-		return ToWorldDirection({ scale.x / 2.f, 0.f, 0.f });
+		return ToWorldDirection({ GetWorldScale().x / 2.f, 0.f, 0.f });
 	};
 	/// <summary>
 	/// ローカル上方向軸のワールド方向軸を取得
@@ -119,7 +125,7 @@ public:
 	/// <returns>ワールド方向軸</returns>
 	inline Vector3 Up() const
 	{
-		return ToWorldDirection({ 0.f, scale.y / 2.f, 0.f });
+		return ToWorldDirection({ 0.f, GetWorldScale().y / 2.f, 0.f });
 	};
 	/// <summary>
 	/// ローカル前方向軸のワールド方向軸を取得
@@ -127,16 +133,34 @@ public:
 	/// <returns>ワールド方向軸</returns>
 	inline Vector3 Forward() const
 	{
-		return ToWorldDirection({ 0.f, 0.f, scale.z / 2.f });
+		return ToWorldDirection({ 0.f, 0.f, GetWorldScale().z / 2.f });
 	};
+	/// <summary>
+	/// ワールド座標系での大きさを取得
+	/// </summary>
+	/// <returns>ワールド座標系での大きさ</returns>
+	inline Vector3 GetWorldScale() const
+	{
+		return ToWorldScale(Vector3::One());
+	}
 
 private:
 	DirectX::XMMATRIX GetWorldTranslateMatrix() const;
 	DirectX::XMMATRIX GetWorldDirectionMatrix() const;
+	DirectX::XMMATRIX GetWorldScaleMatrix() const;
 
 public:
+	/// <summary>
+	/// ローカル座標
+	/// </summary>
 	Vector3& position;
+	/// <summary>
+	/// ローカル回転角
+	/// </summary>
 	Vector3& rotate;
+	/// <summary>
+	/// ローカルスケール
+	/// </summary>
 	Vector3& scale;
 
 private:
