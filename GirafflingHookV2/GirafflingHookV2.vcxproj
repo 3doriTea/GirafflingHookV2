@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ClearScene.cpp" />
     <ClCompile Include="MiniEngine\EasingFunctions.cpp" />
     <ClCompile Include="MiniEngine\Draw2D.cpp" />
     <ClCompile Include="Play\HookArrow.cpp" />
@@ -68,6 +69,7 @@
     <ClCompile Include="Title\TitleString.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ClearScene.h" />
     <ClInclude Include="MiniEngine\EasingFunctions.h" />
     <ClInclude Include="MiniEngine\Draw2D.h" />
     <ClInclude Include="Play\HookArrow.h" />
