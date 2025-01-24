@@ -149,7 +149,6 @@
     <ClCompile Include="MiniEngine\Vector2Int.cpp">
       <Filter>MiniEngine\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Play\Goal.cpp" />
     <ClCompile Include="MiniEngine\Event.cpp">
       <Filter>MiniEngine</Filter>
     </ClCompile>
@@ -167,6 +166,12 @@
       <Filter>MiniEngine</Filter>
     </ClCompile>
     <ClCompile Include="MiniEngine\Draw2D.cpp">
+      <Filter>MiniEngine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Play\Goal.cpp">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\EasingFunctions.cpp">
       <Filter>MiniEngine\Utility</Filter>
     </ClCompile>
   </ItemGroup>
@@ -294,7 +299,6 @@
     <ClInclude Include="MiniEngine\Vector2Int.h">
       <Filter>MiniEngine\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Play\Goal.h" />
     <ClInclude Include="MiniEngine\Event.h">
       <Filter>MiniEngine</Filter>
     </ClInclude>
@@ -309,6 +313,12 @@
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
     <ClInclude Include="MiniEngine\Draw2D.h">
+      <Filter>MiniEngine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Play\Goal.h">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\EasingFunctions.h">
       <Filter>MiniEngine\Utility</Filter>
     </ClInclude>
   </ItemGroup>

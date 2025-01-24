@@ -13,7 +13,8 @@
 using namespace Play;
 
 PlayScene::PlayScene() :
-	player_{ nullptr }
+	player_{ nullptr },
+	isPlayerGoaled_{ false }
 {
 }
 
@@ -25,11 +26,11 @@ void PlayScene::Init()
 {
 	SetBackgroundColor(0x00, 0x00, 0x00);
 
-	AddGameObject<Player>();
+	player_ = &AddGameObject<Player>();
 	AddGameObject<HookArrow>();
 	AddGameObject<Camera>();
 	AddGameObject<Ground>();
-	AddGameObject<Goal>();
+	goal_ = &AddGameObject<Goal>();
 	AddGameObject<GiraffePointRoot>(2.f);
 
 #pragma region 地面のコライダー
@@ -38,19 +39,11 @@ void PlayScene::Init()
 		Vector3{ 0.f, 0.f, 0.f },
 		Vector3{ 200.f, 200.f, 200.f });
 #pragma endregion
-
-	player_ = FindGameObject<Player>();
-
 	ChangeLightTypeDir(VGet(1.f, -1.f, 0.5f));
 }
 
 void PlayScene::Update()
 {
-	if (Input::IsKey(DIK_H))
-	{
-		printfDx("プレイシーン%f\n", Frame::GetDeltaTime());
-	}
-
 	if (Input::IsKeyDown(DIK_SPACE))
 	{
 		SceneManager::Move<TitleScene>();
@@ -64,4 +57,15 @@ void PlayScene::Draw() const
 
 void PlayScene::End()
 {
+}
+
+void PlayScene::FinishedGoalAnimation()
+{
+	// TODO: スコアシーンに遷移
+}
+
+void PlayScene::GoalPlayer()
+{
+	isPlayerGoaled_ = true;
+	player_->StartGoalAnimation(goal_->position);
 }

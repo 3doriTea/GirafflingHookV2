@@ -19,5 +19,6 @@ namespace Play
 	private:
 		int hRocketModel_;
 		Player* player_;
+
 	};
 }

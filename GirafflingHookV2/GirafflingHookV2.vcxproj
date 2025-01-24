@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MiniEngine\EasingFunctions.cpp" />
     <ClCompile Include="MiniEngine\Draw2D.cpp" />
     <ClCompile Include="Play\HookArrow.cpp" />
     <ClCompile Include="Play\GiraffePointRoot.cpp" />
@@ -67,6 +68,7 @@
     <ClCompile Include="Title\TitleString.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MiniEngine\EasingFunctions.h" />
     <ClInclude Include="MiniEngine\Draw2D.h" />
     <ClInclude Include="Play\HookArrow.h" />
     <ClInclude Include="Play\GiraffePointRoot.h" />

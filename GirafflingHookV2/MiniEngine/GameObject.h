@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <cassert>
 #include "Entity.h"
 #include "GameScene.h"
 #include "WorldModeVector.h"
@@ -36,6 +37,13 @@ public:
 	std::string GetTag() const { return tag; }
 	std::string SetTag(const std::string& _tag) { tag = _tag; }
 	GameScene& GetGameScene() const { return gameScene_; }
+	template<typename GameSceneT>
+	GameSceneT& GetGameScene() const
+	{
+		GameSceneT* casted{ static_cast<GameSceneT*>(&gameScene_) };
+		assert(casted != nullptr);  // 正しく特定のシーンにキャストできている
+		return *casted;
+	}
 
 	std::string ToString() override;
 

@@ -5,6 +5,8 @@
 #include "Draw3D.h"
 #include "GiraffePoint.h"
 #include "HookArrow.h"
+#include "Frame.h"
+#include "EasingFunctions.h"
 
 namespace
 {
@@ -31,7 +33,10 @@ Play::Player::Player() :
 	hookDistance_{ 0.f },
 	state_{ State::Defualt },
 	move_{ Vector3::Zero() },
-	moveSign_{ +1 }
+	moveSign_{ +1 },
+	isGoalling_{ false },
+	goallingTimeLeft_{ 0.f },
+	GOALLING_TIME_MAX{ 3.f }
 {
 }
 
@@ -57,43 +62,60 @@ void Play::Player::Init()
 
 void Play::Player::Update()
 {
-	/*rotate.y += Frame::GetDeltaTime() * 1000.f;
-	rotate.y = std::fmodf(rotate.y, 360.f);*/
-
-	// キー入力から移動方向を更新
-	UpdateMove();
-
-	// Eキーが押された瞬間グラッフリング開始
-	if (Input::IsKeyDown(KeyCode::LeftShift))
+	if (isGoalling_)
 	{
-		StartHooking();
+		// ゴールしているなら
+		MoveGoalling();
 	}
-
-	// Eキーが離された瞬間グラッフリング辞める
-	if (Input::IsKeyUp(KeyCode::LeftShift))
+	else
 	{
-		FinishHooking();
-	}
+		// ゴールしていない
 
-	// 各状態の処理
-	switch (state_)
-	{
-	case State::Defualt:
-		MoveDefault();  // 通常の移動
-		break;
-	case State::Shooting:
-		Shooting();     // グラッフ発射中
-		break;
-	case State::Hooking:
-		MoveHooking();  // グラッフリング中
-		break;
-	default:
-		throw "範囲外の列挙子";
+		/*rotate.y += Frame::GetDeltaTime() * 1000.f;
+		rotate.y = std::fmodf(rotate.y, 360.f);*/
+
+		// キー入力から移動方向を更新
+		UpdateMove();
+
+		// Eキーが押された瞬間グラッフリング開始
+		if (Input::IsKeyDown(KeyCode::LeftShift))
+		{
+			StartHooking();
+		}
+
+		// Eキーが離された瞬間グラッフリング辞める
+		if (Input::IsKeyUp(KeyCode::LeftShift))
+		{
+			FinishHooking();
+		}
+
+		// 各状態の処理
+		switch (state_)
+		{
+		case State::Defualt:
+			MoveDefault();  // 通常の移動
+			break;
+		case State::Shooting:
+			Shooting();     // グラッフ発射中
+			break;
+		case State::Hooking:
+			MoveHooking();  // グラッフリング中
+			break;
+		default:
+			throw "範囲外の列挙子";
+		}
 	}
 
 	DxLib::MV1SetRotationXYZ(hGiraffeMV1_, transform_.GetRotateRadian());
 	DxLib::MV1SetPosition(hGiraffeMV1_, position);
 	DxLib::MV1SetScale(hGiraffeMV1_, scale * 0.002f);
+}
+
+void Play::Player::StartGoalAnimation(const Vector3& goalPosition)
+{
+	smootingBeginPosition_ = position;
+	smootingDiff_ = goalPosition - smootingBeginPosition_;
+	isGoalling_ = true;
 }
 
 void Play::Player::UpdateMove()
@@ -241,6 +263,14 @@ void Play::Player::MoveHooking()
 	MV1SetAttachAnimTime(hGiraffeMV1_, 0, animationTime_);
 
 	transform_.LookAt({ 0.f, 1.f, 0.f }, hookPosition);
+}
+
+void Play::Player::MoveGoalling()
+{
+	goallingTimeLeft_ += Frame::GetDeltaTime();
+
+	float rate{ goallingTimeLeft_ / GOALLING_TIME_MAX };
+	position = smootingBeginPosition_ + smootingDiff_ * Ease::OutBounce(rate);
 }
 
 void Play::Player::Draw() const

@@ -37,6 +37,12 @@ namespace Play
 
 		inline Transform* GetTransform() { return &transform_; }
 
+		/// <summary>
+		/// ゴールする
+		/// </summary>
+		/// <param name="goalPosition">ゴールのワールド座標</param>
+		void StartGoalAnimation(const Vector3& goalPosition);
+
 	private:
 		/// <summary>
 		/// 移動の更新 キー入力を移動方向に更新
@@ -55,6 +61,10 @@ namespace Play
 		/// グラッフリング移動
 		/// </summary>
 		void MoveHooking();
+		/// <summary>
+		/// ゴール中の移動
+		/// </summary>
+		void MoveGoalling();
 
 		/// <summary>
 		/// グラッフリング開始
@@ -83,6 +93,12 @@ namespace Play
 		int hGiraffeMV1_;
 		float hookDistance_;
 		int hTextureImage_;
+
+		Vector3 smootingBeginPosition_;  // ゴール中のに移動する開始座標
+		Vector3 smootingDiff_;  // ゴール中に移動する差分ベクトル
+		bool isGoalling_;
+		float goallingTimeLeft_;  // ゴール中のアニメーション時間
+		const float GOALLING_TIME_MAX;  // ゴール中のアニメーション最大時間
 
 		GiraffePoint* hookTarget_;  // グラッフリングするターゲット
 		HookArrow* hookArrow_;

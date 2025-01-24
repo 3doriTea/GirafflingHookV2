@@ -1,6 +1,7 @@
 #include "Goal.h"
 #include "MiniEngine.h"
 #include "Player.h"
+#include "../PlayScene.h"
 
 Play::Goal::Goal() :
 	GameObject::GameObject
@@ -31,9 +32,15 @@ void Play::Goal::Init()
 
 void Play::Goal::Update()
 {
-	if (position.Distance(player_->position) <= 30.f)
+	if (GetGameScene<PlayScene>().IsPlayerGoaled())
 	{
+		return;  // ゴールしているなら処理スキップ
+	}
 
+	if (position.Distance(player_->position) <= 300.f)
+	{
+		// ゴール！！
+		GetGameScene<PlayScene>().GoalPlayer();
 	}
 }
 
