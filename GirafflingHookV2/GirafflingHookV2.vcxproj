@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MiniEngine\Draw2D.cpp" />
+    <ClCompile Include="Play\HookArrow.cpp" />
     <ClCompile Include="Play\GiraffePointRoot.cpp" />
     <ClCompile Include="Play\GroundCollider.cpp" />
     <ClCompile Include="MiniEngine\Collider.cpp" />
@@ -65,6 +67,8 @@
     <ClCompile Include="Title\TitleString.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MiniEngine\Draw2D.h" />
+    <ClInclude Include="Play\HookArrow.h" />
     <ClInclude Include="Play\GiraffePointRoot.h" />
     <ClInclude Include="Play\GroundCollider.h" />
     <ClInclude Include="MiniEngine\Event.h" />

@@ -8,6 +8,7 @@
 #include "Play/Goal.h"
 #include "Play/GroundCollider.h"
 #include "Play/GiraffePointRoot.h"
+#include "Play/HookArrow.h"
 
 using namespace Play;
 
@@ -25,6 +26,7 @@ void PlayScene::Init()
 	SetBackgroundColor(0x00, 0x00, 0x00);
 
 	AddGameObject<Player>();
+	AddGameObject<HookArrow>();
 	AddGameObject<Camera>();
 	AddGameObject<Ground>();
 	AddGameObject<Goal>();

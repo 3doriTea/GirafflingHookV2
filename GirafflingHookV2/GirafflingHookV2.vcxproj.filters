@@ -161,6 +161,10 @@
     <ClCompile Include="Play\StageBoard.cpp">
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
+    <ClCompile Include="Play\HookArrow.cpp">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Draw2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\Attachment.h">
@@ -297,6 +301,10 @@
     <ClInclude Include="Play\StageBoard.h">
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
+    <ClInclude Include="Play\HookArrow.h">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Draw2D.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

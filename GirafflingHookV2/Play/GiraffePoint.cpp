@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "GiraffePointRoot.h"
 #include "Screen.h"
+#include "HookArrow.h"
 
 Play::GiraffePoint::GiraffePoint(
 	const Vector3& position) :
@@ -27,6 +28,8 @@ Play::GiraffePoint::~GiraffePoint()
 
 void Play::GiraffePoint::Init()
 {
+	FindGameObject<HookArrow>()->RegisterGiraffePoint(this);
+
 	// MEMO: MV1LoadModelをすると無駄にメモリ領域食べちゃうため
 	//     : 1度ロードしたモデルをそのまま、でも座標は別扱う
 	hTreeModel_ = MV1DuplicateModel(hTreeSource_);
@@ -51,6 +54,7 @@ void Play::GiraffePoint::Draw() const
 
 void Play::GiraffePoint::End()
 {
+	FindGameObject<HookArrow>()->UnregisterGiraffePoint(this);
 	MV1DeleteModel(hTreeModel_);
 }
 

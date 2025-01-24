@@ -4,6 +4,7 @@
 #include <cmath>
 #include "Draw3D.h"
 #include "GiraffePoint.h"
+#include "HookArrow.h"
 
 namespace
 {
@@ -26,6 +27,7 @@ Play::Player::Player() :
 	hGiraffeMV1_{ -1 },
 	hTextureImage_{ -1 },
 	hookTarget_{ nullptr },
+	hookArrow_{ nullptr },
 	hookDistance_{ 0.f },
 	state_{ State::Defualt },
 	move_{ Vector3::Zero() },
@@ -39,6 +41,9 @@ Play::Player::~Player()
 
 void Play::Player::Init()
 {
+	hookArrow_ = FindGameObject<HookArrow>();
+	assert(hookArrow_ != nullptr);  // HookArrowは見つかる
+
 	hGiraffeMV1_ = MV1LoadModel("Assets/Play/giraffeee.mv1");
 	hTextureImage_ = LoadGraph("Assets/Play/cube001.png");
 	MV1SetTextureGraphHandle(hGiraffeMV1_, 0, hTextureImage_, FALSE);
@@ -106,7 +111,7 @@ void Play::Player::UpdateMove()
 
 void Play::Player::StartHooking()
 {
-	hookTarget_ = FindGameObject<GiraffePoint>();
+	hookTarget_ = hookArrow_->GetFoundGiraffePoint();  //FindGameObject<GiraffePoint>();
 	assert(hookTarget_ != nullptr); // ギラッフポイントは見つかる
 	Vector3 hookPosition{ hookTarget_->GetHookPosition() };
 

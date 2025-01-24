@@ -10,7 +10,7 @@ Play::GiraffePointRoot::GiraffePointRoot(
 		GameObjectBuilder{}
 			.Name("GiraffePointRoot")
 			.Tag("giraffe-point-root")
-			.Scale(Vector3::One() * _scale)
+			.Scale(Vector3::From({_scale, _scale }, 1.f))
 	},
 	transform_{ *this }
 {

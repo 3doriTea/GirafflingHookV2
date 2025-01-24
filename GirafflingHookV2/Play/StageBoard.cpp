@@ -43,6 +43,8 @@ void Play::StageBoard::Init()
 		hBoxModel_,
 		transform_.ToWorldPosition({ 0.f, 0.f, 0.f }));
 	MV1SetRotationXYZ(hBoxModel_, transform_.GetRotateRadian());
+	/*Vector3 scale{ transform_.GetWorldScale() * MODEL_SIZE_RATE };
+	scale.z = 1.f;*/
 	MV1SetScale(hBoxModel_, transform_.GetWorldScale() * MODEL_SIZE_RATE);
 }
 

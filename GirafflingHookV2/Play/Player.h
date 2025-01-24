@@ -7,6 +7,7 @@
 namespace Play
 {
 	class GiraffePoint;
+	class HookArrow;
 
 	class Player : public GameObject
 	{
@@ -33,6 +34,8 @@ namespace Play
 		/// <param name="outPosition">ターゲット座標の参照(/ なければ無変更)</param>
 		/// <returns>取得に成功 true / false</returns>
 		bool TryGetHookTargetPosition(Vector3& outPosition);
+
+		inline Transform* GetTransform() { return &transform_; }
 
 	private:
 		/// <summary>
@@ -82,6 +85,7 @@ namespace Play
 		int hTextureImage_;
 
 		GiraffePoint* hookTarget_;  // グラッフリングするターゲット
+		HookArrow* hookArrow_;
 
 		State state_;  // プレイヤーの状態
 		Vector3 move_;

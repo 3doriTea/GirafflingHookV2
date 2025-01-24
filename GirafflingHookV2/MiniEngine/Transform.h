@@ -143,6 +143,14 @@ public:
 	{
 		return ToWorldScale(Vector3::One());
 	}
+	/// <summary>
+	/// ワールド座標を取得
+	/// </summary>
+	/// <returns>ワールド座標</returns>
+	inline Vector3 GetWorldPosition() const
+	{
+		return ToWorldPosition(Vector3::Zero());
+	}
 
 private:
 	DirectX::XMMATRIX GetWorldTranslateMatrix() const;
