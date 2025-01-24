@@ -7,6 +7,7 @@
 #include "HookArrow.h"
 #include "Frame.h"
 #include "EasingFunctions.h"
+#include "../PlayScene.h"
 
 namespace
 {
@@ -267,7 +268,18 @@ void Play::Player::MoveHooking()
 
 void Play::Player::MoveGoalling()
 {
+	if (goallingTimeLeft_ == GOALLING_TIME_MAX)
+	{
+		return;
+	}
+
 	goallingTimeLeft_ += Frame::GetDeltaTime();
+
+	if (goallingTimeLeft_ >= GOALLING_TIME_MAX)
+	{
+		goallingTimeLeft_ = GOALLING_TIME_MAX;
+		GetGameScene<PlayScene>().FinishedGoalAnimation();
+	}
 
 	float rate{ goallingTimeLeft_ / GOALLING_TIME_MAX };
 	position = smootingBeginPosition_ + smootingDiff_ * Ease::OutBounce(rate);

@@ -37,7 +37,7 @@ void Play::Goal::Update()
 		return;  // ゴールしているなら処理スキップ
 	}
 
-	if (position.Distance(player_->position) <= 300.f)
+	if (position.Distance(player_->position) <= 600.f)
 	{
 		// ゴール！！
 		GetGameScene<PlayScene>().GoalPlayer();
