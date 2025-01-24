@@ -62,6 +62,7 @@ void PlayScene::End()
 void PlayScene::FinishedGoalAnimation()
 {
 	// TODO: スコアシーンに遷移
+	SceneManager::Move<TitleScene>();
 }
 
 void PlayScene::GoalPlayer()
