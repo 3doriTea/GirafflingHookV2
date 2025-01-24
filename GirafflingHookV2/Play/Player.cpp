@@ -64,13 +64,13 @@ void Play::Player::Update()
 	UpdateMove();
 
 	// Eキーが押された瞬間グラッフリング開始
-	if (Input::IsKeyDown(KeyCode::E))
+	if (Input::IsKeyDown(KeyCode::LeftShift))
 	{
 		StartHooking();
 	}
 
 	// Eキーが離された瞬間グラッフリング辞める
-	if (Input::IsKeyUp(KeyCode::E))
+	if (Input::IsKeyUp(KeyCode::LeftShift))
 	{
 		FinishHooking();
 	}

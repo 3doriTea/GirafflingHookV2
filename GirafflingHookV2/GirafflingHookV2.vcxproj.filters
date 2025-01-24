@@ -153,7 +153,6 @@
     <ClCompile Include="MiniEngine\Event.cpp">
       <Filter>MiniEngine</Filter>
     </ClCompile>
-    <ClCompile Include="MiniEngine\Collider.cpp" />
     <ClCompile Include="Play\GroundCollider.cpp">
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
@@ -164,7 +163,12 @@
     <ClCompile Include="Play\HookArrow.cpp">
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
-    <ClCompile Include="MiniEngine\Draw2D.cpp" />
+    <ClCompile Include="MiniEngine\Collider.cpp">
+      <Filter>MiniEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Draw2D.cpp">
+      <Filter>MiniEngine\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\Attachment.h">
@@ -304,7 +308,9 @@
     <ClInclude Include="Play\HookArrow.h">
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
-    <ClInclude Include="MiniEngine\Draw2D.h" />
+    <ClInclude Include="MiniEngine\Draw2D.h">
+      <Filter>MiniEngine\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

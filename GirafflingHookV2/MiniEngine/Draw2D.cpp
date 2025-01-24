@@ -14,8 +14,8 @@ void Draw2D::Vector(const Vector3& v, const Color& color)
 {
 	Vector2Int point
 	{
-		static_cast<int>(v.x),
-		Screen::HEIGHT - static_cast<int>(v.y)
+		static_cast<int>(v.x + SCREEN_CENTER.x),
+		Screen::HEIGHT - static_cast<int>(v.y + SCREEN_CENTER.y)
 	};
 	
 	DrawLine(
