@@ -19,6 +19,10 @@ namespace Play
 		void Draw() const override;
 		void End() override;
 
+		/// <summary>
+		/// フックのワールド座標を取得する
+		/// </summary>
+		/// <returns>ワールド座標</returns>
 		Vector3 GetHookPosition() const;
 
 	private:

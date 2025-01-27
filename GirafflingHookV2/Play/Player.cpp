@@ -282,7 +282,7 @@ void Play::Player::MoveGoalling()
 	}
 
 	float rate{ goallingTimeLeft_ / GOALLING_TIME_MAX };
-	position = smootingBeginPosition_ + smootingDiff_ * Ease::OutBounce(rate);
+	position = smootingBeginPosition_ + smootingDiff_ * Ease::InOutExpo(rate);
 }
 
 void Play::Player::Draw() const

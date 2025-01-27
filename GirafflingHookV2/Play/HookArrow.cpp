@@ -68,7 +68,7 @@ void Play::HookArrow::Update()
 		{
 			VDot(diff.Normalize(), (giraffePointRoot_->ToWorldPosition(point->position) - worldPosition).Normalize())
 		};
-		if (result > maxCosineSimilarity)
+		if (result > maxCosineSimilarity && result >= 0.f)
 		{
 			maxCosineSimilarity = result;
 			foundGiraffePoint_ = point;
@@ -78,6 +78,18 @@ void Play::HookArrow::Update()
 
 void Play::HookArrow::Draw() const
 {
+	if (foundGiraffePoint_ != nullptr)
+	{
+		Vector3 screenPosition
+		{
+			Vector3::From(ConvWorldPosToScreenPos(foundGiraffePoint_->GetHookPosition()))
+		};
+		if (0.f <= screenPosition.z && screenPosition.z <= 1.f)
+		{
+			DrawCircle(screenPosition.x, screenPosition.y, 30, 0xffff00, FALSE, 10);
+		}
+	}
+
 }
 
 void Play::HookArrow::End()

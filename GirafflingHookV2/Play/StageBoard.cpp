@@ -22,7 +22,7 @@ Play::StageBoard::StageBoard(
 					Vector2{ topLeftDrawPosition.x, Screen::HEIGHT - topLeftDrawPosition.y }
 					+ widthHeight / 2.f))
 			.Rotate(Vector3::Forward() * angle)
-			.Scale(Vector3::From(widthHeight, 1.f))
+			.Scale(Vector3::From(widthHeight, 100.f))
 	},
 	transform_{ *this },
 	collider_{ *this, transform_ },
