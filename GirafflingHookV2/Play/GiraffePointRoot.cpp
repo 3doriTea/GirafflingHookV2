@@ -44,8 +44,10 @@ void Play::GiraffePointRoot::Init()
 #pragma region ï«ê∂ê¨
 	Instantiate<StageBoard>(
 		Vector2{ 1440.f, 240.f },
-		Vector2{ 80.f, 440.f },
-		0.f);
+		Vector2{ 80.f, 440.f });
+	Instantiate<StageBoard>(
+		Vector2{ 0.f, 680.f },
+		Vector2{ 15980.f, 40.f });
 #pragma endregion
 }
 

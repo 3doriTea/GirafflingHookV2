@@ -9,4 +9,3 @@ private:
 	void Draw() const override;
 	void End() override;
 };
-

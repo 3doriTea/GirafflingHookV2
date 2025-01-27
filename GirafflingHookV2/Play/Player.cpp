@@ -55,7 +55,7 @@ void Play::Player::Init()
 	MV1SetTextureGraphHandle(hGiraffeMV1_, 0, hTextureImage_, FALSE);
 	assert(hGiraffeMV1_ != -1);
 
-	rigidbody_.resistance = 1.f;
+	rigidbody_.resistance = 0.1f;
 	rigidbody_.resistanceTorque = 1.f;
 	rigidbody_.gravity = 9.8f;
 	rigidbody_.fixedZ = true;
@@ -193,7 +193,7 @@ float Play::Player::LengthToAnimationTime(float length)
 
 void Play::Player::MoveDefault()
 {
-	rigidbody_.velocity += move_ * 1.f;
+	rigidbody_.velocity += move_ * MOVE_SPEED;
 }
 
 void Play::Player::Shooting()
@@ -316,4 +316,6 @@ const float Play::Player::HOOKING_ANIMATION_SPEED{ 500.f };
 const float Play::Player::HOOKING_ANIMATION_OFFSET_IDOL_TIME{ 8.f };
 const float Play::Player::HOOKING_ANIMATION_OFFSET_TIME{ 8.f };
 
-const float Play::Player::MOVE_FORCE{ 100.f };
+const float Play::Player::MOVE_SPEED{ 1.f };
+
+const float Play::Player::MOVE_FORCE{ 50.f };

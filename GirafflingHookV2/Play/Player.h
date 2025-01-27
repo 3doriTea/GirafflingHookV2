@@ -118,6 +118,9 @@ namespace Play
 		// ズレを解消するための手作業オフセット
 		static const float HOOKING_ANIMATION_OFFSET_TIME;
 
+		// 移動速度 (加速度)
+		static const float MOVE_SPEED;
+
 		// 移動する力
 		static const float MOVE_FORCE;
 	};
