@@ -91,6 +91,10 @@ struct Vector3 : public DirectX::XMFLOAT3
 	/// </summary>
 	static inline Vector3 Forward() { return { 0.f, 0.f, 1.f }; }
 
+	static inline float Length(const Vector3& v) { return v.Length(); }
+	static inline Vector3 Normalize(const Vector3& v) { return Vector3{ v }.Normalize(); }
+	static inline float Distance(const Vector3& a, const Vector3& b) { return a.Distance(b); }
+
 	inline std::string ToString() const
 	{
 		std::string str{};
@@ -110,7 +114,3 @@ inline Vector3 operator/(const Vector3& v, const float& scale) { return Vector3{
 inline Vector3 operator%(const Vector3& v, const float& scale) { return Vector3{ v } %= scale; }
 inline Vector3 operator+(const Vector3& v1, const Vector3& v3) { return Vector3{ v1 } += v3; }
 inline Vector3 operator-(const Vector3& v1, const Vector3& v3) { return Vector3{ v1 } -= v3; }
-
-inline float Length(const Vector3& v) { return v.Length(); }
-inline Vector3 Normalize(const Vector3& v) { return Vector3{ v }.Normalize(); }
-inline float Distance(const Vector3& a, const Vector3& b) { return a.Distance(b); }

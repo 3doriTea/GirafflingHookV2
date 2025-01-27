@@ -97,27 +97,33 @@ void PhysicsManager::Update()
 		// コライダーの反発ベクトルを適用
 		position += reflection;
 
-#pragma region 反射ベクトルを求める
+#pragma region 反射するなら反発ベクトルを求める
 		// REF: http://marupeke296.com/COL_Basic_No5_WallVector.html
 		
-		Vector3 n{ reflection };
-		Vector3 nNorm{ (n.Length() < FLT_EPSILON ? Vector3::Zero() : n.Normalize())};
-		float a{ -VDot(velocity, nNorm) };
-
-		// 壁ずりベクトル
-		Vector3 w
+		if (Vector3::Length(reflection) > FLT_EPSILON)
 		{
-			velocity - (nNorm * VDot(velocity, nNorm))
-		};
+			Vector3 n{ reflection };
+			Vector3 nNorm{ Vector3::Normalize(n) };
+			float a{ -VDot(velocity, nNorm) };
 
-		// 反射ベクトル
-		Vector3 r
-		{
-			velocity + nNorm * (2.f * a)
-		};
+			// 壁ずりベクトル
+			Vector3 w
+			{
+				velocity - (nNorm * VDot(velocity, nNorm))
+			};
 
-		// 反射ベクトルの適用
-		velocity = r;
+			// 反射ベクトル
+			Vector3 r
+			{
+				velocity + nNorm * (2.f * a)
+			};
+
+			// 反発係数
+			float e{ 0.4f };  // TODO: 定数化する
+
+			// 反射ベクトルの適用
+			velocity = r * e;
+		}
 #pragma endregion
 
 		// 速度の適用
