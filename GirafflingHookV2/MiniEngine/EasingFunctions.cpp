@@ -28,3 +28,13 @@ float Ease::OutBounce(float x)
 		return n1 * (x -= 2.625f / d1) * x + 0.984375f;
 	}
 }
+
+float Ease::InOutExpo(float x)
+{
+	return x == 0.f
+		? 0.f
+		: x == 1.f
+		? 1.f
+		: x < 0.5f ? std::powf(2.f, 20.f * x - 10.f) / 2.f
+		: (2.f - std::powf(2.f, -20.f * x + 10.f)) / 2.f;
+}

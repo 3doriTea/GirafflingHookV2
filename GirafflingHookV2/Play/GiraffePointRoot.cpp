@@ -10,7 +10,7 @@ Play::GiraffePointRoot::GiraffePointRoot(
 		GameObjectBuilder{}
 			.Name("GiraffePointRoot")
 			.Tag("giraffe-point-root")
-			.Scale(Vector3::From({_scale, _scale }, 1.f))
+			.Scale(Vector3::From({_scale, _scale }, _scale))
 	},
 	transform_{ *this }
 {
@@ -44,8 +44,10 @@ void Play::GiraffePointRoot::Init()
 #pragma region ï«ê∂ê¨
 	Instantiate<StageBoard>(
 		Vector2{ 1440.f, 240.f },
-		Vector2{ 80.f, 440.f },
-		0.f);
+		Vector2{ 80.f, 440.f });
+	Instantiate<StageBoard>(
+		Vector2{ 0.f, 680.f },
+		Vector2{ 15980.f, 40.f });
 #pragma endregion
 }
 

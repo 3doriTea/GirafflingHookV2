@@ -32,6 +32,8 @@ namespace Play
 		Transform* giraffePointRoot_;
 		GiraffePoint* foundGiraffePoint_;
 
+		float animationTimer_;
+
 		// MEMO: ‰æ–Ê‚ÌƒTƒCƒY‚Í•Ï‚í‚é‚±‚Æ‚È‚¢
 		const Vector2 SCREEN_CENTER;
 	};

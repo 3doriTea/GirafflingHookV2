@@ -3,7 +3,6 @@
 
 class ClearScene : public GameScene
 {
-public:
 private:
 	void Init() override;
 	void Update() override;

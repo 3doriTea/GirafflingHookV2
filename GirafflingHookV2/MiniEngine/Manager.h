@@ -11,6 +11,9 @@ enum struct CalledType
 	Frame,  // 1フレーム(60fpsなら1秒間に60回)
 };
 
+/// <summary>
+/// マネージャの基底クラス (派生クラスはすべてシングルトン)
+/// </summary>
 class Manager
 {
 public:

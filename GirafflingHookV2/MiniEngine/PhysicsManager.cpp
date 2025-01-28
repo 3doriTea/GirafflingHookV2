@@ -39,10 +39,11 @@ void PhysicsManager::Update()
 			if (static_cast<AABBCollider*>(self->colliderPtr_)
 				->IsHitAABB(*static_cast<AABBCollider*>(targetCollider)))
 			{
-				printfDx(
+				// TODO: ヒットしたときのイベント関数を呼び出したい
+				/*printfDx(
 					"OnHit %s : %s\n",
 					self->gameObject.GetName().c_str(),
-					targetCollider->gameObject.GetName().c_str());
+					targetCollider->gameObject.GetName().c_str());*/
 				Vector3 reflection
 				{
 					static_cast<AABBCollider*>(self->colliderPtr_)
@@ -94,8 +95,36 @@ void PhysicsManager::Update()
 		}
 
 		// コライダーの反発ベクトルを適用
-		velocity += reflection / deltaTime;  // フレーム間時間で減衰しないように
-		reflection = Vector3::Zero();  // 適用したら次のフレームでは使わないためクリア
+		position += reflection;
+
+#pragma region 反射するなら反発ベクトルを求める
+		// REF: http://marupeke296.com/COL_Basic_No5_WallVector.html
+		
+		if (Vector3::Length(reflection) > FLT_EPSILON)
+		{
+			Vector3 n{ reflection };
+			Vector3 nNorm{ Vector3::Normalize(n) };
+			float a{ -VDot(velocity, nNorm) };
+
+			// 壁ずりベクトル
+			Vector3 w
+			{
+				velocity - (nNorm * VDot(velocity, nNorm))
+			};
+
+			// 反射ベクトル
+			Vector3 r
+			{
+				velocity + nNorm * (2.f * a)
+			};
+
+			// 反発係数
+			float e{ 0.4f };  // TODO: 定数化する
+
+			// 反射ベクトルの適用
+			velocity = r * e;
+		}
+#pragma endregion
 
 		// 速度の適用
 		position += velocity * deltaTime;
@@ -115,6 +144,8 @@ void PhysicsManager::Update()
 		velocityTorque += velocityTorque * -resistanceTorque * deltaTime;
 		// 360度内に収める
 		rotate %= 360.f;
+		// 次のフレームでは引き続き使わないためクリア
+		reflection = Vector3::Zero();
 	}
 }
 
