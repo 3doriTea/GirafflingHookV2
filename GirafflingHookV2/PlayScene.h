@@ -13,11 +13,6 @@ public:
 	PlayScene();
 	~PlayScene();
 
-	void Init() override;
-	void Update() override;
-	void Draw() const override;
-	void End() override;
-
 	/// <summary>
 	/// プレイヤーがゴールしたかどうか
 	/// </summary>
@@ -33,6 +28,12 @@ public:
 	/// ゴールした
 	/// </summary>
 	void GoalPlayer();
+
+private:
+	void Init() override;
+	void Update() override;
+	void Draw() const override;
+	void End() override;
 
 private:
 	Play::Player* player_;
