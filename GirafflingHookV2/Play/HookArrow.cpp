@@ -6,6 +6,11 @@
 #include "Draw2D.h"
 #include "Player.h"
 
+namespace
+{
+	const float PI{ std::acosf(-1.f) };
+}
+
 Play::HookArrow::HookArrow() :
 	transform_{ *this },
 	SCREEN_CENTER
@@ -18,7 +23,8 @@ Play::HookArrow::HookArrow() :
 	},
 	giraffePoints_{},
 	giraffePointRoot_{ nullptr },
-	foundGiraffePoint_{ nullptr }
+	foundGiraffePoint_{ nullptr },
+	animationTimer_{ 0.f }
 {
 }
 
@@ -74,6 +80,9 @@ void Play::HookArrow::Update()
 			foundGiraffePoint_ = point;
 		}
 	}
+
+	animationTimer_ += Frame::GetDeltaTime() * 10.f;
+	animationTimer_ = std::fminf(animationTimer_,  PI * 2.f);
 }
 
 void Play::HookArrow::Draw() const
@@ -86,7 +95,14 @@ void Play::HookArrow::Draw() const
 		};
 		if (0.f <= screenPosition.z && screenPosition.z <= 1.f)
 		{
-			DrawCircle(screenPosition.x, screenPosition.y, 30, 0xffff00, FALSE, 10);
+			DrawCircle(
+				screenPosition.x,
+				screenPosition.y,
+				// TODO: 円のアニメーションを付ける
+				static_cast<int>(40.f + std::sinf(animationTimer_) * 5.f),
+				0xffff00,
+				FALSE,
+				10);
 		}
 	}
 
