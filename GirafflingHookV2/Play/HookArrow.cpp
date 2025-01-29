@@ -82,7 +82,7 @@ void Play::HookArrow::Update()
 	}
 
 	animationTimer_ += Frame::GetDeltaTime() * 10.f;
-	animationTimer_ = std::fminf(animationTimer_,  PI * 2.f);
+	animationTimer_ = std::fmodf(animationTimer_, PI * 2.f);
 }
 
 void Play::HookArrow::Draw() const
@@ -99,7 +99,7 @@ void Play::HookArrow::Draw() const
 				screenPosition.x,
 				screenPosition.y,
 				// TODO: 円のアニメーションを付ける
-				static_cast<int>(40.f + std::sinf(animationTimer_) * 5.f),
+				static_cast<int>(40.f + std::sinf(animationTimer_) * 10.f),
 				0xffff00,
 				FALSE,
 				10);
