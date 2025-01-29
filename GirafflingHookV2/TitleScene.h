@@ -8,6 +8,7 @@ public:
 	TitleScene();
 	~TitleScene();
 
+private:
 	void Init() override;
 	void Update() override;
 	void Draw() const override;
