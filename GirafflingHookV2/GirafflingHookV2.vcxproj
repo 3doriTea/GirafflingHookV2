@@ -61,7 +61,6 @@
     <ClCompile Include="MiniEngine\Rigidbody.cpp" />
     <ClCompile Include="MiniEngine\PhysicsManager.cpp" />
     <ClCompile Include="Play\StageBoard.cpp" />
-    <ClCompile Include="StageBoardTemplate.md" />
     <ClCompile Include="Title\TitleCamera.cpp" />
     <ClCompile Include="Title\SelectButton.cpp" />
     <ClCompile Include="TheMain.cpp" />
@@ -123,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />
+    <None Include="StageBoardTemplate.md" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

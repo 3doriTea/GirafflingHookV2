@@ -31,6 +31,25 @@ Play::StageBoard::StageBoard(
 	transform_.SetParent(GiraffePointRoot::GetGroundTransform());
 }
 
+Play::StageBoard::StageBoard(
+	const std::string& _name,
+	const Vector3& _position,
+	const Vector3& _scale) :
+	GameObject::GameObject
+	{
+		GameObjectBuilder{}
+			.Name(_name)
+			.Tag("stage-board")
+			.Position(_position)
+			.Scale(_scale)
+	},
+	transform_{ *this },
+	collider_{ *this, transform_ },
+	hBoxModel_{ -1 }
+{
+	transform_.SetParent(GiraffePointRoot::GetGroundTransform());
+}
+
 Play::StageBoard::~StageBoard()
 {
 }

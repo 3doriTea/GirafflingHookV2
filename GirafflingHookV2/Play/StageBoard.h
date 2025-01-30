@@ -23,6 +23,16 @@ namespace Play
 			const Vector2& topLeftDrawPosition,
 			const Vector2& widthHeight,
 			const float& angle = 0.f);
+		/// <summary>
+		/// Unityからのコンバート向けのコンストラクタ
+		/// </summary>
+		/// <param name="name">オブジェクト名</param>
+		/// <param name="position">設置座標</param>
+		/// <param name="scale">設置スケール</param>
+		StageBoard(
+			const std::string& _name,
+			const Vector3& _position,
+			const Vector3& _scale);
 		~StageBoard();
 
 		void Init() override;
