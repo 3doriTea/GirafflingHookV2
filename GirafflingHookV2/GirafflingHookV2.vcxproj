@@ -61,6 +61,7 @@
     <ClCompile Include="MiniEngine\Rigidbody.cpp" />
     <ClCompile Include="MiniEngine\PhysicsManager.cpp" />
     <ClCompile Include="Play\StageBoard.cpp" />
+    <ClCompile Include="StageBoardTemplate.md" />
     <ClCompile Include="Title\TitleCamera.cpp" />
     <ClCompile Include="Title\SelectButton.cpp" />
     <ClCompile Include="TheMain.cpp" />
