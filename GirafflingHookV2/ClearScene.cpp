@@ -1,4 +1,8 @@
 #include "ClearScene.h"
+#include "MiniEngine.h"
+#include <DxLib.h>
+#include "TitleScene.h"
+#include "PlayScene.h"
 
 ClearScene::ClearScene()
 {
@@ -18,6 +22,12 @@ void ClearScene::Update()
 
 void ClearScene::Draw() const
 {
+	/*
+	* スコア
+	* プレイヤー
+	* 文字列
+	* 
+	*/
 }
 
 void ClearScene::End()
