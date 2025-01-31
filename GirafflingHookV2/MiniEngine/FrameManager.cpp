@@ -77,7 +77,7 @@ void FrameManager::Update()
 		frameDifferenceTime = 0;
 
 		// NOTE: ちょっと休ませないと入力等受け取れないらしい?
-		//Sleep(1);
+		Sleep(1);
 	}
 
 	// MEMO: 時間計測の精度アップ終了

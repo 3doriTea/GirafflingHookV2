@@ -5,9 +5,8 @@
 #include <cassert>
 
 DxLibManager::DxLibManager() :
-	Manager::Manager(CalledType::Frame)
+	Manager::Manager(CalledType::Frame, 10)
 {
-	SetOrder(10);
 }
 
 DxLibManager::~DxLibManager()

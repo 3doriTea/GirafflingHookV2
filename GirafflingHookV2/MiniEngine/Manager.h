@@ -17,11 +17,15 @@ enum struct CalledType
 class Manager
 {
 public:
-	Manager(const CalledType&);
+	Manager(const CalledType&, const int& initOrder = 100);
 	~Manager();
 
 	virtual void Init() = 0;
 	virtual void Update() = 0;
+	/// <summary>
+	/// ‘S‚Ä‚ÌUpdate‚ªŒÄ‚Î‚ê‚½Œã‚ÉŒÄ‚Î‚ê‚é’x‚ß‚ÌUpdate
+	/// </summary>
+	virtual void LateUpdate() {}
 	virtual void End() = 0;
 
 	/// <summary>
@@ -46,8 +50,9 @@ protected:
 
 private:
 	int order_;
+	int initOrder_;
 	CalledType calledType_;
 
 	static std::list<Manager*> managers_;
-	static std::set<const Manager*> uninitialisedManagers_;
+	static std::list<Manager*> uninitialisedManagers_;
 };

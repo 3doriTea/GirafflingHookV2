@@ -7,8 +7,13 @@
 #include "Title/TitleString.h"
 #include "Title/TitleCamera.h"
 #include "Title/SelectButton.h"
+//#include <imgui.h>
+#include "../ImGui/imgui.h"
 
 using namespace Title;
+
+static int posX{ 0 };
+static int posY{ 0 };
 
 TitleScene::TitleScene() :
 	hPointLight_{ -1 },
@@ -26,9 +31,9 @@ TitleScene::~TitleScene()
 
 void TitleScene::Init()
 {
-	hGiraffeImageBody_ = LoadGraph("Assets/Title/giraffeBody");
+	hGiraffeImageBody_ = LoadGraph("Assets/Title/giraffeBody.png");
 	assert(hGiraffeImageBody_ > 0);  // ‰æ‘œ‚Í“Ç‚İ‚Ü‚ê‚éI
-	hGiraffeImageHead_ = LoadGraph("Assets/Title/giraffeHead");
+	hGiraffeImageHead_ = LoadGraph("Assets/Title/giraffeHead.png");
 	assert(hGiraffeImageHead_ > 0);  // ‰æ‘œ‚Í“Ç‚İ‚Ü‚ê‚éI
 
 	SetBackgroundColor(0xf0, 0xf0, 0xf0);
@@ -98,6 +103,11 @@ void TitleScene::Update()
 	{
 		SceneManager::Move<PlayScene>();
 	}*/
+
+	ImGui::Begin("giraffe position");
+	ImGui::SliderInt("x", &posX, 0, Screen::WIDTH);
+	ImGui::SliderInt("x", &posY, 0, Screen::HEIGHT);
+	ImGui::End();
 }
 
 void TitleScene::Draw() const // ‚±‚ÌŠÖ”‚Ì’†‚Å‚Íƒƒ“ƒo•Ï”‚ğˆêØ‘‚«Š·‚¦‚é‚±‚Æ‚Í‚È‚¢
@@ -117,6 +127,9 @@ void TitleScene::Draw() const // ‚±‚ÌŠÖ”‚Ì’†‚Å‚Íƒƒ“ƒo•Ï”‚ğˆêØ‘‚«Š·‚¦‚é‚±‚Æ‚
 	MV1DrawModel(hPlayButtonModel_);
 	MV1DrawModel(hInfoButtonModel_);
 	MV1DrawModel(hQuitButtonModel_);
+
+	DrawGraph(posX, posY, hGiraffeImageBody_, TRUE);
+	DrawGraph(posX, posY, hGiraffeImageHead_, TRUE);
 
 	//DrawExtendGraph()
 }
