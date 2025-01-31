@@ -6,7 +6,7 @@ namespace Title
 {
 	class SelectButton;
 
-	using ButtonNumber = unsigned char;
+	using ButtonNumber = int;//unsigned char;
 	
 	enum ButtonType : ButtonNumber
 	{
