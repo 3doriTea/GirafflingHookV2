@@ -2,6 +2,7 @@
 #include "MiniEngine.h"
 #include "PlayScene.h"
 #include <DxLib.h>
+#include <cassert>
 #include "Screen.h"
 #include "Title/TitleString.h"
 #include "Title/TitleCamera.h"
@@ -11,7 +12,11 @@ using namespace Title;
 
 TitleScene::TitleScene() :
 	hPointLight_{ -1 },
-	hDirectional_{ -1 }
+	hDirectional_{ -1 },
+	selectButtons{},
+	selectionButton{ 0 },
+	hGiraffeImageBody_{ -1 },
+	hGiraffeImageHead_{ -1 }
 {
 }
 
@@ -21,6 +26,11 @@ TitleScene::~TitleScene()
 
 void TitleScene::Init()
 {
+	hGiraffeImageBody_ = LoadGraph("Assets/Title/giraffeBody");
+	assert(hGiraffeImageBody_ > 0);  // ‰æ‘œ‚Í“Ç‚İ‚Ü‚ê‚éI
+	hGiraffeImageHead_ = LoadGraph("Assets/Title/giraffeHead");
+	assert(hGiraffeImageHead_ > 0);  // ‰æ‘œ‚Í“Ç‚İ‚Ü‚ê‚éI
+
 	SetBackgroundColor(0xf0, 0xf0, 0xf0);
 
 	TitleString& titleString{ AddGameObject<TitleString>() };
@@ -39,14 +49,17 @@ void TitleScene::Init()
 	hDirectional_ = CreateDirLightHandle(direction);
 	hDirectional_ = CreateDirLightHandle(direction);
 
-	AddGameObject<SelectButton>(
-		"playbutton", Vector3{ -400.f, 0.f, 0.f });
+	selectButtons.push_back(
+		&AddGameObject<SelectButton>(
+			"playbutton", Vector3{ -400.f, 0.f, 0.f }));
 
-	AddGameObject<SelectButton>(
-		"infobutton", Vector3{ -400.f, -100.f, 0.f });
+	selectButtons.push_back(
+		&AddGameObject<SelectButton>(
+			"infobutton", Vector3{ -400.f, -100.f, 0.f }));
 
-	AddGameObject<SelectButton>(
-		"quitbutton", Vector3{ -400.f, -200.f, 0.f });
+	selectButtons.push_back(
+		&AddGameObject<SelectButton>(
+			"quitbutton", Vector3{ -400.f, -200.f, 0.f }));
 }
 
 void TitleScene::Update()
@@ -65,6 +78,17 @@ void TitleScene::Update()
 		printfDx("ƒeƒXƒeƒXUp%f\n", Frame::GetDeltaTime());
 	}
 	
+	if (Input::IsKeyDown(KeyCode::Up))
+	{
+		selectionButton++;
+		selectionButton %= BUTTON_MAX;
+	}
+	if (Input::IsKeyDown(KeyCode::Down))
+	{
+		selectionButton--;
+		selectionButton %= BUTTON_MAX;
+	}
+
 	if (CheckHitKey(KEY_INPUT_P))
 	{
 		SceneManager::Move<PlayScene>();
@@ -93,6 +117,8 @@ void TitleScene::Draw() const // ‚±‚ÌŠÖ”‚Ì’†‚Å‚Íƒƒ“ƒo•Ï”‚ğˆêØ‘‚«Š·‚¦‚é‚±‚Æ‚
 	MV1DrawModel(hPlayButtonModel_);
 	MV1DrawModel(hInfoButtonModel_);
 	MV1DrawModel(hQuitButtonModel_);
+
+	//DrawExtendGraph()
 }
 
 void TitleScene::End()

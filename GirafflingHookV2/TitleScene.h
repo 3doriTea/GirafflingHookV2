@@ -2,6 +2,21 @@
 #include "GameScene.h"
 #include <vector>
 
+namespace Title
+{
+	class SelectButton;
+
+	using ButtonNumber = unsigned char;
+	
+	enum ButtonType : ButtonNumber
+	{
+		BUTTON_PLAY,
+		BUTTON_INFO,
+		BUTTON_QUIT,
+		BUTTON_MAX,
+	};
+}
+
 class TitleScene : public GameScene
 {
 public:
@@ -22,6 +37,9 @@ private:
 	int hInfoButtonModel_;
 	int hQuitButtonModel_;
 
+	int hGiraffeImageBody_;
+	int hGiraffeImageHead_;
+
 	enum TITLE_ELEMENT
 	{
 		TITLE_TEXT,
@@ -30,6 +48,11 @@ private:
 		QUIT_BUTTON,
 		MAX_ELEMENT
 	};
+
+	Title::ButtonNumber selectionButton;
+	std::vector<Title::SelectButton*> selectButtons;
+
+	float giraffeLength_;
 
 	std::vector<const char*> titleElement = {"Giraffing Hook", "Play", "Info", "Quit"};
 };
