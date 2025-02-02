@@ -22,6 +22,24 @@ Play::GiraffePoint::GiraffePoint(
 	transform_.SetParent(GiraffePointRoot::GetGroundTransform());
 }
 
+Play::GiraffePoint::GiraffePoint(
+	const std::string& name,
+	const Vector3& position) :
+	GameObject::GameObject
+	{
+		GameObjectBuilder{}
+			.Name(name)
+			.Position(position)
+			.Scale({ 100.f, 100.f, 100.f })
+	},
+	player_{ nullptr },
+	transform_{ *this },
+	collider_{ *this, transform_ },
+	hTreeModel_{ -1 },
+	hTreeSource_{ GiraffePointRoot::GetTreeModelSourceHandle() }
+{
+}
+
 Play::GiraffePoint::~GiraffePoint()
 {
 }

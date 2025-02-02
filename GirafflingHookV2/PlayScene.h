@@ -29,6 +29,8 @@ public:
 	/// </summary>
 	void GoalPlayer();
 
+	static inline int GetScore() {  };
+
 private:
 	void Init() override;
 	void Update() override;

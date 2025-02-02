@@ -3,6 +3,7 @@
 #include "Vector3.h"
 #include "Transform.h"
 #include "AABBCollider.h"
+#include <string>
 
 namespace Play
 {
@@ -12,6 +13,7 @@ namespace Play
 	{
 	public:
 		GiraffePoint(const Vector3& position);
+		GiraffePoint(const std::string& name, const Vector3& position);
 		~GiraffePoint();
 
 		void Init() override;

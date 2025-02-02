@@ -16,10 +16,11 @@ namespace
 
 Play::Player::Player() :
 	GameObject::GameObject
-	{ 
+	{
 		GameObjectBuilder{}
 			.Name("Player")
 			.Tag("player")
+			.Position({ 0.f, 10.f, 0.f })
 			.Scale({ 300.f, 300.f, 300.f })
 	},
 	transform_{ *this },
