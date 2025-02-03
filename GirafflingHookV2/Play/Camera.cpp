@@ -32,13 +32,22 @@ Play::Camera::~Camera()
 
 void Play::Camera::Init()
 {
-	hSoptLight_ = CreateSpotLightHandle(
-		position,
-		transform_.GetRotateRadian(),
-		PI / 1.f,
-		0.f,//PI / 5.f,
-		5000.f,
-		0.f, 0.0001f, 0.f);
+	//hSoptLight_ = CreateSpotLightHandle(
+	//	position,
+	//	transform_.GetRotateRadian(),
+	//	PI / 1.f,
+	//	0.f,//PI / 5.f,
+	//	5000.f,
+	//	0.f, 0.0001f, 0.f);
+
+
+	VECTOR dirLightDir =
+	{
+		100 * PI / 180,
+		75 * PI / 180,
+		0
+	};
+	hDirLight_ = CreateDirLightHandle(dirLightDir);
 
 	player_ = FindGameObject<Player>();
 	assert(player_ != nullptr);  // NOTE: ÉvÉåÉCÉÑÅ[ÇÕå©Ç¬Ç©ÇÈ
@@ -106,4 +115,5 @@ void Play::Camera::Update()
 void Play::Camera::End()
 {
 	DeleteLightHandle(hSoptLight_);
+	DeleteLightHandle(hDirLight_);
 }

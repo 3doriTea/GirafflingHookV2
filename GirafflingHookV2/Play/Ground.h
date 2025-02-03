@@ -17,8 +17,9 @@ namespace Play
 		void End() override;
 
 	private:
-		Transform transform_;
-		AABBCollider collider_;
+		//Transform transform_;
+		//AABBCollider collider_;
 		int hBoxModel_;
+		int hTestCube_;
 	};
 }

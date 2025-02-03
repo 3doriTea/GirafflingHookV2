@@ -106,6 +106,21 @@ float& Vector3::operator[](const size_t& index)
 	}
 }
 
+Vector3 Vector3::operator-() const
+{
+	return
+	{
+		-this->x,
+		-this->y,
+		-this->z
+	};
+}
+
+Vector3 Vector3::operator+() const
+{
+	return *this;
+}
+
 Vector3::operator VECTOR() const
 {
 	return VECTOR{ this->x, this->y, this->z };
@@ -131,6 +146,26 @@ Vector3& Vector3::Normalize()
 float Vector3::Distance(const Vector3& to) const
 {
 	return (to - (*this)).Length();
+}
+
+Vector3 Vector3::Abs() const
+{
+	return
+	{
+		std::fabsf(this->x),
+		std::fabsf(this->y),
+		std::fabsf(this->z)
+	};
+}
+
+Vector3 Vector3::Sign() const
+{
+	return
+	{
+		this->x < 0 ? -1.f : 1.f,
+		this->y < 0 ? -1.f : 1.f,
+		this->z < 0 ? -1.f : 1.f,
+	};
 }
 
 Vector3 Vector3::From(const Vector2& from, const float& z)

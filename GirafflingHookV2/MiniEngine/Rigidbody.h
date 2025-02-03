@@ -14,8 +14,8 @@ public:
 	Rigidbody( 
 		GameObject& attachingGameObject,
 		Transform& transform,
-		Collider* colliderPtr
-		);
+		Collider* colliderPtr,
+		const bool& isDynamic = false);
 	~Rigidbody();
 
 	void Draw() const override;
@@ -30,6 +30,17 @@ public:
 	Vector3 velocityTorque;
 	// 1秒間あたりの回転抵抗
 	float resistanceTorque;
+	// 1秒間あたりの重力加速度
+	float gravity;
+	// x軸の動きを固定するか
+	bool fixedX;
+	// y軸の動きを固定するか
+	bool fixedY;
+	// z軸の動きを固定するか
+	bool fixedZ;
+
+	// 他のコライダーからの反発ベクトル
+	Vector3 reflection{};
 
 private:
 	Transform& transform_;

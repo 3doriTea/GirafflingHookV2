@@ -2,6 +2,8 @@
 #include "GameObject.h"
 #include "TransformManager.h"
 #include <cmath>
+//#include "OBBCollider.h"
+#include "AABBCollider.h"
 
 using namespace DirectX;
 
@@ -23,6 +25,14 @@ Transform::Transform(GameObject& gameObject) :
 
 Transform::~Transform()
 {
+	/*if (parent_ != nullptr)
+	{
+		parent_->childs_.erase(this);
+	}*/
+	for (auto&& child : childs_)
+	{
+		child->parent_ = nullptr;
+	}
 	TransformManager::Unregister(this);
 }
 
@@ -50,7 +60,7 @@ void Transform::UpdateCalculate()
 		scale.z);
 }
 
-Vector3 Transform::ToWorldPosition(const Vector3& localPosition)
+Vector3 Transform::ToWorldPosition(const Vector3& localPosition) const
 {
 	DirectX::XMVECTOR localPositionVector
 	{
@@ -68,6 +78,42 @@ Vector3 Transform::ToWorldPosition(const Vector3& localPosition)
 	return Vector3::From(worldPosition);
 }
 
+Vector3 Transform::ToWorldDirection(const Vector3& localDirection) const
+{
+	DirectX::XMVECTOR localDirectionVector
+	{
+		DirectX::XMLoadFloat3(&localDirection)
+	};
+
+	DirectX::XMVECTOR worldDirectionVector
+	{
+		DirectX::XMVector3Transform(localDirectionVector, GetWorldDirectionMatrix())
+	};
+
+	DirectX::XMFLOAT3 worldPosition{};
+	DirectX::XMStoreFloat3(&worldPosition, worldDirectionVector);
+
+	return Vector3::From(worldPosition);
+}
+
+Vector3 Transform::ToWorldScale(const Vector3& localScale) const
+{
+	DirectX::XMVECTOR localScaleVector
+	{
+		DirectX::XMLoadFloat3(&localScale)
+	};
+
+	DirectX::XMVECTOR worldScaleVector
+	{
+		DirectX::XMVector3Transform(localScaleVector, GetWorldScaleMatrix())
+	};
+
+	DirectX::XMFLOAT3 worldScale{};
+	DirectX::XMStoreFloat3(&worldScale, worldScaleVector);
+
+	return Vector3::From(worldScale);
+}
+
 void Transform::LookAt(Vector3 forwardDirection, const Vector3& targetPosition)
 {
 	// SRC: http://www.yz-learning.com:8080/knowledge/open.knowledge/view/36?offset=0
@@ -80,6 +126,11 @@ void Transform::LookAt(Vector3 forwardDirection, const Vector3& targetPosition)
 
 	// 2軸に垂直なベクトル = 法線ベクトル
 	Vector3 normal{ Vector3::From(VCross(forward, direction)) };
+
+	if (normal.Length() <= FLT_EPSILON)
+	{
+		return;
+	}
 
 	float rotationAngle
 	{
@@ -120,12 +171,37 @@ void Transform::SetParent(Transform* parent)
 	parent_ = parent;
 }
 
-DirectX::XMMATRIX Transform::GetWorldTranslateMatrix()
+void Transform::SetParent(Transform& parent)
 {
-	if (parent_ != nullptr)
+	SetParent(&parent);
+}
+
+DirectX::XMMATRIX Transform::GetWorldTranslateMatrix() const
+{
+	if (this->parent_ != nullptr)
 	{
 		return scaleMatrix_ * rotateMatrix_ * positionMatrix_ * parent_->GetWorldTranslateMatrix();
 	}
 	
 	return scaleMatrix_ * rotateMatrix_ * positionMatrix_;
+}
+
+DirectX::XMMATRIX Transform::GetWorldDirectionMatrix() const
+{
+	if (parent_ != nullptr)
+	{
+		return rotateMatrix_ * parent_->GetWorldDirectionMatrix();
+	}
+
+	return rotateMatrix_;
+}
+
+DirectX::XMMATRIX Transform::GetWorldScaleMatrix() const
+{
+	if (parent_ != nullptr)
+	{
+		return scaleMatrix_ * parent_->GetWorldScaleMatrix();
+	}
+
+	return scaleMatrix_;
 }

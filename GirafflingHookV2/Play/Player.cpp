@@ -4,6 +4,10 @@
 #include <cmath>
 #include "Draw3D.h"
 #include "GiraffePoint.h"
+#include "HookArrow.h"
+#include "Frame.h"
+#include "EasingFunctions.h"
+#include "../PlayScene.h"
 
 namespace
 {
@@ -12,23 +16,29 @@ namespace
 
 Play::Player::Player() :
 	GameObject::GameObject
-	{ 
+	{
 		GameObjectBuilder{}
 			.Name("Player")
 			.Tag("player")
+			.Position({ 0.f, 10.f, 0.f })
 			.Scale({ 300.f, 300.f, 300.f })
 	},
 	transform_{ *this },
 	collider_{ *this, transform_ },
-	rigidbody_{ *this, transform_, &collider_ },
+	rigidbody_{ *this, transform_, &collider_, true },
 	animationTime_{ 0.f },
 	animationTimeMax_{ 0.f },
 	hGiraffeMV1_{ -1 },
+	hTextureImage_{ -1 },
 	hookTarget_{ nullptr },
+	hookArrow_{ nullptr },
 	hookDistance_{ 0.f },
 	state_{ State::Defualt },
 	move_{ Vector3::Zero() },
-	moveSign_{ +1 }
+	moveSign_{ +1 },
+	isGoalling_{ false },
+	goallingTimeLeft_{ 0.f },
+	GOALLING_TIME_MAX{ 3.f }
 {
 }
 
@@ -38,52 +48,78 @@ Play::Player::~Player()
 
 void Play::Player::Init()
 {
-	hGiraffeMV1_ = MV1LoadModel("Assets/Play/giraffeee.mv1");
-	assert(hGiraffeMV1_ != -1);
+	hookArrow_ = FindGameObject<HookArrow>();
+	assert(hookArrow_ != nullptr && "PlaySceneでHookArrowをｲﾝｽﾀﾝｽしてるか確認してみて");
 
-	rigidbody_.resistance = 1.f;
+	hGiraffeMV1_ = MV1LoadModel("Assets/Play/giraffeee.mv1");
+	assert(hGiraffeMV1_ != -1  && "ｷﾘﾝﾓﾃﾞﾙファイルのﾊﾟｽが正しいか確認してみて");
+	hTextureImage_ = LoadGraph("Assets/Play/cube001.png");
+	assert(hTextureImage_ != -1 && "ｷﾘﾝﾓﾃﾞﾙのﾃｸｽﾁｬ画像ﾊﾟｽが正しいか確認してみて");
+	// テクスチャ張り付ける
+	MV1SetTextureGraphHandle(hGiraffeMV1_, 0, hTextureImage_, FALSE);
+
+	rigidbody_.resistance = 0.1f;
 	rigidbody_.resistanceTorque = 1.f;
+	rigidbody_.gravity = 9.8f;
+	rigidbody_.fixedZ = true;
 }
 
 void Play::Player::Update()
 {
-	/*rotate.y += Frame::GetDeltaTime() * 1000.f;
-	rotate.y = std::fmodf(rotate.y, 360.f);*/
-
-	// キー入力から移動方向を更新
-	UpdateMove();
-
-	// Eキーが押された瞬間グラッフリング開始
-	if (Input::IsKeyDown(KeyCode::E))
+	if (isGoalling_)
 	{
-		StartHooking();
+		// ゴールしているなら
+		MoveGoalling();
 	}
-
-	// Eキーが離された瞬間グラッフリング辞める
-	if (Input::IsKeyUp(KeyCode::E))
+	else
 	{
-		FinishHooking();
-	}
+		// ゴールしていない
 
-	// 各状態の処理
-	switch (state_)
-	{
-	case State::Defualt:
-		MoveDefault();  // 通常の移動
-		break;
-	case State::Shooting:
-		Shooting();     // グラッフ発射中
-		break;
-	case State::Hooking:
-		MoveHooking();  // グラッフリング中
-		break;
-	default:
-		throw "範囲外の列挙子";
+		/*rotate.y += Frame::GetDeltaTime() * 1000.f;
+		rotate.y = std::fmodf(rotate.y, 360.f);*/
+
+		// キー入力から移動方向を更新
+		UpdateMove();
+
+		// Eキーが押された瞬間グラッフリング開始
+		if (Input::IsKeyDown(KeyCode::LeftShift))
+		{
+			StartHooking();
+		}
+
+		// Eキーが離された瞬間グラッフリング辞める
+		if (Input::IsKeyUp(KeyCode::LeftShift))
+		{
+			FinishHooking();
+		}
+
+		// 各状態の処理
+		switch (state_)
+		{
+		case State::Defualt:
+			MoveDefault();  // 通常の移動
+			break;
+		case State::Shooting:
+			Shooting();     // グラッフ発射中
+			break;
+		case State::Hooking:
+			MoveHooking();  // グラッフリング中
+			break;
+		default:
+			throw "範囲外の列挙子";
+		}
 	}
 
 	DxLib::MV1SetRotationXYZ(hGiraffeMV1_, transform_.GetRotateRadian());
 	DxLib::MV1SetPosition(hGiraffeMV1_, position);
 	DxLib::MV1SetScale(hGiraffeMV1_, scale * 0.002f);
+}
+
+void Play::Player::StartGoalAnimation(const Vector3& goalPosition)
+{
+	smootingBeginPosition_ = position;
+	smootingDiff_ = goalPosition - smootingBeginPosition_;
+	isGoalling_ = true;
 }
 
 void Play::Player::UpdateMove()
@@ -101,10 +137,11 @@ void Play::Player::UpdateMove()
 
 void Play::Player::StartHooking()
 {
-	hookTarget_ = FindGameObject<GiraffePoint>();
-	assert(hookTarget_ != nullptr);  // ギラッフポイントは見つかる
+	hookTarget_ = hookArrow_->GetFoundGiraffePoint();  //FindGameObject<GiraffePoint>();
+	assert(hookTarget_ != nullptr && "ｼｰﾝ内に1つ以上ｷﾞﾗｯﾌﾎﾟｲﾝﾄ置いてみて");
+	Vector3 hookPosition{ hookTarget_->GetHookPosition() };
 
-	hookDistance_ = position.Distance(hookTarget_->position);
+	hookDistance_ = position.Distance(hookPosition);
 
 	if (hookDistance_ >= NECK_LENGTH_MAX)
 	{
@@ -116,7 +153,7 @@ void Play::Player::StartHooking()
 		MV1AttachAnim(hGiraffeMV1_, 0);
 		animationTime_ = 0.f;
 		rigidbody_.velocityTorque = Vector3::Zero();
-		if (position.y < hookTarget_->position.y)
+		if (position.y < hookPosition.y)
 		{
 			moveSign_ = 1.f;
 		}
@@ -159,15 +196,17 @@ float Play::Player::LengthToAnimationTime(float length)
 
 void Play::Player::MoveDefault()
 {
-	rigidbody_.velocity += move_ * 1.f;
+	rigidbody_.velocity += move_ * MOVE_SPEED;
 }
 
 void Play::Player::Shooting()
 {
+	Vector3 hookPosition{ hookTarget_->GetHookPosition() };
+
 #pragma region 発射中も絶えずターゲットに向けて調整
-	transform_.LookAt({ 0.f, 1.f, 0.f }, hookTarget_->position);
+	transform_.LookAt({ 0.f, 1.f, 0.f }, hookPosition);
 	
-	hookDistance_ = position.Distance(hookTarget_->position);
+	hookDistance_ = position.Distance(hookPosition);
 	
 	animationTimeMax_ = LengthToAnimationTime(hookDistance_);
 #pragma endregion
@@ -188,10 +227,11 @@ void Play::Player::Shooting()
 void Play::Player::MoveHooking()
 {
 	assert(hookTarget_ != nullptr);  // ターゲットはある
+	Vector3 hookPosition{ hookTarget_->GetHookPosition() };
 
 	Vector3 angles{ transform_.GetRotateRadian() };
 
-	float currentDistance{ position.Distance(hookTarget_->position) };
+	float currentDistance{ position.Distance(hookPosition) };
 
 #pragma region 向心力の適用
 	// 2次元上の円の接線から中心への垂線
@@ -226,7 +266,26 @@ void Play::Player::MoveHooking()
 
 	MV1SetAttachAnimTime(hGiraffeMV1_, 0, animationTime_);
 
-	transform_.LookAt({ 0.f, 1.f, 0.f }, hookTarget_->position);
+	transform_.LookAt({ 0.f, 1.f, 0.f }, hookPosition);
+}
+
+void Play::Player::MoveGoalling()
+{
+	if (goallingTimeLeft_ == GOALLING_TIME_MAX)
+	{
+		return;
+	}
+
+	goallingTimeLeft_ += Frame::GetDeltaTime();
+
+	if (goallingTimeLeft_ >= GOALLING_TIME_MAX)
+	{
+		goallingTimeLeft_ = GOALLING_TIME_MAX;
+		GetGameScene<PlayScene>().FinishedGoalAnimation();
+	}
+
+	float rate{ goallingTimeLeft_ / GOALLING_TIME_MAX };
+	position = smootingBeginPosition_ + smootingDiff_ * Ease::InOutExpo(rate);
 }
 
 void Play::Player::Draw() const
@@ -238,13 +297,14 @@ void Play::Player::Draw() const
 void Play::Player::End()
 {
 	MV1DeleteModel(hGiraffeMV1_);
+	DeleteGraph(hTextureImage_);
 }
 
 bool Play::Player::TryGetHookTargetPosition(Vector3& outPosition)
 {
 	if (hookTarget_ != nullptr)
 	{
-		outPosition = hookTarget_->position;
+		outPosition = hookTarget_->GetHookPosition();
 		return true;
 	}
 	else
@@ -259,4 +319,6 @@ const float Play::Player::HOOKING_ANIMATION_SPEED{ 500.f };
 const float Play::Player::HOOKING_ANIMATION_OFFSET_IDOL_TIME{ 8.f };
 const float Play::Player::HOOKING_ANIMATION_OFFSET_TIME{ 8.f };
 
-const float Play::Player::MOVE_FORCE{ 100.f };
+const float Play::Player::MOVE_SPEED{ 1.f };
+
+const float Play::Player::MOVE_FORCE{ 50.f };

@@ -1,6 +1,7 @@
 #pragma once
 #include <DirectXMath.h>
 #include <DxLib.h>
+#include <string>
 
 struct Vector2;
 
@@ -26,6 +27,9 @@ struct Vector3 : public DirectX::XMFLOAT3
 
 	float& operator[](const size_t& index);
 
+	Vector3 operator-() const;
+	Vector3 operator+() const;
+
 	// DxLibのVECTORへの型変換
 	// MEMO: explicitを付けず、暗黙的な変換が可能
 	operator VECTOR() const;
@@ -36,6 +40,8 @@ struct Vector3 : public DirectX::XMFLOAT3
 	float Length() const;
 	Vector3& Normalize();
 	float Distance(const Vector3& to) const;
+	Vector3 Abs() const;
+	Vector3 Sign() const;
 
 	/// <summary>
 	/// Vector2からVector3に変換
@@ -65,8 +71,42 @@ struct Vector3 : public DirectX::XMFLOAT3
 	/// <summary>
 	/// 成分がすべて1のベクトルを取得
 	/// </summary>
-	/// <returns>成分がすべて1のベクトル</returns>
+	/// <returns>Vector3{ 1.f, 1.f, 1.f }</returns>
 	static inline Vector3 One() { return { 1.f, 1.f, 1.f }; }
+	/// <summary>
+	/// Vector3{ 0.f, -1.f, 0.f }
+	/// </summary>
+	static inline Vector3 Down() { return { 0.f, -1.f, 0.f }; }
+
+	/// <summary>
+	/// Vector3{ 1.f, 0.f, 0.f }
+	/// </summary>
+	static inline Vector3 Right() { return { 1.f, 0.f, 0.f }; }
+	/// <summary>
+	/// Vector3{ 0.f, 1.f, 0.f }
+	/// </summary>
+	static inline Vector3 Up() { return { 0.f, 1.f, 0.f }; }
+	/// <summary>
+	/// Vector3{ 0.f, 0.f, 1.f }
+	/// </summary>
+	static inline Vector3 Forward() { return { 0.f, 0.f, 1.f }; }
+
+	static inline float Length(const Vector3& v) { return v.Length(); }
+	static inline Vector3 Normalize(const Vector3& v) { return Vector3{ v }.Normalize(); }
+	static inline float Distance(const Vector3& a, const Vector3& b) { return a.Distance(b); }
+
+	inline std::string ToString() const
+	{
+		std::string str{};
+			str += "(";
+			str += std::to_string(this->x);
+			str += ", ";
+			str += std::to_string(this->y);
+			str += ", ";
+			str += std::to_string(this->z);
+			str += ")";
+		return str;
+	};
 };
 
 inline Vector3 operator*(const Vector3& v, const float& scale) { return Vector3{ v } *= scale; }
@@ -74,8 +114,3 @@ inline Vector3 operator/(const Vector3& v, const float& scale) { return Vector3{
 inline Vector3 operator%(const Vector3& v, const float& scale) { return Vector3{ v } %= scale; }
 inline Vector3 operator+(const Vector3& v1, const Vector3& v3) { return Vector3{ v1 } += v3; }
 inline Vector3 operator-(const Vector3& v1, const Vector3& v3) { return Vector3{ v1 } -= v3; }
-
-inline float Length(const Vector3& v) { return v.Length(); }
-inline Vector3 Normalize(const Vector3& v) { return Vector3{ v }.Normalize(); }
-inline float Distance(const Vector3& a, const Vector3& b) { return a.Distance(b); }
-

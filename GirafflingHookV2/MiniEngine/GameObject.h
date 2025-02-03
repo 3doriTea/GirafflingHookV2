@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <cassert>
 #include "Entity.h"
 #include "GameScene.h"
 #include "WorldModeVector.h"
@@ -32,10 +33,17 @@ public:
 
 	void Destroy();
 
-	std::string GetName() { return name; }
-	std::string GetTag() { return tag; }
+	std::string GetName() const { return name; }
+	std::string GetTag() const { return tag; }
 	std::string SetTag(const std::string& _tag) { tag = _tag; }
-	GameScene& GetGameScene() { return gameScene_; }
+	GameScene& GetGameScene() const { return gameScene_; }
+	template<typename GameSceneT>
+	GameSceneT& GetGameScene() const
+	{
+		GameSceneT* casted{ static_cast<GameSceneT*>(&gameScene_) };
+		assert(casted != nullptr);  // 正しく特定のシーンにキャストできている
+		return *casted;
+	}
 
 	std::string ToString() override;
 
@@ -49,7 +57,7 @@ protected:
 	template<typename GameObjectT, typename ...Args>
 	GameObjectT& Instantiate(Args... args)
 	{
-		return GetGameScene().AddGameObject<GameObjectT>(args);
+		return GetGameScene().AddGameObject<GameObjectT>(args...);
 	}
 	/// <summary>
 	/// 所属シーンからゲームオブジェクトをただ１つ取得
@@ -89,11 +97,14 @@ public:
 	Vector3 rotate;
 	Vector3 scale;
 
+private:
+	// MEMO: メモリレイアウト的にここに配置
+	bool toDestroy_;
+
 protected:
 	std::string name;
 	std::string tag;
 
 private:
 	GameScene& gameScene_;
-	bool toDestroy_;
 };

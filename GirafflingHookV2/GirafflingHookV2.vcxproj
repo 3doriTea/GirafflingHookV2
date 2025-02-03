@@ -19,6 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ClearScene.cpp" />
+    <ClCompile Include="MiniEngine\ImGuiManager.cpp" />
+    <ClCompile Include="Library\ImGui\imgui.cpp" />
+    <ClCompile Include="Library\ImGui\imgui_draw.cpp" />
+    <ClCompile Include="Library\ImGui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="Library\ImGui\imgui_impl_dx9.cpp" />
+    <ClCompile Include="Library\ImGui\imgui_impl_win32.cpp" />
+    <ClCompile Include="Library\ImGui\imgui_ja_gryph_ranges.cpp" />
+    <ClCompile Include="Library\ImGui\imgui_tables.cpp" />
+    <ClCompile Include="Library\ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="MiniEngine\EasingFunctions.cpp" />
+    <ClCompile Include="MiniEngine\Draw2D.cpp" />
+    <ClCompile Include="Play\HookArrow.cpp" />
+    <ClCompile Include="Play\GiraffePointRoot.cpp" />
+    <ClCompile Include="Play\GroundCollider.cpp" />
+    <ClCompile Include="MiniEngine\Collider.cpp" />
+    <ClCompile Include="MiniEngine\Event.cpp" />
     <ClCompile Include="Play\Goal.cpp" />
     <ClCompile Include="MiniEngine\Vector2Int.cpp" />
     <ClCompile Include="Play\GiraffePoint.cpp" />
@@ -52,6 +69,7 @@
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="MiniEngine\Rigidbody.cpp" />
     <ClCompile Include="MiniEngine\PhysicsManager.cpp" />
+    <ClCompile Include="Play\StageBoard.cpp" />
     <ClCompile Include="Title\TitleCamera.cpp" />
     <ClCompile Include="Title\SelectButton.cpp" />
     <ClCompile Include="TheMain.cpp" />
@@ -60,6 +78,24 @@
     <ClCompile Include="Title\TitleString.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ClearScene.h" />
+    <ClInclude Include="MiniEngine\ImGuiManager.h" />
+    <ClInclude Include="Library\ImGui\imconfig.h" />
+    <ClInclude Include="Library\ImGui\imgui.h" />
+    <ClInclude Include="Library\ImGui\imgui_impl_dx11.h" />
+    <ClInclude Include="Library\ImGui\imgui_impl_dx9.h" />
+    <ClInclude Include="Library\ImGui\imgui_impl_dxlib.hpp" />
+    <ClInclude Include="Library\ImGui\imgui_impl_win32.h" />
+    <ClInclude Include="Library\ImGui\imgui_internal.h" />
+    <ClInclude Include="Library\ImGui\imstb_rectpack.h" />
+    <ClInclude Include="Library\ImGui\imstb_textedit.h" />
+    <ClInclude Include="Library\ImGui\imstb_truetype.h" />
+    <ClInclude Include="MiniEngine\EasingFunctions.h" />
+    <ClInclude Include="MiniEngine\Draw2D.h" />
+    <ClInclude Include="Play\HookArrow.h" />
+    <ClInclude Include="Play\GiraffePointRoot.h" />
+    <ClInclude Include="Play\GroundCollider.h" />
+    <ClInclude Include="MiniEngine\Event.h" />
     <ClInclude Include="Play\Goal.h" />
     <ClInclude Include="MiniEngine\Vector2Int.h" />
     <ClInclude Include="Play\GiraffePoint.h" />
@@ -96,6 +132,7 @@
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="MiniEngine\Rigidbody.h" />
     <ClInclude Include="MiniEngine\PhysicsManager.h" />
+    <ClInclude Include="Play\StageBoard.h" />
     <ClInclude Include="Title\TitleCamera.h" />
     <ClInclude Include="Title\SelectButton.h" />
     <ClInclude Include="TitleScene.h" />
@@ -105,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />
+    <None Include="StageBoardTemplate.md" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -159,16 +197,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\MiniEngine</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\MiniEngine;$(ProjectDir)Library\ImGui</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\MiniEngine</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\MiniEngine;$(ProjectDir)Library\ImGui</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\MiniEngine</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\MiniEngine;$(ProjectDir)Library\ImGui</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\MiniEngine</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\MiniEngine;$(ProjectDir)Library\ImGui</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

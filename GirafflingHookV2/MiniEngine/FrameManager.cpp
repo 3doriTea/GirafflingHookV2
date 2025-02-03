@@ -68,7 +68,7 @@ void FrameManager::Update()
 	}
 
 	// MEMO: ·‚ª 1 / {fps} •bŒo‰ß‚µ‚Ä‚¢‚½‚ç‚PƒtƒŒ[ƒ€
-	if (frameDifferenceTime * fpsLimit >= NANO_SEC_L)
+//	if (frameDifferenceTime * fpsLimit >= NANO_SEC_L)
 	{
 		Frame::deltaTime = static_cast<float>(static_cast<double>(frameDifferenceTime) / NANO_SEC_F);
 

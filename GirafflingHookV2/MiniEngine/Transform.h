@@ -6,10 +6,14 @@
 #include <cmath>
 #include "Vector3.h"
 
+//class OBBCollider;
+class AABBCollider;
 class GameObject;
 
 class Transform : public Attachment
 {
+	//friend OBBCollider;
+	friend AABBCollider;
 public:
 	/// <summary>
 	/// 座標変換をするアタッチメント
@@ -29,7 +33,19 @@ public:
 	/// </summary>
 	/// <param name="localPosition">アタッチされたゲームオブジェクト基準のローカル座標</param>
 	/// <returns>ワールド座標</returns>
-	Vector3 ToWorldPosition(const Vector3& localPosition);
+	Vector3 ToWorldPosition(const Vector3& localPosition) const;
+	/// <summary>
+	/// ローカル方向軸をワールド方向軸に変換
+	/// </summary>
+	/// <param name="localDirection">方向軸</param>
+	/// <returns>ワールド方向軸</returns>
+	Vector3 ToWorldDirection(const Vector3& localDirection) const;
+	/// <summary>
+	/// ローカルの大きさをワールド座標系での大きさに変換
+	/// </summary>
+	/// <param name="localScale">大きさ</param>
+	/// <returns>ワールド座標系での大きさ</returns>
+	Vector3 ToWorldScale(const Vector3& localScale) const;
 	/// <summary>
 	/// 任意の軸を指定座標の方向に向ける
 	/// </summary>
@@ -41,6 +57,11 @@ public:
 	/// </summary>
 	/// <param name="parent">親の座標変換系 / 親無し nullptr</param>
 	void SetParent(Transform* parent);
+	/// <summary>
+	/// 親の座標変換系を設定
+	/// </summary>
+	/// <param name="parent">親の座標変換系</param>
+	void SetParent(Transform& parent);
 	/// <summary>
 	/// 親の座標変換系を取得
 	/// </summary>
@@ -66,13 +87,88 @@ public:
 	/// </summary>
 	/// <returns>大きさ(コピー値)</returns>
 	inline Vector3 GetScale() const { return scale; }
+	/// <summary>
+	/// ローカル右方向軸のワールド方向軸(単位ベクトル)を取得
+	/// </summary>
+	/// <returns>ワールド方向軸(単位ベクトル)</returns>
+	inline Vector3 RightUnit() const
+	{
+		return ToWorldDirection({ 1.f, 0.f, 0.f });
+	};
+	/// <summary>
+	/// ローカル上方向軸のワールド方向軸(単位ベクトル)を取得
+	/// </summary>
+	/// <returns>ワールド方向軸(単位ベクトル)</returns>
+	inline Vector3 UpUnit() const
+	{
+		return ToWorldDirection({ 0.f, 1.f, 0.f });
+	};
+	/// <summary>
+	/// ローカル前方向軸のワールド方向軸(単位ベクトル)を取得
+	/// </summary>
+	/// <returns>ワールド方向軸(単位ベクトル)</returns>
+	inline Vector3 ForwardUnit() const
+	{
+		return ToWorldDirection({ 0.f, 0.f, 1.f });
+	};
+	/// <summary>
+	/// ローカル右方向軸のワールド方向軸を取得
+	/// </summary>
+	/// <returns>ワールド方向軸</returns>
+	inline Vector3 Right() const
+	{
+		return ToWorldDirection({ GetWorldScale().x / 2.f, 0.f, 0.f });
+	};
+	/// <summary>
+	/// ローカル上方向軸のワールド方向軸を取得
+	/// </summary>
+	/// <returns>ワールド方向軸</returns>
+	inline Vector3 Up() const
+	{
+		return ToWorldDirection({ 0.f, GetWorldScale().y / 2.f, 0.f });
+	};
+	/// <summary>
+	/// ローカル前方向軸のワールド方向軸を取得
+	/// </summary>
+	/// <returns>ワールド方向軸</returns>
+	inline Vector3 Forward() const
+	{
+		return ToWorldDirection({ 0.f, 0.f, GetWorldScale().z / 2.f });
+	};
+	/// <summary>
+	/// ワールド座標系での大きさを取得
+	/// </summary>
+	/// <returns>ワールド座標系での大きさ</returns>
+	inline Vector3 GetWorldScale() const
+	{
+		return ToWorldScale(Vector3::One());
+	}
+	/// <summary>
+	/// ワールド座標を取得
+	/// </summary>
+	/// <returns>ワールド座標</returns>
+	inline Vector3 GetWorldPosition() const
+	{
+		return ToWorldPosition(Vector3::Zero());
+	}
 
 private:
-	DirectX::XMMATRIX GetWorldTranslateMatrix();
+	DirectX::XMMATRIX GetWorldTranslateMatrix() const;
+	DirectX::XMMATRIX GetWorldDirectionMatrix() const;
+	DirectX::XMMATRIX GetWorldScaleMatrix() const;
 
 public:
+	/// <summary>
+	/// ローカル座標
+	/// </summary>
 	Vector3& position;
+	/// <summary>
+	/// ローカル回転角
+	/// </summary>
 	Vector3& rotate;
+	/// <summary>
+	/// ローカルスケール
+	/// </summary>
 	Vector3& scale;
 
 private:
