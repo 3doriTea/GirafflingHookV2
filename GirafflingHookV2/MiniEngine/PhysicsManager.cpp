@@ -26,42 +26,42 @@ void PhysicsManager::Update()
 {
 	float deltaTime = Frame::GetDeltaTime();
 
-	for (auto&& self : dynamicRigidBodies_)
+	for (auto&& rigidbody : dynamicRigidBodies_)
 	{
+#pragma region コライダ当たり判定更新と反発ベクトルを求める
 		for (auto&& targetCollider : colliders_)
 		{
 			// 自分自身のコライダーなら回帰
-			if (self->colliderPtr_ == targetCollider)
+			if (rigidbody->colliderPtr_ == targetCollider)
 			{
 				continue;
 			}
 
-			if (static_cast<AABBCollider*>(self->colliderPtr_)
+			if (static_cast<AABBCollider*>(rigidbody->colliderPtr_)
 				->IsHitAABB(*static_cast<AABBCollider*>(targetCollider)))
 			{
 				// TODO: ヒットしたときのイベント関数を呼び出したい
 				/*printfDx(
 					"OnHit %s : %s\n",
-					self->gameObject.GetName().c_str(),
+					rigidbody->gameObject.GetName().c_str(),
 					targetCollider->gameObject.GetName().c_str());*/
 				Vector3 reflection
 				{
-					static_cast<AABBCollider*>(self->colliderPtr_)
+					static_cast<AABBCollider*>(rigidbody->colliderPtr_)
 						->ReflectionAABB(*static_cast<AABBCollider*>(targetCollider))
 				};
 
 				//self->velocity += reflection * 1.f;
-				self->reflection += reflection;
+				rigidbody->reflection += reflection;
 			}
 			else
 			{
 				//printfDx("当たってない！");
 			}
 		}
-	}
+#pragma endregion
 
-	for (auto&& rigidbody : dynamicRigidBodies_)
-	{
+#pragma region 参照
 		// 座標
 		Vector3& position{ rigidbody->position_ };
 		// 移動速度
@@ -77,7 +77,9 @@ void PhysicsManager::Update()
 			fixedX{ rigidbody->fixedX },
 			fixedY{ rigidbody->fixedY },
 			fixedZ{ rigidbody->fixedZ };
+#pragma endregion
 
+#pragma region 固定軸の速度と反発を無効化
 		if (fixedX)
 		{
 			velocity.x *= 0.f;
@@ -93,9 +95,11 @@ void PhysicsManager::Update()
 			velocity.z *= 0.f;
 			reflection.z *= 0.f;
 		}
+#pragma endregion
 
-		// コライダーの反発ベクトルを適用
+#pragma region 反発ベクトルを適用
 		position += reflection;
+#pragma endregion
 
 #pragma region 反射するなら反発ベクトルを求める
 		// REF: http://marupeke296.com/COL_Basic_No5_WallVector.html
@@ -119,13 +123,19 @@ void PhysicsManager::Update()
 			};
 
 			// 反発係数
-			float e{ 0.4f };  // TODO: 定数化する
+			float e{ 0.6f };//0.4f };  // TODO: 定数化する
 
 			// 反射ベクトルの適用
-			velocity = r * e;
+			//velocity = r * e;
+			velocity = w;
 		}
 #pragma endregion
 
+#pragma region 重力適用
+		velocity += Vector3::Down() * (gravity / deltaTime);
+#pragma endregion
+
+#pragma region 適用と更新
 		// 速度の適用
 		position += velocity * deltaTime;
 		// 移動抵抗の適用
@@ -146,6 +156,7 @@ void PhysicsManager::Update()
 		rotate %= 360.f;
 		// 次のフレームでは引き続き使わないためクリア
 		reflection = Vector3::Zero();
+#pragma endregion
 	}
 }
 

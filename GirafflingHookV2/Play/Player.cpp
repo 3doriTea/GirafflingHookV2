@@ -60,7 +60,7 @@ void Play::Player::Init()
 
 	rigidbody_.resistance = 0.1f;
 	rigidbody_.resistanceTorque = 1.f;
-	rigidbody_.gravity = 9.8f;
+	rigidbody_.gravity = 162.f;// 9.8f;
 	rigidbody_.fixedZ = true;
 }
 

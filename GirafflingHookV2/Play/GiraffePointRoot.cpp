@@ -134,6 +134,8 @@ void Play::GiraffePointRoot::Init()
 		"Cube (5)",
 		Vector3{ 4400.0000f, 1700.0000f, 0.0000f },
 		Vector3{ 2300.0000f, 100.0000f, 100.0000f });
+	Instantiate<GiraffePoint>(
+		Vector3{ 0, 1000, 0 });
 #pragma endregion
 }
 
