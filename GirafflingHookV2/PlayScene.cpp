@@ -48,11 +48,19 @@ void PlayScene::Update()
 	{
 		SceneManager::Move<TitleScene>();
 	}
+
+	playTimer_ += Frame::GetDeltaTime();
 }
 
 void PlayScene::Draw() const
 {
 	DrawFormatString(0, 10, 0xffffff, "x = %f\ny = %f\nz = %f", player_->position.x, player_->position.y, player_->position.z);
+	
+	SetFontSize(30);
+	int sizeX{}, sizeY{}, lineCount{};
+	GetDrawFormatStringSize(&sizeX, &sizeY, &lineCount, "タイム：%f", playTimer_);
+	DrawFormatString((Screen::WIDTH - sizeX) / 2, 0, 0xffffff, "タイム：%f", playTimer_);
+	SetFontSize(DEFAULT_FONT_SIZE);
 }
 
 void PlayScene::End()

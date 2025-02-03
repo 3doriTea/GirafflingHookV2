@@ -8,7 +8,7 @@ Play::Goal::Goal() :
 	{
 		GameObjectBuilder{}
 			.Name("GoalRocket")
-			.Position({ 2000.f, 0.f, 0.f })
+			.Position({ 32800.f, 13500.f, 0.f })
 			//.Scale({})
 	},
 	hRocketModel_{ -1 },

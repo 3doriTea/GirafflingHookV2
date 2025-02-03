@@ -40,6 +40,8 @@ private:
 private:
 	Play::Player* player_;
 	Play::Goal* goal_;
+
+	float playTimer_;  // カウントアップタイマー
 	
 	bool isPlayerGoaled_;
 	//static int stageNumber;

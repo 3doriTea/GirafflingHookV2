@@ -49,12 +49,14 @@ Play::Player::~Player()
 void Play::Player::Init()
 {
 	hookArrow_ = FindGameObject<HookArrow>();
-	assert(hookArrow_ != nullptr);  // HookArrowは見つかる
+	assert(hookArrow_ != nullptr && "PlaySceneでHookArrowをｲﾝｽﾀﾝｽしてるか確認してみて");
 
 	hGiraffeMV1_ = MV1LoadModel("Assets/Play/giraffeee.mv1");
+	assert(hGiraffeMV1_ != -1  && "ｷﾘﾝﾓﾃﾞﾙファイルのﾊﾟｽが正しいか確認してみて");
 	hTextureImage_ = LoadGraph("Assets/Play/cube001.png");
+	assert(hTextureImage_ != -1 && "ｷﾘﾝﾓﾃﾞﾙのﾃｸｽﾁｬ画像ﾊﾟｽが正しいか確認してみて");
+	// テクスチャ張り付ける
 	MV1SetTextureGraphHandle(hGiraffeMV1_, 0, hTextureImage_, FALSE);
-	assert(hGiraffeMV1_ != -1);
 
 	rigidbody_.resistance = 0.1f;
 	rigidbody_.resistanceTorque = 1.f;
@@ -136,7 +138,7 @@ void Play::Player::UpdateMove()
 void Play::Player::StartHooking()
 {
 	hookTarget_ = hookArrow_->GetFoundGiraffePoint();  //FindGameObject<GiraffePoint>();
-	assert(hookTarget_ != nullptr); // ギラッフポイントは見つかる
+	assert(hookTarget_ != nullptr && "ｼｰﾝ内に1つ以上ｷﾞﾗｯﾌﾎﾟｲﾝﾄ置いてみて");
 	Vector3 hookPosition{ hookTarget_->GetHookPosition() };
 
 	hookDistance_ = position.Distance(hookPosition);
