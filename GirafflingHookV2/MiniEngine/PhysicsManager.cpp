@@ -5,6 +5,8 @@
 #include "Collider.h"
 #include "GameObject.h"
 
+#define USING_TRACE_WALL true;
+
 PhysicsManager::PhysicsManager() :
 	Manager::Manager{ CalledType::Frame },
 	rigidBodies_{},
@@ -28,39 +30,6 @@ void PhysicsManager::Update()
 
 	for (auto&& rigidbody : dynamicRigidBodies_)
 	{
-#pragma region コライダ当たり判定更新と反発ベクトルを求める
-		for (auto&& targetCollider : colliders_)
-		{
-			// 自分自身のコライダーなら回帰
-			if (rigidbody->colliderPtr_ == targetCollider)
-			{
-				continue;
-			}
-
-			if (static_cast<AABBCollider*>(rigidbody->colliderPtr_)
-				->IsHitAABB(*static_cast<AABBCollider*>(targetCollider)))
-			{
-				// TODO: ヒットしたときのイベント関数を呼び出したい
-				/*printfDx(
-					"OnHit %s : %s\n",
-					rigidbody->gameObject.GetName().c_str(),
-					targetCollider->gameObject.GetName().c_str());*/
-				Vector3 reflection
-				{
-					static_cast<AABBCollider*>(rigidbody->colliderPtr_)
-						->ReflectionAABB(*static_cast<AABBCollider*>(targetCollider))
-				};
-
-				//self->velocity += reflection * 1.f;
-				rigidbody->reflection += reflection;
-			}
-			else
-			{
-				//printfDx("当たってない！");
-			}
-		}
-#pragma endregion
-
 #pragma region 参照
 		// 座標
 		Vector3& position{ rigidbody->position_ };
@@ -79,25 +48,78 @@ void PhysicsManager::Update()
 			fixedZ{ rigidbody->fixedZ };
 #pragma endregion
 
-#pragma region 固定軸の速度と反発を無効化
+#pragma region 重力適用
+		// velocity += Vector3::Down() * (gravity / deltaTime);
+#pragma endregion
+
+#pragma region 固定軸の速度を無効化
 		if (fixedX)
 		{
 			velocity.x *= 0.f;
-			reflection.x *= 0.f;
 		}
 		if (fixedY)
 		{
 			velocity.y *= 0.f;
-			reflection.y *= 0.f;
 		}
 		if (fixedZ)
 		{
 			velocity.z *= 0.f;
+		}
+#pragma endregion
+
+#pragma region 速度の適用
+		// 速度の適用
+		position += velocity * deltaTime;
+#pragma endregion
+
+#pragma region コライダ当たり判定更新と反発ベクトルを求める
+		for (auto&& targetCollider : colliders_)
+		{
+			// 自分自身のコライダーなら回帰
+			if (rigidbody->colliderPtr_ == targetCollider)
+			{
+				continue;
+			}
+
+			if (static_cast<AABBCollider*>(rigidbody->colliderPtr_)
+				->IsHitAABB(*static_cast<AABBCollider*>(targetCollider)))
+			{
+				// TODO: ヒットしたときのイベント関数を呼び出したい
+				/*printfDx(
+					"OnHit %s : %s\n",
+					rigidbody->gameObject.GetName().c_str(),
+					targetCollider->gameObject.GetName().c_str());*/
+				reflection +=
+					static_cast<AABBCollider*>(rigidbody->colliderPtr_)
+					->ReflectionAABB(*static_cast<AABBCollider*>(targetCollider));
+
+				//self->velocity += reflection * 1.f;
+			}
+			else
+			{
+				//printfDx("当たってない！");
+			}
+		}
+#pragma endregion
+
+
+
+#pragma region 固定軸の埋込み反発を無効化
+		if (fixedX)
+		{
+			reflection.x *= 0.f;
+		}
+		if (fixedY)
+		{
+			reflection.y *= 0.f;
+		}
+		if (fixedZ)
+		{
 			reflection.z *= 0.f;
 		}
 #pragma endregion
 
-#pragma region 反発ベクトルを適用
+#pragma region 埋め込み反発ベクトルを適用
 		position += reflection;
 #pragma endregion
 
@@ -125,19 +147,19 @@ void PhysicsManager::Update()
 			// 反発係数
 			float e{ 0.6f };//0.4f };  // TODO: 定数化する
 
-			// 反射ベクトルの適用
-			//velocity = r * e;
+#if USING_TRACE_WALL
+			// 壁ずりベクトルの適用
 			velocity = w;
+#else
+			// 普通の反射べクトルの適用
+			velocity = r * e;
+#endif
 		}
 #pragma endregion
 
-#pragma region 重力適用
-		velocity += Vector3::Down() * (gravity / deltaTime);
-#pragma endregion
-
 #pragma region 適用と更新
-		// 速度の適用
-		position += velocity * deltaTime;
+		//// 速度の適用
+		//position += velocity * deltaTime;
 		// 移動抵抗の適用
 		velocity += velocity * -resistance * deltaTime;
 
