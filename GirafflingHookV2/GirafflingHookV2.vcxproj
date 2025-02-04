@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClearScene.cpp" />
+    <ClCompile Include="Clear\ClearString.cpp" />
     <ClCompile Include="MiniEngine\ImGuiManager.cpp" />
     <ClCompile Include="Library\ImGui\imgui.cpp" />
     <ClCompile Include="Library\ImGui\imgui_draw.cpp" />
@@ -79,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClearScene.h" />
+    <ClInclude Include="Clear\ClearString.h" />
     <ClInclude Include="MiniEngine\ImGuiManager.h" />
     <ClInclude Include="Library\ImGui\imconfig.h" />
     <ClInclude Include="Library\ImGui\imgui.h" />
