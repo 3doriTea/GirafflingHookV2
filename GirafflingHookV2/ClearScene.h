@@ -20,5 +20,4 @@ private:
 	int         totalScore_;
 	int          clearTime_;
 	int     girafferingNum_;
-	int  hClearStringModel_;
 };

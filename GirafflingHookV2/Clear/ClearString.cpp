@@ -1,12 +1,13 @@
 #include "ClearString.h"
+#include <cassert>
 
 Clear::ClearString::ClearString() :
-	GameObject::GameObject
-{
-	GameObjectBuilder{}
-		.Name("クリア画面の文字")
-		.Position({ -300.f, 140.f, 0.f })
-},
+	GameObject
+	{
+		GameObjectBuilder{}
+			.Name("クリア画面の文字")
+			.Position({ -300.f, 140.f, 0.f })
+	},
 hClearModel_{ -1 }
 {
 }
@@ -18,6 +19,7 @@ Clear::ClearString::~ClearString()
 void Clear::ClearString::Init()
 {
 	hClearModel_ = MV1LoadModel("Assets/UI/Clear.mv1");
+	assert(hClearModel_ > 0);
 	MV1SetPosition(hClearModel_, position);
 }
 

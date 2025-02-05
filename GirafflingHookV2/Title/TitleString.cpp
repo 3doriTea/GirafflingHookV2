@@ -1,4 +1,5 @@
 #include "TitleString.h"
+#include <cassert>
 
 Title::TitleString::TitleString() :
 	GameObject

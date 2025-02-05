@@ -208,6 +208,7 @@
       <Filter>GH\GameScene</Filter>
     </ClCompile>
     <ClCompile Include="Clear\ClearString.cpp" />
+    <ClCompile Include="Clear\ClearCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\Attachment.h">
@@ -392,6 +393,7 @@
       <Filter>GH\GameScene</Filter>
     </ClInclude>
     <ClInclude Include="Clear\ClearString.h" />
+    <ClInclude Include="Clear\ClearCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />
