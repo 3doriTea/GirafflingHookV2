@@ -1,7 +1,7 @@
 #include "TitleString.h"
 
 Title::TitleString::TitleString() :
-	GameObject::GameObject
+	GameObject
 	{
 		GameObjectBuilder{}
 			.Name("ƒ^ƒCƒgƒ‹‚Ì•¶Žš")

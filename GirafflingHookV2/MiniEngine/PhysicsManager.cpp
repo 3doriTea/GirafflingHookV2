@@ -49,26 +49,10 @@ void PhysicsManager::Update()
 #pragma endregion
 
 #pragma region 重力適用
-		// velocity += Vector3::Down() * (gravity / deltaTime);
-#pragma endregion
-
-#pragma region 固定軸の速度を無効化
-		if (fixedX)
-		{
-			velocity.x *= 0.f;
-		}
-		if (fixedY)
-		{
-			velocity.y *= 0.f;
-		}
-		if (fixedZ)
-		{
-			velocity.z *= 0.f;
-		}
+		velocity += Vector3::Down() * (gravity / deltaTime);
 #pragma endregion
 
 #pragma region 速度の適用
-		// 速度の適用
 		position += velocity * deltaTime;
 #pragma endregion
 
@@ -92,17 +76,9 @@ void PhysicsManager::Update()
 				reflection +=
 					static_cast<AABBCollider*>(rigidbody->colliderPtr_)
 					->ReflectionAABB(*static_cast<AABBCollider*>(targetCollider));
-
-				//self->velocity += reflection * 1.f;
-			}
-			else
-			{
-				//printfDx("当たってない！");
 			}
 		}
 #pragma endregion
-
-
 
 #pragma region 固定軸の埋込み反発を無効化
 		if (fixedX)
@@ -117,10 +93,6 @@ void PhysicsManager::Update()
 		{
 			reflection.z *= 0.f;
 		}
-#pragma endregion
-
-#pragma region 埋め込み反発ベクトルを適用
-		position += reflection;
 #pragma endregion
 
 #pragma region 反射するなら反発ベクトルを求める
@@ -157,9 +129,26 @@ void PhysicsManager::Update()
 		}
 #pragma endregion
 
+#pragma region 固定軸の速度を無効化
+		if (fixedX)
+		{
+			velocity.x *= 0.f;
+		}
+		if (fixedY)
+		{
+			velocity.y *= 0.f;
+		}
+		if (fixedZ)
+		{
+			velocity.z *= 0.f;
+		}
+#pragma endregion
+
+#pragma region 埋め込み反発ベクトルを適用
+		position += reflection;
+#pragma endregion
+
 #pragma region 適用と更新
-		//// 速度の適用
-		//position += velocity * deltaTime;
 		// 移動抵抗の適用
 		velocity += velocity * -resistance * deltaTime;
 
