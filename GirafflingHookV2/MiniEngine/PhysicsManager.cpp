@@ -53,8 +53,6 @@ void PhysicsManager::Update()
 			fixedZ{ rigidbody->fixedZ };
 #pragma endregion
 
-
-
 #pragma region ŒÅ’èŽ²‚Ì‘¬“x‚ð–³Œø‰»
 		if (fixedX)
 		{

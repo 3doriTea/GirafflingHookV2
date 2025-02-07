@@ -8,6 +8,7 @@
 #include "Frame.h"
 #include "EasingFunctions.h"
 #include "../PlayScene.h"
+#include "Sound.h"
 #include <imgui.h>
 
 namespace
@@ -49,6 +50,10 @@ Play::Player::~Player()
 
 void Play::Player::Init()
 {
+	Sound::Load(AudioInfo{}
+		.File("Assets/Sounds/fire.mp3")
+		.Name("fire"));
+
 	hookArrow_ = FindGameObject<HookArrow>();
 	assert(hookArrow_ != nullptr && "PlayScene‚ÅHookArrow‚ğ²İ½Àİ½‚µ‚Ä‚é‚©Šm”F‚µ‚Ä‚İ‚Ä");
 
@@ -94,6 +99,7 @@ void Play::Player::Update()
 		if (Input::IsMouseButtonUp(ButtonCode::MosueLeft))
 		{
 			FinishHooking();
+			Sound::Play("fire");
 		}
 
 		// Šeó‘Ô‚Ìˆ—

@@ -6,6 +6,7 @@
 #include "PhysicsManager.h"
 #include "TransformManager.h"
 #include "ImGuiManager.h"
+#include "SoundManager.h"
 
 #include "SceneManager.h"
 #include "TitleScene.h"
@@ -28,6 +29,7 @@ void GirafflingHook::Init()
 	(new SceneManager{})->Move<TitleScene>();
 	new InputManager{};
 	new ImageManager{};
+	new SoundManager{};
 }
 
 void GirafflingHook::End()
