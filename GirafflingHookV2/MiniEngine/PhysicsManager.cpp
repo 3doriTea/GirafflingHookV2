@@ -30,7 +30,7 @@ void PhysicsManager::Update()
 
 	for (auto&& rigidbody : dynamicRigidBodies_)
 	{
-#pragma region 参照
+#pragma region プロパティの参照
 		// 座標
 		Vector3& position{ rigidbody->position_ };
 		// 移動速度
@@ -49,7 +49,7 @@ void PhysicsManager::Update()
 #pragma endregion
 
 #pragma region 重力適用
-		// velocity += Vector3::Down() * (gravity / deltaTime);
+		velocity += Vector3::Down() * (gravity / deltaTime);
 #pragma endregion
 
 #pragma region 固定軸の速度を無効化
@@ -67,8 +67,7 @@ void PhysicsManager::Update()
 		}
 #pragma endregion
 
-#pragma region 速度の適用
-		// 速度の適用
+#pragma region 速度を座標に適用
 		position += velocity * deltaTime;
 #pragma endregion
 
@@ -101,8 +100,6 @@ void PhysicsManager::Update()
 			}
 		}
 #pragma endregion
-
-
 
 #pragma region 固定軸の埋込み反発を無効化
 		if (fixedX)
