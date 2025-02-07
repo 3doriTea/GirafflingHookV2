@@ -42,9 +42,9 @@ void TitleScene::Init()
 
 	Vector3 direction{ titleCamera.position - titleString.position };
 
-	hDirectional_ = CreateDirLightHandle(direction);
-	hDirectional_ = CreateDirLightHandle(direction);
-	hDirectional_ = CreateDirLightHandle(direction);
+	CreateDirLightHandle(direction);
+	CreateDirLightHandle(direction);
+	CreateDirLightHandle(direction);
 
 	selectButtons.push_back(
 		&AddGameObject<SelectButton>(
