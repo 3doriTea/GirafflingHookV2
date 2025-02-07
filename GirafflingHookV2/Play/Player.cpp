@@ -8,6 +8,7 @@
 #include "Frame.h"
 #include "EasingFunctions.h"
 #include "../PlayScene.h"
+#include <imgui.h>
 
 namespace
 {
@@ -58,7 +59,7 @@ void Play::Player::Init()
 	// テクスチャ張り付ける
 	MV1SetTextureGraphHandle(hGiraffeMV1_, 0, hTextureImage_, FALSE);
 
-	rigidbody_.resistance = 0.1f;
+	rigidbody_.resistance = 1.1f;
 	rigidbody_.resistanceTorque = 1.f;
 	rigidbody_.gravity = 162.f;// 9.8f;
 	rigidbody_.fixedZ = true;
@@ -82,13 +83,15 @@ void Play::Player::Update()
 		UpdateMove();
 
 		// Eキーが押された瞬間グラッフリング開始
-		if (Input::IsKeyDown(KeyCode::LeftShift))
+		//if (Input::IsKeyDown(KeyCode::LeftShift))
+		if (Input::IsMouseButtonDown(ButtonCode::MosueLeft))
 		{
 			StartHooking();
 		}
 
 		// Eキーが離された瞬間グラッフリング辞める
-		if (Input::IsKeyUp(KeyCode::LeftShift))
+		//if (Input::IsKeyUp(KeyCode::LeftShift))
+		if (Input::IsMouseButtonUp(ButtonCode::MosueLeft))
 		{
 			FinishHooking();
 		}
@@ -133,6 +136,15 @@ void Play::Player::UpdateMove()
 		move_.x -= MOVE_FORCE;
 	if (CheckHitKey(KEY_INPUT_D))
 		move_.x += MOVE_FORCE;
+
+	ImGui::Begin("Rigidbody");
+	ImGui::InputFloat("velo.x", &rigidbody_.velocity.x);
+	ImGui::InputFloat("velo.y", &rigidbody_.velocity.y);
+	ImGui::InputFloat("velo.z", &rigidbody_.velocity.z);
+	ImGui::InputFloat("refl.x", &rigidbody_.reflection.x);
+	ImGui::InputFloat("refl.y", &rigidbody_.reflection.y);
+	ImGui::InputFloat("refl.z", &rigidbody_.reflection.z);
+	ImGui::End();
 }
 
 void Play::Player::StartHooking()
@@ -196,6 +208,13 @@ float Play::Player::LengthToAnimationTime(float length)
 
 void Play::Player::MoveDefault()
 {
+	// ジャンプ処理
+	if (Input::IsKey(KeyCode::Space)
+		&& rigidbody_.IsGrounded())
+	{
+		move_.y = MOVE_FORCE * 100.f;
+		position.y += rigidbody_.gravity + 0.1f;
+	}
 	rigidbody_.velocity += move_ * MOVE_SPEED;
 }
 

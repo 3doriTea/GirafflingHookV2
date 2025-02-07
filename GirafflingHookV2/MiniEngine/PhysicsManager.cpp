@@ -4,8 +4,13 @@
 #include "AABBCollider.h"
 #include "Collider.h"
 #include "GameObject.h"
+#include <imgui.h>
 
 #define USING_TRACE_WALL true;
+
+#define debugAA if (velocity.y - prevVeloY <= -1000.f) \
+			printf("");\
+		prevVeloY = velocity.y;
 
 PhysicsManager::PhysicsManager() :
 	Manager::Manager{ CalledType::Frame },
@@ -48,12 +53,33 @@ void PhysicsManager::Update()
 			fixedZ{ rigidbody->fixedZ };
 #pragma endregion
 
-#pragma region 重力適用
-		velocity += Vector3::Down() * (gravity / deltaTime);
+
+
+#pragma region 固定軸の速度を無効化
+		if (fixedX)
+		{
+			velocity.x *= 0.f;
+		}
+		if (fixedY)
+		{
+			velocity.y *= 0.f;
+		}
+		if (fixedZ)
+		{
+			velocity.z *= 0.f;
+		}
 #pragma endregion
 
 #pragma region 速度の適用
 		position += velocity * deltaTime;
+#pragma endregion
+
+#pragma region 重力適用
+		velocity += Vector3::Down() * gravity;
+#pragma endregion
+
+#pragma region 埋込み反発のリセット
+		reflection = Vector3::Zero();
 #pragma endregion
 
 #pragma region コライダ当たり判定更新と反発ベクトルを求める
@@ -80,21 +106,6 @@ void PhysicsManager::Update()
 		}
 #pragma endregion
 
-#pragma region 固定軸の埋込み反発を無効化
-		if (fixedX)
-		{
-			reflection.x *= 0.f;
-		}
-		if (fixedY)
-		{
-			reflection.y *= 0.f;
-		}
-		if (fixedZ)
-		{
-			reflection.z *= 0.f;
-		}
-#pragma endregion
-
 #pragma region 反射するなら反発ベクトルを求める
 		// REF: http://marupeke296.com/COL_Basic_No5_WallVector.html
 		
@@ -117,7 +128,7 @@ void PhysicsManager::Update()
 			};
 
 			// 反発係数
-			float e{ 0.6f };//0.4f };  // TODO: 定数化する
+			float e{ 0.4f };//0.4f };  // TODO: 定数化する
 
 #if USING_TRACE_WALL
 			// 壁ずりベクトルの適用
@@ -129,18 +140,18 @@ void PhysicsManager::Update()
 		}
 #pragma endregion
 
-#pragma region 固定軸の速度を無効化
+#pragma region 固定軸の埋込み反発を無効化
 		if (fixedX)
 		{
-			velocity.x *= 0.f;
+			reflection.x *= 0.f;
 		}
 		if (fixedY)
 		{
-			velocity.y *= 0.f;
+			reflection.y *= 0.f;
 		}
 		if (fixedZ)
 		{
-			velocity.z *= 0.f;
+			reflection.z *= 0.f;
 		}
 #pragma endregion
 
@@ -149,6 +160,7 @@ void PhysicsManager::Update()
 #pragma endregion
 
 #pragma region 適用と更新
+
 		// 移動抵抗の適用
 		velocity += velocity * -resistance * deltaTime;
 
@@ -165,8 +177,6 @@ void PhysicsManager::Update()
 		velocityTorque += velocityTorque * -resistanceTorque * deltaTime;
 		// 360度内に収める
 		rotate %= 360.f;
-		// 次のフレームでは引き続き使わないためクリア
-		reflection = Vector3::Zero();
 #pragma endregion
 	}
 }

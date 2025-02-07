@@ -83,6 +83,7 @@
     <ClInclude Include="ClearScene.h" />
     <ClInclude Include="Clear\ClearCamera.h" />
     <ClInclude Include="Clear\ClearString.h" />
+    <ClInclude Include="MiniEngine\ButtonCode.h" />
     <ClInclude Include="MiniEngine\ImGuiManager.h" />
     <ClInclude Include="Library\ImGui\imconfig.h" />
     <ClInclude Include="Library\ImGui\imgui.h" />

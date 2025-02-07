@@ -13,6 +13,7 @@ class AABBCollider : public Attachment, public Collider
 	friend Draw3D;
 public:
 	AABBCollider(GameObject& attachingGameObject, Transform& transform);
+	virtual ~AABBCollider() {};
 
 	void Draw() const override;
 
