@@ -134,8 +134,25 @@ void Play::GiraffePointRoot::Init()
 		"Cube (5)",
 		Vector3{ 4400.0000f, 1700.0000f, 0.0000f },
 		Vector3{ 2300.0000f, 100.0000f, 100.0000f });
+	//Instantiate<GiraffePoint>(
+	//	Vector3{ 0, 1000, 0 });
+
 	Instantiate<GiraffePoint>(
-		Vector3{ 0, 1000, 0 });
+		"GP (1)",
+		Vector3{ -1600.0000f, 100.0000f, 0.0000f });
+	Instantiate<GiraffePoint>(
+		"GP (2)",
+		Vector3{ 1100.0000f, 1100.0000f, 0.0000f });
+	Instantiate<GiraffePoint>(
+		"GP (3)",
+		Vector3{ 3800.0000f, 500.0000f, 0.0000f });
+	Instantiate<GiraffePoint>(
+		"GP (4)",
+		Vector3{ 6200.0000f, 1200.0000f, 0.0000f });
+	Instantiate<GiraffePoint>(
+		"GP (5)",
+		Vector3{ 6200.0000f, 500.0000f, 0.0000f });
+
 #pragma endregion
 }
 

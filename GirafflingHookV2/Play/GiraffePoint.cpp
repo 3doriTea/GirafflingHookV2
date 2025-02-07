@@ -38,6 +38,7 @@ Play::GiraffePoint::GiraffePoint(
 	hTreeModel_{ -1 },
 	hTreeSource_{ GiraffePointRoot::GetTreeModelSourceHandle() }
 {
+	transform_.SetParent(GiraffePointRoot::GetGroundTransform());
 }
 
 Play::GiraffePoint::~GiraffePoint()
