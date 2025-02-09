@@ -171,13 +171,13 @@ void Play::Player::StartHooking()
 		MV1AttachAnim(hGiraffeMV1_, 0);
 		animationTime_ = 0.f;
 		rigidbody_.velocityTorque = Vector3::Zero();
-		if (position.y < hookPosition.y)
+		if (hookPosition.y < position.y)
 		{
-			moveSign_ = 1.f;
+			moveSign_ = -1.f;
 		}
 		else
 		{
-			moveSign_ = -1.f;
+			moveSign_ = 1.f;
 		}
 
 		state_ = State::Shooting;
@@ -258,6 +258,8 @@ void Play::Player::MoveHooking()
 
 	float currentDistance{ position.Distance(hookPosition) };
 
+	hookDistance_ -= move_.y * 0.5f;
+
 #pragma region 向心力の適用
 	// 2次元上の円の接線から中心への垂線
 	Vector3 perpendicular
@@ -273,7 +275,7 @@ void Play::Player::MoveHooking()
 		currentDistance - hookDistance_
 	};
 
-	rigidbody_.velocity += perpendicular * diffDistance;
+	rigidbody_.velocity += perpendicular * diffDistance * 3.f;
 #pragma endregion
 
 #pragma region 接線方向の速度適用
@@ -284,7 +286,7 @@ void Play::Player::MoveHooking()
 		std::cosf(angles.z - PI / 2.f),
 		0.f
 	};
-	rigidbody_.velocity += direction * move_.x * moveSign_;
+	rigidbody_.velocity += direction * move_.x * moveSign_ * 3.f;
 #pragma endregion
 
 	animationTime_ = LengthToAnimationTime(currentDistance);
