@@ -6,6 +6,9 @@ using ImageHandle = int;
 
 class ImageManager;
 
+/// <summary>
+/// ‰æ‘œŠÖŒW‚ÌƒNƒ‰ƒX
+/// </summary>
 class Image
 {
 	friend ImageManager;

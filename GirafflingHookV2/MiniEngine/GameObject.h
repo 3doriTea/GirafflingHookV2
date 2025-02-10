@@ -93,9 +93,9 @@ protected:
 	std::vector<GameObject*> FindGameObjects(const std::string& tag);
 	
 public:
-	Vector3 position;
-	Vector3 rotate;
-	Vector3 scale;
+	Vector3 position;  // ワールド座標
+	Vector3 rotate;  // ワールド回転
+	Vector3 scale;  // ワールドスケール
 
 private:
 	// MEMO: メモリレイアウト的にここに配置

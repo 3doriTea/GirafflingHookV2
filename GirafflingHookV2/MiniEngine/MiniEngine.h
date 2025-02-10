@@ -1,5 +1,9 @@
 #pragma once
 
+/*
+* ˆêŠ‡include‚µ‚½‚¢‚ªãè‚­‚¢‚©‚È‚¢‰Â”\«‚à‚ ‚é‚½‚ßAŒã‰ñ‚µ
+*/
+
 #include "Input.h"
 #include "Frame.h"
 #include "Screen.h"

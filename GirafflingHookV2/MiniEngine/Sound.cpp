@@ -6,7 +6,12 @@
 
 void Sound::Load(const AudioInfo& info)
 {
-	assert(sounds.count(info.name) == 0 && "既にロードされているよ！");
+	// すでにロードされているなら回帰
+	if (sounds.count(info.name) != 0)
+	{
+		return;
+	}
+	//assert(sounds.count(info.name) == 0 && "既にロードされているよ！");
 
 	SoundHandle hSound = LoadSoundMem(info.fileName.c_str());
 	assert(hSound > 0 && (std::string{ "ｻｳﾝﾄﾞﾌｧｲﾙのﾊﾟｽが正しか確認してみて:" }.append(info.fileName)).c_str());
