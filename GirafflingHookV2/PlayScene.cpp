@@ -44,10 +44,10 @@ void PlayScene::Init()
 
 void PlayScene::Update()
 {
-	if (Input::IsKeyDown(DIK_SPACE))
+	/*if (Input::IsKeyDown(DIK_SPACE))
 	{
 		SceneManager::Move<TitleScene>();
-	}
+	}*/
 
 	playTimer_ += Frame::GetDeltaTime();
 }

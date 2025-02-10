@@ -38,39 +38,15 @@
     <Filter Include="ImGui">
       <UniqueIdentifier>{abf7e4f3-b936-450a-a60b-3b566a6e1a0e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MiniEngine\Service">
+      <UniqueIdentifier>{8bd46456-1d5b-40d4-bcae-e638c3291661}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GH\GameObject\Clear">
+      <UniqueIdentifier>{140a3e8d-a3ef-4ba3-b4de-5621faf15c48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TheMain.cpp" />
-    <ClCompile Include="MiniEngine\Attachment.cpp">
-      <Filter>MiniEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniEngine\Entity.cpp">
-      <Filter>MiniEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniEngine\Frame.cpp">
-      <Filter>MiniEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniEngine\Game.cpp">
-      <Filter>MiniEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniEngine\GameObject.cpp">
-      <Filter>MiniEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniEngine\GameScene.cpp">
-      <Filter>MiniEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniEngine\Image.cpp">
-      <Filter>MiniEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniEngine\Input.cpp">
-      <Filter>MiniEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniEngine\Manager.cpp">
-      <Filter>MiniEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniEngine\Screen.cpp">
-      <Filter>MiniEngine</Filter>
-    </ClCompile>
     <ClCompile Include="MiniEngine\FrameManager.cpp">
       <Filter>MiniEngine\Manager</Filter>
     </ClCompile>
@@ -152,9 +128,6 @@
     <ClCompile Include="MiniEngine\Vector2Int.cpp">
       <Filter>MiniEngine\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="MiniEngine\Event.cpp">
-      <Filter>MiniEngine</Filter>
-    </ClCompile>
     <ClCompile Include="Play\GroundCollider.cpp">
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
@@ -164,9 +137,6 @@
     </ClCompile>
     <ClCompile Include="Play\HookArrow.cpp">
       <Filter>GH\GameObject\Play</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniEngine\Collider.cpp">
-      <Filter>MiniEngine</Filter>
     </ClCompile>
     <ClCompile Include="MiniEngine\Draw2D.cpp">
       <Filter>MiniEngine\Utility</Filter>
@@ -207,38 +177,56 @@
     <ClCompile Include="ClearScene.cpp">
       <Filter>GH\GameScene</Filter>
     </ClCompile>
+    <ClCompile Include="MiniEngine\SoundManager.cpp">
+      <Filter>MiniEngine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Frame.cpp">
+      <Filter>MiniEngine\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Event.cpp">
+      <Filter>MiniEngine\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Input.cpp">
+      <Filter>MiniEngine\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Sound.cpp">
+      <Filter>MiniEngine\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Attachment.cpp">
+      <Filter>MiniEngine\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Entity.cpp">
+      <Filter>MiniEngine\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Game.cpp">
+      <Filter>MiniEngine\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\GameObject.cpp">
+      <Filter>MiniEngine\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\GameScene.cpp">
+      <Filter>MiniEngine\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Image.cpp">
+      <Filter>MiniEngine\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Manager.cpp">
+      <Filter>MiniEngine\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Screen.cpp">
+      <Filter>MiniEngine\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniEngine\Collider.cpp">
+      <Filter>MiniEngine\Attachment</Filter>
+    </ClCompile>
+    <ClCompile Include="Clear\ClearCamera.cpp">
+      <Filter>GH\GameObject\Clear</Filter>
+    </ClCompile>
+    <ClCompile Include="Clear\ClearString.cpp">
+      <Filter>GH\GameObject\Clear</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MiniEngine\Attachment.h">
-      <Filter>MiniEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniEngine\Entity.h">
-      <Filter>MiniEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniEngine\Frame.h">
-      <Filter>MiniEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniEngine\Game.h">
-      <Filter>MiniEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniEngine\GameObject.h">
-      <Filter>MiniEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniEngine\GameScene.h">
-      <Filter>MiniEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniEngine\Image.h">
-      <Filter>MiniEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniEngine\Input.h">
-      <Filter>MiniEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniEngine\Manager.h">
-      <Filter>MiniEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniEngine\Screen.h">
-      <Filter>MiniEngine</Filter>
-    </ClInclude>
     <ClInclude Include="MiniEngine\FrameManager.h">
       <Filter>MiniEngine\Manager</Filter>
     </ClInclude>
@@ -299,9 +287,6 @@
     <ClInclude Include="MiniEngine\TransformManager.h">
       <Filter>MiniEngine\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="MiniEngine\KeyCode.h">
-      <Filter>MiniEngine</Filter>
-    </ClInclude>
     <ClInclude Include="Play\Ground.h">
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
@@ -331,9 +316,6 @@
     </ClInclude>
     <ClInclude Include="MiniEngine\Vector2Int.h">
       <Filter>MiniEngine\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniEngine\Event.h">
-      <Filter>MiniEngine</Filter>
     </ClInclude>
     <ClInclude Include="Play\GroundCollider.h">
       <Filter>GH\GameObject\Play</Filter>
@@ -389,6 +371,57 @@
     </ClInclude>
     <ClInclude Include="ClearScene.h">
       <Filter>GH\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\SoundManager.h">
+      <Filter>MiniEngine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Frame.h">
+      <Filter>MiniEngine\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Event.h">
+      <Filter>MiniEngine\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Input.h">
+      <Filter>MiniEngine\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\KeyCode.h">
+      <Filter>MiniEngine\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Sound.h">
+      <Filter>MiniEngine\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Attachment.h">
+      <Filter>MiniEngine\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Entity.h">
+      <Filter>MiniEngine\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Game.h">
+      <Filter>MiniEngine\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\GameObject.h">
+      <Filter>MiniEngine\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\GameScene.h">
+      <Filter>MiniEngine\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Image.h">
+      <Filter>MiniEngine\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Manager.h">
+      <Filter>MiniEngine\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\Screen.h">
+      <Filter>MiniEngine\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniEngine\ButtonCode.h">
+      <Filter>MiniEngine\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Clear\ClearString.h">
+      <Filter>GH\GameObject\Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="Clear\ClearCamera.h">
+      <Filter>GH\GameObject\Clear</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

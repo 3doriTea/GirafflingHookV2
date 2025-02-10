@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClearScene.cpp" />
+    <ClCompile Include="Clear\ClearCamera.cpp" />
+    <ClCompile Include="Clear\ClearString.cpp" />
     <ClCompile Include="MiniEngine\ImGuiManager.cpp" />
     <ClCompile Include="Library\ImGui\imgui.cpp" />
     <ClCompile Include="Library\ImGui\imgui_draw.cpp" />
@@ -31,6 +33,7 @@
     <ClCompile Include="Library\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="MiniEngine\EasingFunctions.cpp" />
     <ClCompile Include="MiniEngine\Draw2D.cpp" />
+    <ClCompile Include="MiniEngine\Sound.cpp" />
     <ClCompile Include="Play\HookArrow.cpp" />
     <ClCompile Include="Play\GiraffePointRoot.cpp" />
     <ClCompile Include="Play\GroundCollider.cpp" />
@@ -70,6 +73,7 @@
     <ClCompile Include="MiniEngine\Rigidbody.cpp" />
     <ClCompile Include="MiniEngine\PhysicsManager.cpp" />
     <ClCompile Include="Play\StageBoard.cpp" />
+    <ClCompile Include="MiniEngine\SoundManager.cpp" />
     <ClCompile Include="Title\TitleCamera.cpp" />
     <ClCompile Include="Title\SelectButton.cpp" />
     <ClCompile Include="TheMain.cpp" />
@@ -79,6 +83,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClearScene.h" />
+    <ClInclude Include="Clear\ClearCamera.h" />
+    <ClInclude Include="Clear\ClearString.h" />
+    <ClInclude Include="MiniEngine\ButtonCode.h" />
     <ClInclude Include="MiniEngine\ImGuiManager.h" />
     <ClInclude Include="Library\ImGui\imconfig.h" />
     <ClInclude Include="Library\ImGui\imgui.h" />
@@ -92,6 +99,7 @@
     <ClInclude Include="Library\ImGui\imstb_truetype.h" />
     <ClInclude Include="MiniEngine\EasingFunctions.h" />
     <ClInclude Include="MiniEngine\Draw2D.h" />
+    <ClInclude Include="MiniEngine\Sound.h" />
     <ClInclude Include="Play\HookArrow.h" />
     <ClInclude Include="Play\GiraffePointRoot.h" />
     <ClInclude Include="Play\GroundCollider.h" />
@@ -133,6 +141,7 @@
     <ClInclude Include="MiniEngine\Rigidbody.h" />
     <ClInclude Include="MiniEngine\PhysicsManager.h" />
     <ClInclude Include="Play\StageBoard.h" />
+    <ClInclude Include="MiniEngine\SoundManager.h" />
     <ClInclude Include="Title\TitleCamera.h" />
     <ClInclude Include="Title\SelectButton.h" />
     <ClInclude Include="TitleScene.h" />

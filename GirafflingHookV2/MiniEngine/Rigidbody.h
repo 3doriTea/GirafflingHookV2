@@ -39,6 +39,9 @@ public:
 	// z軸の動きを固定するか
 	bool fixedZ;
 
+	// 地面に立っているかどうか
+	inline bool IsGrounded() const { return reflection.y > 0.f; }
+
 	// 他のコライダーからの反発ベクトル
 	Vector3 reflection{};
 

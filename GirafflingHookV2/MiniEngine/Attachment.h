@@ -3,6 +3,9 @@
 
 class GameObject;
 
+/// <summary>
+/// ゲームオブジェクトに付ける系の基底クラス
+/// </summary>
 class Attachment
 {
 public:

@@ -8,6 +8,7 @@
 #include "Title/TitleCamera.h"
 #include "Title/SelectButton.h"
 #include <imgui.h>
+#include "ClearScene.h"
 
 using namespace Title;
 
@@ -41,9 +42,9 @@ void TitleScene::Init()
 
 	Vector3 direction{ titleCamera.position - titleString.position };
 
-	hDirectional_ = CreateDirLightHandle(direction);
-	hDirectional_ = CreateDirLightHandle(direction);
-	hDirectional_ = CreateDirLightHandle(direction);
+	CreateDirLightHandle(direction);
+	CreateDirLightHandle(direction);
+	CreateDirLightHandle(direction);
 
 	selectButtons.push_back(
 		&AddGameObject<SelectButton>(
@@ -93,6 +94,11 @@ void TitleScene::Update()
 		SceneManager::Move<PlayScene>();
 	}
 
+	if (Input::IsKeyDown(KeyCode::U))
+	{
+		SceneManager::Move<ClearScene>();
+	}
+
 	ImGui::Begin("giraffe position");
 	ImGui::DragInt("selectionButton", &selectionButton);
 	ImGui::SliderInt("y", &y, 0, Screen::HEIGHT);
@@ -101,18 +107,6 @@ void TitleScene::Update()
 
 void TitleScene::Draw() const // Ç±ÇÃä÷êîÇÃíÜÇ≈ÇÕÉÅÉìÉoïœêîÇàÍêÿèëÇ´ä∑Ç¶ÇÈÇ±Ç∆ÇÕÇ»Ç¢
 {
-	ChangeFontType(DX_FONTTYPE_ANTIALIASING_4X4);
-	int defaultFontSize = GetFontSize();
-	SetFontSize(100);
-	int titleStrHead = (Screen::WIDTH - GetDrawStringWidth(titleElement[TITLE_TEXT], -1)) / 2;
-	DrawString(titleStrHead, 100, titleElement[TITLE_TEXT], 0xffffff, 0x00ffff);
-	SetFontSize(70);
-	DrawString(titleStrHead, 345, titleElement[PLAY_BUTTON], 0xffffff);
-	DrawString(titleStrHead, 445, titleElement[INFO_BUTTON], 0xffffff);
-	DrawString(titleStrHead, 545, titleElement[QUIT_BUTTON], 0xffffff);
-	SetFontSize(defaultFontSize);
-	ChangeFontType(DX_FONTTYPE_NORMAL);
-
 	MV1DrawModel(hPlayButtonModel_);
 	MV1DrawModel(hInfoButtonModel_);
 	MV1DrawModel(hQuitButtonModel_);

@@ -8,6 +8,8 @@
 #include "Frame.h"
 #include "EasingFunctions.h"
 #include "../PlayScene.h"
+#include "Sound.h"
+#include <imgui.h>
 
 namespace
 {
@@ -48,6 +50,10 @@ Play::Player::~Player()
 
 void Play::Player::Init()
 {
+	Sound::Load(AudioInfo{}
+		.File("Assets/Sounds/fire.mp3")
+		.Name("fire"));
+
 	hookArrow_ = FindGameObject<HookArrow>();
 	assert(hookArrow_ != nullptr && "PlaySceneでHookArrowをｲﾝｽﾀﾝｽしてるか確認してみて");
 
@@ -58,9 +64,9 @@ void Play::Player::Init()
 	// テクスチャ張り付ける
 	MV1SetTextureGraphHandle(hGiraffeMV1_, 0, hTextureImage_, FALSE);
 
-	rigidbody_.resistance = 0.1f;
+	rigidbody_.resistance = 1.1f;
 	rigidbody_.resistanceTorque = 1.f;
-	rigidbody_.gravity = 9.8f;
+	rigidbody_.gravity = 162.f;// 9.8f;
 	rigidbody_.fixedZ = true;
 }
 
@@ -82,15 +88,18 @@ void Play::Player::Update()
 		UpdateMove();
 
 		// Eキーが押された瞬間グラッフリング開始
-		if (Input::IsKeyDown(KeyCode::LeftShift))
+		//if (Input::IsKeyDown(KeyCode::LeftShift))
+		if (Input::IsMouseButtonDown(ButtonCode::MosueLeft))
 		{
 			StartHooking();
 		}
 
 		// Eキーが離された瞬間グラッフリング辞める
-		if (Input::IsKeyUp(KeyCode::LeftShift))
+		//if (Input::IsKeyUp(KeyCode::LeftShift))
+		if (Input::IsMouseButtonUp(ButtonCode::MosueLeft))
 		{
 			FinishHooking();
+			Sound::Play("fire");
 		}
 
 		// 各状態の処理
@@ -133,6 +142,15 @@ void Play::Player::UpdateMove()
 		move_.x -= MOVE_FORCE;
 	if (CheckHitKey(KEY_INPUT_D))
 		move_.x += MOVE_FORCE;
+
+	ImGui::Begin("Rigidbody");
+	ImGui::InputFloat("velo.x", &rigidbody_.velocity.x);
+	ImGui::InputFloat("velo.y", &rigidbody_.velocity.y);
+	ImGui::InputFloat("velo.z", &rigidbody_.velocity.z);
+	ImGui::InputFloat("refl.x", &rigidbody_.reflection.x);
+	ImGui::InputFloat("refl.y", &rigidbody_.reflection.y);
+	ImGui::InputFloat("refl.z", &rigidbody_.reflection.z);
+	ImGui::End();
 }
 
 void Play::Player::StartHooking()
@@ -153,13 +171,13 @@ void Play::Player::StartHooking()
 		MV1AttachAnim(hGiraffeMV1_, 0);
 		animationTime_ = 0.f;
 		rigidbody_.velocityTorque = Vector3::Zero();
-		if (position.y < hookPosition.y)
+		if (hookPosition.y < position.y)
 		{
-			moveSign_ = 1.f;
+			moveSign_ = -1.f;
 		}
 		else
 		{
-			moveSign_ = -1.f;
+			moveSign_ = 1.f;
 		}
 
 		state_ = State::Shooting;
@@ -196,6 +214,13 @@ float Play::Player::LengthToAnimationTime(float length)
 
 void Play::Player::MoveDefault()
 {
+	// ジャンプ処理
+	if (Input::IsKey(KeyCode::Space)
+		&& rigidbody_.IsGrounded())
+	{
+		move_.y = MOVE_FORCE * 100.f;
+		position.y += rigidbody_.gravity + 0.1f;
+	}
 	rigidbody_.velocity += move_ * MOVE_SPEED;
 }
 
@@ -233,6 +258,8 @@ void Play::Player::MoveHooking()
 
 	float currentDistance{ position.Distance(hookPosition) };
 
+	hookDistance_ -= move_.y * 0.5f;
+
 #pragma region 向心力の適用
 	// 2次元上の円の接線から中心への垂線
 	Vector3 perpendicular
@@ -248,7 +275,7 @@ void Play::Player::MoveHooking()
 		currentDistance - hookDistance_
 	};
 
-	rigidbody_.velocity += perpendicular * diffDistance;
+	rigidbody_.velocity += perpendicular * diffDistance * 3.f;
 #pragma endregion
 
 #pragma region 接線方向の速度適用
@@ -259,7 +286,7 @@ void Play::Player::MoveHooking()
 		std::cosf(angles.z - PI / 2.f),
 		0.f
 	};
-	rigidbody_.velocity += direction * move_.x * moveSign_;
+	rigidbody_.velocity += direction * move_.x * moveSign_ * 3.f;
 #pragma endregion
 
 	animationTime_ = LengthToAnimationTime(currentDistance);

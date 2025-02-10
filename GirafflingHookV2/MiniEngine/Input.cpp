@@ -158,6 +158,11 @@ namespace Input
 		return false;
 	}
 
+	bool IsMouseButton(ButtonCode buttonCode)
+	{
+		return IsMouseButton(static_cast<int>(buttonCode));
+	}
+
 	//マウスのボタンを今押したか調べる（押しっぱなしは無効）
 	bool IsMouseButtonDown(int buttonCode)
 	{
@@ -169,6 +174,11 @@ namespace Input
 		return false;
 	}
 
+	bool IsMouseButtonDown(ButtonCode buttonCode)
+	{
+		return IsMouseButtonDown(static_cast<int>(buttonCode));
+	}
+
 	//マウスのボタンを今放したか調べる
 	bool IsMouseButtonUp(int buttonCode)
 	{
@@ -178,6 +188,11 @@ namespace Input
 			return true;
 		}
 		return false;
+	}
+
+	bool IsMouseButtonUp(ButtonCode buttonCode)
+	{
+		return IsMouseButtonUp(static_cast<int>(buttonCode));
 	}
 
 	//マウスカーソルの位置を取得

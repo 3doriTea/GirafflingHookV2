@@ -70,9 +70,15 @@ void Play::HookArrow::Update()
 	float maxCosineSimilarity{ -1.f };
 	for (auto&& point : giraffePoints_)
 	{
+		Vector3 pointWorldPoint{ giraffePointRoot_->ToWorldPosition(point->position) };
+		if (Vector3::Distance(pointWorldPoint, worldPosition) >= 1000.f)
+		{
+			continue;
+		}
+
 		float result
 		{
-			VDot(diff.Normalize(), (giraffePointRoot_->ToWorldPosition(point->position) - worldPosition).Normalize())
+			VDot(diff.Normalize(), (pointWorldPoint - worldPosition).Normalize())
 		};
 		if (result > maxCosineSimilarity && result >= 0.f)
 		{

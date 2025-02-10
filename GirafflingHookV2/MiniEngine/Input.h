@@ -5,6 +5,7 @@
 //#include "DxLib.h"
 //#include "XInput.h"
 #include "KeyCode.h"
+#include "ButtonCode.h"
 
 #pragma comment(lib, "dxguid.lib")
 #pragma comment(lib, "dInput8.lib")
@@ -51,16 +52,19 @@ namespace Input
 	//引数：buttonCode	調べたいボタンの番号
 	//戻値：押されていれば true
 	bool IsMouseButton(int buttonCode);
+	bool IsMouseButton(ButtonCode buttonCode);
 
 	//マウスのボタンを今押したか調べる（押しっぱなしは無効）
 	//引数：buttonCode	調べたいボタンの番号
 	//戻値：押した瞬間だったら true
 	bool IsMouseButtonDown(int buttonCode);
+	bool IsMouseButtonDown(ButtonCode buttonCode);
 
 	//マウスのボタンを今放したか調べる
 	//引数：buttonCode	調べたいボタンの番号
 	//戻値：放した瞬間だったら true
 	bool IsMouseButtonUp(int buttonCode);
+	bool IsMouseButtonUp(ButtonCode buttonCode);
 
 
 	//マウスカーソルの位置を取得

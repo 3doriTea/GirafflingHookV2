@@ -4,6 +4,13 @@
 #include "AABBCollider.h"
 #include "Collider.h"
 #include "GameObject.h"
+#include <imgui.h>
+
+#define USING_TRACE_WALL true;
+
+#define debugAA if (velocity.y - prevVeloY <= -1000.f) \
+			printf("");\
+		prevVeloY = velocity.y;
 
 PhysicsManager::PhysicsManager() :
 	Manager::Manager{ CalledType::Frame },
@@ -26,42 +33,9 @@ void PhysicsManager::Update()
 {
 	float deltaTime = Frame::GetDeltaTime();
 
-	for (auto&& self : dynamicRigidBodies_)
-	{
-		for (auto&& targetCollider : colliders_)
-		{
-			// 自分自身のコライダーなら回帰
-			if (self->colliderPtr_ == targetCollider)
-			{
-				continue;
-			}
-
-			if (static_cast<AABBCollider*>(self->colliderPtr_)
-				->IsHitAABB(*static_cast<AABBCollider*>(targetCollider)))
-			{
-				// TODO: ヒットしたときのイベント関数を呼び出したい
-				/*printfDx(
-					"OnHit %s : %s\n",
-					self->gameObject.GetName().c_str(),
-					targetCollider->gameObject.GetName().c_str());*/
-				Vector3 reflection
-				{
-					static_cast<AABBCollider*>(self->colliderPtr_)
-						->ReflectionAABB(*static_cast<AABBCollider*>(targetCollider))
-				};
-
-				//self->velocity += reflection * 1.f;
-				self->reflection += reflection;
-			}
-			else
-			{
-				//printfDx("当たってない！");
-			}
-		}
-	}
-
 	for (auto&& rigidbody : dynamicRigidBodies_)
 	{
+#pragma region プロパティの参照
 		// 座標
 		Vector3& position{ rigidbody->position_ };
 		// 移動速度
@@ -77,25 +51,58 @@ void PhysicsManager::Update()
 			fixedX{ rigidbody->fixedX },
 			fixedY{ rigidbody->fixedY },
 			fixedZ{ rigidbody->fixedZ };
+#pragma endregion
 
+#pragma region 固定軸の速度を無効化
 		if (fixedX)
 		{
 			velocity.x *= 0.f;
-			reflection.x *= 0.f;
 		}
 		if (fixedY)
 		{
 			velocity.y *= 0.f;
-			reflection.y *= 0.f;
 		}
 		if (fixedZ)
 		{
 			velocity.z *= 0.f;
-			reflection.z *= 0.f;
 		}
+#pragma endregion
 
-		// コライダーの反発ベクトルを適用
-		position += reflection;
+#pragma region 速度の適用
+		position += velocity * deltaTime;
+#pragma endregion
+
+#pragma region 重力適用
+		velocity += Vector3::Down() * gravity;
+#pragma endregion
+
+#pragma region 埋込み反発のリセット
+		reflection = Vector3::Zero();
+#pragma endregion
+
+#pragma region コライダ当たり判定更新と反発ベクトルを求める
+		for (auto&& targetCollider : colliders_)
+		{
+			// 自分自身のコライダーなら回帰
+			if (rigidbody->colliderPtr_ == targetCollider)
+			{
+				continue;
+			}
+
+			if (static_cast<AABBCollider*>(rigidbody->colliderPtr_)
+				->IsHitAABB(*static_cast<AABBCollider*>(targetCollider)))
+			{
+				// TODO: ヒットしたときのイベント関数を呼び出したい
+				/*printfDx(
+					"OnHit %s : %s\n",
+					rigidbody->gameObject.GetName().c_str(),
+					targetCollider->gameObject.GetName().c_str());*/
+				reflection +=
+					static_cast<AABBCollider*>(rigidbody->colliderPtr_)
+					->ReflectionAABB(*static_cast<AABBCollider*>(targetCollider));
+			}
+		}
+#pragma endregion
 
 #pragma region 反射するなら反発ベクトルを求める
 		// REF: http://marupeke296.com/COL_Basic_No5_WallVector.html
@@ -119,15 +126,39 @@ void PhysicsManager::Update()
 			};
 
 			// 反発係数
-			float e{ 0.4f };  // TODO: 定数化する
+			float e{ 0.4f };//0.4f };  // TODO: 定数化する
 
-			// 反射ベクトルの適用
+#if USING_TRACE_WALL
+			// 壁ずりベクトルの適用
+			velocity = w;
+#else
+			// 普通の反射べクトルの適用
 			velocity = r * e;
+#endif
 		}
 #pragma endregion
 
-		// 速度の適用
-		position += velocity * deltaTime;
+#pragma region 固定軸の埋込み反発を無効化
+		if (fixedX)
+		{
+			reflection.x *= 0.f;
+		}
+		if (fixedY)
+		{
+			reflection.y *= 0.f;
+		}
+		if (fixedZ)
+		{
+			reflection.z *= 0.f;
+		}
+#pragma endregion
+
+#pragma region 埋め込み反発ベクトルを適用
+		position += reflection;
+#pragma endregion
+
+#pragma region 適用と更新
+
 		// 移動抵抗の適用
 		velocity += velocity * -resistance * deltaTime;
 
@@ -144,8 +175,7 @@ void PhysicsManager::Update()
 		velocityTorque += velocityTorque * -resistanceTorque * deltaTime;
 		// 360度内に収める
 		rotate %= 360.f;
-		// 次のフレームでは引き続き使わないためクリア
-		reflection = Vector3::Zero();
+#pragma endregion
 	}
 }
 
