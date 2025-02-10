@@ -131,7 +131,6 @@
     <ClCompile Include="Play\GroundCollider.cpp">
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
-    <ClCompile Include="Play\GiraffePointRoot.cpp" />
     <ClCompile Include="Play\StageBoard.cpp">
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
@@ -224,6 +223,9 @@
     </ClCompile>
     <ClCompile Include="Clear\ClearString.cpp">
       <Filter>GH\GameObject\Clear</Filter>
+    </ClCompile>
+    <ClCompile Include="Play\GiraffePointRoot.cpp">
+      <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -320,7 +322,6 @@
     <ClInclude Include="Play\GroundCollider.h">
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
-    <ClInclude Include="Play\GiraffePointRoot.h" />
     <ClInclude Include="Play\StageBoard.h">
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
@@ -422,6 +423,9 @@
     </ClInclude>
     <ClInclude Include="Clear\ClearCamera.h">
       <Filter>GH\GameObject\Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="Play\GiraffePointRoot.h">
+      <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
