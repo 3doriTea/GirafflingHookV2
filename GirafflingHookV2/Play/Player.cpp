@@ -259,6 +259,14 @@ void Play::Player::MoveHooking()
 	float currentDistance{ position.Distance(hookPosition) };
 
 	hookDistance_ -= move_.y * 0.5f;
+	if (hookDistance_ < 0.f)
+	{
+		hookDistance_ = 0.f;
+	}
+	else if (hookDistance_ > NECK_LENGTH_MAX)
+	{
+		hookDistance_ = NECK_LENGTH_MAX;
+	}
 
 #pragma region 向心力の適用
 	// 2次元上の円の接線から中心への垂線
