@@ -33,7 +33,7 @@ public:
 	GameObjectT& AddGameObject(Args... args)
 	{
 		GameObjectT* gameObject{ new GameObjectT{ args... } };
-		gameObjects_.push_back(gameObject);
+		RegisterGameObject(gameObject);
 		uninitialisedGameObjects_.insert(gameObject);
 
 		return *gameObject;
@@ -47,7 +47,7 @@ public:
 	GameObjectT& AddGameObject()
 	{
 		GameObjectT* gameObject{ new GameObjectT{} };
-		gameObjects_.push_back(gameObject);
+		RegisterGameObject(gameObject);
 		uninitialisedGameObjects_.insert(gameObject);
 
 		return *gameObject;
@@ -124,6 +124,9 @@ protected:
 	virtual void Update() {};
 	virtual void Draw() const {};
 	virtual void End() {};
+
+private:
+	void RegisterGameObject(GameObject* gameObject);
 
 private:
 	std::list<GameObject*> gameObjects_;

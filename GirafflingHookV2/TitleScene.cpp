@@ -9,6 +9,7 @@
 #include "Title/SelectButton.h"
 #include <imgui.h>
 #include "ClearScene.h"
+#include "TestScene.h"
 
 using namespace Title;
 
@@ -89,6 +90,10 @@ void TitleScene::Update()
 		selectionButton--;
 	}
 
+	if (Input::IsKeyDown(KeyCode::T))
+	{
+		SceneManager::Move<TestScene>();
+	}
 	if (CheckHitKey(KEY_INPUT_P))
 	{
 		SceneManager::Move<PlayScene>();

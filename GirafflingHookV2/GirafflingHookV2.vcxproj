@@ -74,6 +74,10 @@
     <ClCompile Include="MiniEngine\PhysicsManager.cpp" />
     <ClCompile Include="Play\StageBoard.cpp" />
     <ClCompile Include="MiniEngine\SoundManager.cpp" />
+    <ClCompile Include="Test\TestGameObjA.cpp" />
+    <ClCompile Include="TestScene.cpp" />
+    <ClCompile Include="Test\TestGameObjB.cpp" />
+    <ClCompile Include="Test\TestGameObjC.cpp" />
     <ClCompile Include="Title\TitleCamera.cpp" />
     <ClCompile Include="Title\SelectButton.cpp" />
     <ClCompile Include="TheMain.cpp" />
@@ -142,6 +146,10 @@
     <ClInclude Include="MiniEngine\PhysicsManager.h" />
     <ClInclude Include="Play\StageBoard.h" />
     <ClInclude Include="MiniEngine\SoundManager.h" />
+    <ClInclude Include="Test\TestGameObjA.h" />
+    <ClInclude Include="TestScene.h" />
+    <ClInclude Include="Test\TestGameObjB.h" />
+    <ClInclude Include="Test\TestGameObjC.h" />
     <ClInclude Include="Title\TitleCamera.h" />
     <ClInclude Include="Title\SelectButton.h" />
     <ClInclude Include="TitleScene.h" />

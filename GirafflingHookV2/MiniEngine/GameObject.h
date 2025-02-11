@@ -44,6 +44,7 @@ public:
 		assert(casted != nullptr);  // 正しく特定のシーンにキャストできている
 		return *casted;
 	}
+	inline short GetLayerOrder() const { return layerOrder_; }
 
 	std::string ToString() override;
 

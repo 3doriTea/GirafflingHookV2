@@ -13,6 +13,7 @@ GameObject::GameObject(const GameObjectBuilder& builder) :
 	scale{ builder.scale },
 	name{ builder.name },
 	tag{ builder.tag },
+	layerOrder_{ builder.layerOrder },
 	gameScene_{ SceneManager::RefActiveGameScene() },
 	toDestroy_{ false }
 {
@@ -40,6 +41,7 @@ GameObject::GameObject(
 	position{ position },
 	rotate{ Vector3::Zero() },
 	scale{ Vector3::One() },
+	layerOrder_{ 0 },
 	gameScene_{ SceneManager::RefActiveGameScene() },
 	toDestroy_{ false }
 {
