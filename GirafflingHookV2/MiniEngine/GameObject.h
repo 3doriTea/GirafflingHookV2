@@ -100,6 +100,8 @@ public:
 private:
 	// MEMO: メモリレイアウト的にここに配置
 	bool toDestroy_;
+	// MEMO: メモリレイアウトの都合上short型
+	short layerOrder_;
 
 protected:
 	std::string name;

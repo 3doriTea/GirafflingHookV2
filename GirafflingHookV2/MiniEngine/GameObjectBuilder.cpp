@@ -30,6 +30,13 @@ GameObjectBuilder& GameObjectBuilder::Scale(const Vector3& _scale)
 	return *this;
 }
 
+GameObjectBuilder& GameObjectBuilder::LayerOrder(const short& _layerOrder)
+{
+	this->layerOrder = _layerOrder;
+
+	return *this;
+}
+
 GameObjectBuilder& GameObjectBuilder::Name(const std::string& _name)
 {
 	this->name = _name;
