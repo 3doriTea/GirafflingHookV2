@@ -6,7 +6,7 @@ Test::TestGameObjA::TestGameObjA() :
 	GameObject
 	{
 		GameObjectBuilder{}
-			.LayerOrder(1)
+			.LayerOrder(LayerOrderType::UI + 1)
 	}
 {
 	printfDx("A const\n");

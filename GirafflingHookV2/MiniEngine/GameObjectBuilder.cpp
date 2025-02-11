@@ -5,7 +5,8 @@ GameObjectBuilder::GameObjectBuilder() :
 	rotate{ Vector3::Zero() },
 	scale{ Vector3::One() },
 	name{ "GameObject" },
-	tag{ "None" }
+	tag{ "None" },
+	layerOrder{ LayerOrderType::Default }
 {
 }
 
