@@ -9,6 +9,7 @@
 #include "Play/GroundCollider.h"
 #include "Play/GiraffePointRoot.h"
 #include "Play/HookArrow.h"
+#include "Play/Debug.h"
 
 using namespace Play;
 
@@ -27,6 +28,7 @@ void PlayScene::Init()
 	SetBackgroundColor(0x00, 0x00, 0x00);
 
 	player_ = &AddGameObject<Player>();
+	AddGameObject<Debug>();
 	AddGameObject<HookArrow>();
 	AddGameObject<Camera>();
 	AddGameObject<Ground>();
@@ -54,8 +56,6 @@ void PlayScene::Update()
 
 void PlayScene::Draw() const
 {
-	DrawFormatString(0, 10, 0xffffff, "x = %f\ny = %f\nz = %f", player_->position.x, player_->position.y, player_->position.z);
-	
 	SetFontSize(30);
 	int sizeX{}, sizeY{}, lineCount{};
 	GetDrawFormatStringSize(&sizeX, &sizeY, &lineCount, "É^ÉCÉÄÅF%f", playTimer_);
