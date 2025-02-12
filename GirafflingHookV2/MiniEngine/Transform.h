@@ -20,7 +20,7 @@ public:
 	/// </summary>
 	/// <param name="attachingGameObject">アタッチする対象のゲームオブジェクト</param>
 	Transform(GameObject& attachingGameObject);
-	~Transform();
+	virtual ~Transform();
 
 	void Draw() const override;
 

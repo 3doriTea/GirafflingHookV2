@@ -4,8 +4,8 @@
 class Game
 {
 public:
-	~Game();
 	Game();
+	virtual ~Game();
 
 	/// <summary>
 	/// ƒQ[ƒ€‚ğÀs‚·‚é

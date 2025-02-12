@@ -11,7 +11,7 @@ class Collider
 	friend AABBCollider;
 public:
 	Collider(const GameObject& _gameObject);
-	~Collider();
+	virtual ~Collider();
 
 	/*bool IsHit_OBB2OBB(
 		OBBCollider& a,

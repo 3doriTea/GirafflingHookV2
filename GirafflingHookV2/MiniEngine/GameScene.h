@@ -15,7 +15,7 @@ class GameScene
 
 public:
 	GameScene();
-	~GameScene();
+	virtual ~GameScene();
 
 	void InitScene();
 	void UpdateScene();

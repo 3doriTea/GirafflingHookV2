@@ -16,7 +16,7 @@ public:
 		Transform& transform,
 		Collider* colliderPtr,
 		const bool& isDynamic = false);
-	~Rigidbody();
+	virtual ~Rigidbody();
 
 	void Draw() const override;
 

@@ -9,7 +9,7 @@ struct Box2
 	Box2();
 	Box2(const Vector2& min, const Vector2& max);
 	Box2(const float& a, const float& b, const float& c, const float& d);
-	~Box2();
+	virtual ~Box2();
 
 	Box2& operator+=(const Vector2& other);
 	Box2& operator-=(const Vector2& other);

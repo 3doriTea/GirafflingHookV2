@@ -18,7 +18,7 @@ class Manager
 {
 public:
 	Manager(const CalledType&, const int& initOrder = 100);
-	~Manager();
+	virtual ~Manager();
 
 	virtual void Init() = 0;
 	virtual void Update() = 0;
