@@ -81,11 +81,18 @@ void Play::Camera::Update()
 	float diffX = targetPosition.x - position.x;
 	diffX /= cameraMoveRate;
 
-	transform_.position = Vector3
+	/*transform_.position = Vector3
 	{
 		diffX * Frame::GetDeltaTime() + position.x,
 		std::sqrtf(cameraDistance * cameraDistance - cameraDistanceZ * cameraDistanceZ) + player_->position.y,
 		cameraDistanceZ
+	};*/
+
+	transform_.position = Vector3
+	{
+		targetPosition.x,
+		targetPosition.y,
+		targetPosition.z + cameraDistanceZ
 	};
 
 	transform_.LookAt({ 0.f, 0.f, 1.f }, targetPosition);

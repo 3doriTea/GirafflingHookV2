@@ -71,7 +71,7 @@ void Play::HookArrow::Update()
 	for (auto&& point : giraffePoints_)
 	{
 		Vector3 pointWorldPoint{ giraffePointRoot_->ToWorldPosition(point->position) };
-		if (Vector3::Distance(pointWorldPoint, worldPosition) >= 1000.f)
+		if (Vector3::Distance(pointWorldPoint, worldPosition) >= 2000.f)
 		{
 			continue;
 		}

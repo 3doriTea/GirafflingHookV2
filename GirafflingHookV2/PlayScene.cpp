@@ -25,6 +25,7 @@ PlayScene::~PlayScene()
 
 void PlayScene::Init()
 {
+	//SetupCamera_Ortho(10000.f);
 	SetBackgroundColor(0x00, 0x00, 0x00);
 
 	player_ = &AddGameObject<Player>();
@@ -65,6 +66,7 @@ void PlayScene::Draw() const
 
 void PlayScene::End()
 {
+	//SetupCamera_Perspective(60 * (DX_PI_F / 180.f));
 }
 
 void PlayScene::FinishedGoalAnimation()
