@@ -5,7 +5,8 @@ GameObjectBuilder::GameObjectBuilder() :
 	rotate{ Vector3::Zero() },
 	scale{ Vector3::One() },
 	name{ "GameObject" },
-	tag{ "None" }
+	tag{ "None" },
+	layerOrder{ LayerOrderType::Default }
 {
 }
 
@@ -26,6 +27,13 @@ GameObjectBuilder& GameObjectBuilder::Rotate(const Vector3& _rotate)
 GameObjectBuilder& GameObjectBuilder::Scale(const Vector3& _scale)
 {
 	this->scale = _scale;
+
+	return *this;
+}
+
+GameObjectBuilder& GameObjectBuilder::LayerOrder(const short& _layerOrder)
+{
+	this->layerOrder = _layerOrder;
 
 	return *this;
 }

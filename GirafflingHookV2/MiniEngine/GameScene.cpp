@@ -56,6 +56,24 @@ void GameScene::EndScene()
 	gameObjects_.clear();
 }
 
+void GameScene::RegisterGameObject(GameObject* gameObject)
+{
+	// 要求している順序
+	int requestLayerOrder{ gameObject->GetLayerOrder() };
+
+	for (auto&& itr = gameObjects_.begin(); itr != gameObjects_.end(); itr++)
+	{
+		if ((*itr)->GetLayerOrder() > requestLayerOrder)
+		{
+			gameObjects_.insert(itr, gameObject);  // 最適地が見つかれば挿入して回帰
+			return;
+		}
+	}
+
+	// 場所が見つからなければ末端に追加して回帰
+	gameObjects_.push_back(gameObject);
+}
+
 void GameScene::RemoveGameObject(GameObject* gameObject)
 {
 	for (auto itr = gameObjects_.begin(); itr != gameObjects_.end(); itr++)

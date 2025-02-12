@@ -44,6 +44,9 @@
     <Filter Include="GH\GameObject\Clear">
       <UniqueIdentifier>{140a3e8d-a3ef-4ba3-b4de-5621faf15c48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GH\GameObject\Test">
+      <UniqueIdentifier>{be7ea3e2-cbc3-4fb0-9392-d6bc9fb57f80}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TheMain.cpp" />
@@ -226,6 +229,16 @@
     </ClCompile>
     <ClCompile Include="Play\GiraffePointRoot.cpp">
       <Filter>GH\GameObject\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp" />
+    <ClCompile Include="Test\TestGameObjA.cpp">
+      <Filter>GH\GameObject\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Test\TestGameObjB.cpp">
+      <Filter>GH\GameObject\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Test\TestGameObjC.cpp">
+      <Filter>GH\GameObject\Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -426,6 +439,16 @@
     </ClInclude>
     <ClInclude Include="Play\GiraffePointRoot.h">
       <Filter>GH\GameObject\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h" />
+    <ClInclude Include="Test\TestGameObjC.h">
+      <Filter>GH\GameObject\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Test\TestGameObjA.h">
+      <Filter>GH\GameObject\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Test\TestGameObjB.h">
+      <Filter>GH\GameObject\Test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

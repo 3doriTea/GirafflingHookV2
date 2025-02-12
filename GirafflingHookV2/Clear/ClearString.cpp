@@ -6,7 +6,7 @@ Clear::ClearString::ClearString() :
 	{
 		GameObjectBuilder{}
 			.Name("ƒNƒŠƒA‰æ–Ê‚Ì•¶Žš")
-			.Position({ -300.f, 140.f, 0.f })
+			.Position({ -600.f, 140.f, 0.f })
 	},
 hClearModel_{ -1 }
 {
