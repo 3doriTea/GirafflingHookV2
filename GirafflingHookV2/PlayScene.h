@@ -29,7 +29,8 @@ public:
 	/// </summary>
 	void GoalPlayer();
 
-	static inline int GetScore() {  };
+	inline int GetScore() const { return score_; }
+	void AddScore(const int& scorePoint);
 
 private:
 	void Init() override;
@@ -44,5 +45,6 @@ private:
 	float playTimer_;  // カウントアップタイマー
 	
 	bool isPlayerGoaled_;
+	int score_;
 	//static int stageNumber;
 };

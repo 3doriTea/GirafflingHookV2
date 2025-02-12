@@ -1,6 +1,7 @@
 #include "PlayScene.h"
 #include "MiniEngine.h"
 #include "TitleScene.h"
+#include "Sound.h"
 #include <DxLib.h>
 #include "Play/Player.h"
 #include "Play/Camera.h"
@@ -10,6 +11,7 @@
 #include "Play/GiraffePointRoot.h"
 #include "Play/HookArrow.h"
 #include "Play/Debug.h"
+#include "Play/ScoreObject.h"
 
 using namespace Play;
 
@@ -25,6 +27,10 @@ PlayScene::~PlayScene()
 
 void PlayScene::Init()
 {
+	Sound::Load(AudioInfo{}
+		.File("Assets/Sounds/getApple.mp3")
+		.Name("get-apple"));
+
 	//SetupCamera_Ortho(10000.f);
 	SetBackgroundColor(0x00, 0x00, 0x00);
 
@@ -79,4 +85,10 @@ void PlayScene::GoalPlayer()
 {
 	isPlayerGoaled_ = true;
 	player_->StartGoalAnimation(goal_->position);
+}
+
+void PlayScene::AddScore(const int& scorePoint)
+{
+	score_ += scorePoint;
+	Sound::Play("get-apple");
 }

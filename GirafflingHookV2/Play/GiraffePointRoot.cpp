@@ -27,6 +27,8 @@ void Play::GiraffePointRoot::Init()
 	assert(hTreeModel_ != -1);  // モデルはある
 	hBoxModel_ = MV1LoadModel("Assets/Play/testcube.mv1");
 	assert(hBoxModel_ != -1);  // モデルはある
+	hAppleModel_ = MV1LoadModel("Assets/Play/apple.mv1");
+	assert(hAppleModel_ != -1);  // モデルはある
 
 #pragma region グラッフポイント生成
 	// NOTE: Draw.ioで設計した座標をそのまま入力する
@@ -211,6 +213,12 @@ int Play::GiraffePointRoot::GetBoxModelSourceHandle()
 	return hBoxModel_;
 }
 
+int Play::GiraffePointRoot::GethAppleModelSourceHandle()
+{
+	return hAppleModel_;
+}
+
 Transform* Play::GiraffePointRoot::groundTransform_{ nullptr };
 int Play::GiraffePointRoot::hTreeModel_{ -1 };
 int Play::GiraffePointRoot::hBoxModel_{ -1 };
+int Play::GiraffePointRoot::hAppleModel_{ -1 };

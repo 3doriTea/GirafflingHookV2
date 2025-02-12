@@ -23,6 +23,7 @@ namespace Play
 		static Transform* GetGroundTransform();
 		static int GetTreeModelSourceHandle();
 		static int GetBoxModelSourceHandle();
+		static int GethAppleModelSourceHandle();
 
 	private:
 		Transform transform_;
@@ -30,5 +31,6 @@ namespace Play
 		static Transform* groundTransform_;
 		static int hTreeModel_;
 		static int hBoxModel_;
+		static int hAppleModel_;
 	};
 }

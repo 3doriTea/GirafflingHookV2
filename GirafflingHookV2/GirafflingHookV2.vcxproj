@@ -73,6 +73,7 @@
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="MiniEngine\Rigidbody.cpp" />
     <ClCompile Include="MiniEngine\PhysicsManager.cpp" />
+    <ClCompile Include="Play\ScoreObject.cpp" />
     <ClCompile Include="Play\StageBoard.cpp" />
     <ClCompile Include="MiniEngine\SoundManager.cpp" />
     <ClCompile Include="Test\TestGameObjA.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="MiniEngine\Rigidbody.h" />
     <ClInclude Include="MiniEngine\PhysicsManager.h" />
+    <ClInclude Include="Play\ScoreObject.h" />
     <ClInclude Include="Play\StageBoard.h" />
     <ClInclude Include="MiniEngine\SoundManager.h" />
     <ClInclude Include="Test\TestGameObjA.h" />
