@@ -97,6 +97,6 @@ void PlayScene::GoalPlayer()
 
 void PlayScene::AddScore(const int& scorePoint)
 {
-	score_ += scorePoint;
+	score += scorePoint;
 	Sound::Play("get-apple");
 }
