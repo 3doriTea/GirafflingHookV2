@@ -27,7 +27,10 @@ void GameScene::UpdateScene()
 			gameObject->Init();
 			uninitialisedGameObjects_.erase(gameObject);
 		}
-		gameObject->Update();
+		if (gameObject->GetIsActive() == true)
+		{
+			gameObject->Update();
+		}
 	}
 }
 
@@ -37,7 +40,10 @@ void GameScene::DrawScene()
 
 	for (auto&& gameObject : gameObjects_)
 	{
-		gameObject->Draw();
+		if (gameObject->GetIsActive() == true)
+		{
+			gameObject->Draw();
+		}
 	}
 }
 

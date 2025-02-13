@@ -240,6 +240,14 @@
     <ClCompile Include="Test\TestGameObjC.cpp">
       <Filter>GH\GameObject\Test</Filter>
     </ClCompile>
+    <ClCompile Include="Play\Debug.cpp" />
+    <ClCompile Include="Play\ScoreObject.cpp" />
+    <ClCompile Include="Play\BackgroundCloud.cpp">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="OccludableObject.cpp">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\FrameManager.h">
@@ -449,6 +457,14 @@
     </ClInclude>
     <ClInclude Include="Test\TestGameObjB.h">
       <Filter>GH\GameObject\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Play\Debug.h" />
+    <ClInclude Include="Play\ScoreObject.h" />
+    <ClInclude Include="Play\BackgroundCloud.h">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="OccludableObject.h">
+      <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -22,11 +22,18 @@ struct GameObjectBuilder
 	GameObjectBuilder& LayerOrder(const short& _layerOrder);
 	GameObjectBuilder& Name(const std::string& _name);
 	GameObjectBuilder& Tag(const std::string& _tag);
+	/// <summary>
+	/// 生成直後はアクティブかどうか
+	/// </summary>
+	/// <param name="_isActive">アクティブ true / false</param>
+	/// <returns>ビルダーの参照</returns>
+	GameObjectBuilder& IsActiveStart(const bool& _isActive);
 
 	Vector3 position;
 	Vector3 rotate;
 	Vector3 scale;
 	short layerOrder;  // NOTE: メモリレイアウト的にココ
+	bool isActiveStart;  // アクティブ状態で開始するか
 	std::string name;
 	std::string tag;
 };

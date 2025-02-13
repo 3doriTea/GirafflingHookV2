@@ -1,11 +1,14 @@
 #pragma once
 #include "GameScene.h"
+#include <random>
 
 namespace Play
 {
 	class Player;
 	class Goal;
 }
+
+using GenerateCloudIntervalRandom = std::uniform_real_distribution<float>;
 
 class PlayScene : public GameScene
 {

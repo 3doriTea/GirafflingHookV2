@@ -14,6 +14,7 @@ GameObject::GameObject(const GameObjectBuilder& builder) :
 	name{ builder.name },
 	tag{ builder.tag },
 	layerOrder_{ builder.layerOrder },
+	isActive_{ builder.isActiveStart },
 	gameScene_{ SceneManager::RefActiveGameScene() },
 	toDestroy_{ false }
 {
@@ -43,7 +44,8 @@ GameObject::GameObject(
 	scale{ Vector3::One() },
 	layerOrder_{ 0 },
 	gameScene_{ SceneManager::RefActiveGameScene() },
-	toDestroy_{ false }
+	toDestroy_{ false },
+	isActive_{ true }  // デフォルトでアクティブ
 {
 }
 

@@ -12,8 +12,14 @@
 #include "Play/HookArrow.h"
 #include "Play/Debug.h"
 #include "Play/ScoreObject.h"
+#include "Play/BackgroundCloud.h"
 
 using namespace Play;
+
+namespace
+{
+	
+}
 
 PlayScene::PlayScene() :
 	player_{ nullptr },
@@ -31,8 +37,7 @@ void PlayScene::Init()
 		.File("Assets/Sounds/getApple.mp3")
 		.Name("get-apple"));
 
-	//SetupCamera_Ortho(10000.f);
-	SetBackgroundColor(0x00, 0x00, 0x00);
+	SetBackgroundColor(0x08, 0xC2, 0xFF);
 
 	player_ = &AddGameObject<Player>();
 	AddGameObject<Debug>();
@@ -41,6 +46,7 @@ void PlayScene::Init()
 	AddGameObject<Ground>();
 	goal_ = &AddGameObject<Goal>();
 	AddGameObject<GiraffePointRoot>(2.f);
+	AddGameObject<BackgroundCloud>();
 
 #pragma region 地面のコライダー
 	AddGameObject<GroundCollider>(

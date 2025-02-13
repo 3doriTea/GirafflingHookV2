@@ -45,6 +45,11 @@ public:
 		return *casted;
 	}
 	inline short GetLayerOrder() const { return layerOrder_; }
+	/// <summary>
+	/// このゲームオブジェクトがアクティブどうか
+	/// </summary>
+	/// <returns>アクティブである true / false</returns>
+	inline bool GetIsActive() const { return isActive_; }
 
 	std::string ToString() override;
 
@@ -100,14 +105,17 @@ public:
 
 private:
 	// MEMO: メモリレイアウト的にここに配置
-	bool toDestroy_;
+
+	bool toDestroy_;  // このゲームオブジェクトは削除予定か
+	bool isActive_;  // このゲームオブジェクトが有効か
+	
 	// MEMO: メモリレイアウトの都合上short型
-	short layerOrder_;
+	short layerOrder_;  // 更新・描画の順番要求
 
 protected:
-	std::string name;
-	std::string tag;
+	std::string name;  // 名前 (単一の検索に使う)
+	std::string tag;  // タグ (複数まとめての検索に使う)
 
 private:
-	GameScene& gameScene_;
+	GameScene& gameScene_;  // 所属するゲームシーンの参照
 };

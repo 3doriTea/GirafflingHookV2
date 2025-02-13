@@ -6,7 +6,8 @@ GameObjectBuilder::GameObjectBuilder() :
 	scale{ Vector3::One() },
 	name{ "GameObject" },
 	tag{ "None" },
-	layerOrder{ LayerOrderType::Default }
+	layerOrder{ LayerOrderType::Default },
+	isActiveStart{ true }  // デフォルトでアクティブ状態からスタート
 {
 }
 
@@ -48,6 +49,13 @@ GameObjectBuilder& GameObjectBuilder::Name(const std::string& _name)
 GameObjectBuilder& GameObjectBuilder::Tag(const std::string& _tag)
 {
 	this->tag = _tag;
+
+	return *this;
+}
+
+GameObjectBuilder& GameObjectBuilder::IsActiveStart(const bool& _isActive)
+{
+	this->isActiveStart = _isActive;
 
 	return *this;
 }
