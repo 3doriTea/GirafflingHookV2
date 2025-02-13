@@ -30,6 +30,23 @@ void GameScene::UpdateScene()
 		if (gameObject->GetIsActive() == true)
 		{
 			gameObject->Update();
+			if (gameObject->IsToDestory())
+			{
+				gameObject->End();  // I—¹ˆ—‚¾‚¯æ‚ÉÏ‚Ü‚µ‚¿‚á‚¤
+			}
+		}
+	}
+
+	for (auto itr = gameObjects_.begin(); itr != gameObjects_.end();)
+	{
+		if ((*itr)->IsToDestory())
+		{
+			delete (*itr);  // I—¹ˆ—‚Íæ‚É‚â‚Á‚Ä‚ ‚é
+			itr = gameObjects_.erase(itr);
+		}
+		else
+		{
+			itr++;
 		}
 	}
 }

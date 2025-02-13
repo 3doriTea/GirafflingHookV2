@@ -230,7 +230,6 @@
     <ClCompile Include="Play\GiraffePointRoot.cpp">
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
-    <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Test\TestGameObjA.cpp">
       <Filter>GH\GameObject\Test</Filter>
     </ClCompile>
@@ -240,8 +239,6 @@
     <ClCompile Include="Test\TestGameObjC.cpp">
       <Filter>GH\GameObject\Test</Filter>
     </ClCompile>
-    <ClCompile Include="Play\Debug.cpp" />
-    <ClCompile Include="Play\ScoreObject.cpp" />
     <ClCompile Include="Play\BackgroundCloud.cpp">
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
@@ -249,6 +246,15 @@
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
     <ClCompile Include="Play\Occluder.cpp">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Play\ScoreObject.cpp">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>GH\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Play\Debug.cpp">
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
   </ItemGroup>
@@ -451,7 +457,6 @@
     <ClInclude Include="Play\GiraffePointRoot.h">
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
-    <ClInclude Include="TestScene.h" />
     <ClInclude Include="Test\TestGameObjC.h">
       <Filter>GH\GameObject\Test</Filter>
     </ClInclude>
@@ -461,8 +466,6 @@
     <ClInclude Include="Test\TestGameObjB.h">
       <Filter>GH\GameObject\Test</Filter>
     </ClInclude>
-    <ClInclude Include="Play\Debug.h" />
-    <ClInclude Include="Play\ScoreObject.h" />
     <ClInclude Include="Play\BackgroundCloud.h">
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
@@ -470,6 +473,15 @@
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
     <ClInclude Include="Play\Occluder.h">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Play\ScoreObject.h">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h">
+      <Filter>GH\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Play\Debug.h">
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
   </ItemGroup>

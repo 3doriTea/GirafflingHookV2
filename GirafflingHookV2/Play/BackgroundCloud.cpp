@@ -71,9 +71,9 @@ void Play::BackgroundCloud::Draw() const
 	for (auto&& cloud : clouds_)
 	{
 		DrawCircle(
-			cloud->position.z * std::cosf(cloud->angle) + cloud->position.x,
-			cloud->position.z * std::sinf(cloud->angle) + cloud->position.y,
-			cloud->position.z,
+			static_cast<int>(cloud->position.z * std::cosf(cloud->angle) + cloud->position.x),
+			static_cast<int>(cloud->position.z * std::sinf(cloud->angle) + cloud->position.y),
+			static_cast<int>(cloud->position.z),
 			0xbcf2f6,
 			TRUE);
 	}

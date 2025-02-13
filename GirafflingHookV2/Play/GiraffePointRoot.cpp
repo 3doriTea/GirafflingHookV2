@@ -1,6 +1,7 @@
 #include "GiraffePointRoot.h"
 #include "GiraffePoint.h"
 #include "StageBoard.h"
+#include "ScoreObject.h"
 #include "Vector2.h"
 
 Play::GiraffePointRoot::GiraffePointRoot(
@@ -187,6 +188,70 @@ void Play::GiraffePointRoot::Init()
 	Instantiate<GiraffePoint>(
 		"GP (16)",
 		Vector3{ 15100.0000f, 6000.0000f, 0.0000f });
+
+	Instantiate<ScoreObject>(
+		"Apple (1)",
+		Vector3{ 1700.0000f, 700.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (2)",
+		Vector3{ 2300.0000f, 700.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (3)",
+		Vector3{ 3800.0000f, 1200.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (6)",
+		Vector3{ 4100.0000f, 1000.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (7)",
+		Vector3{ 4200.0000f, 700.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (8)",
+		Vector3{ 5600.0000f, 700.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (9)",
+		Vector3{ 6800.0000f, 5700.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (10)",
+		Vector3{ 8000.0000f, 6300.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (11)",
+		Vector3{ 9300.0000f, 5400.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (12)",
+		Vector3{ 10400.0000f, 6400.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (13)",
+		Vector3{ 11300.0000f, 5400.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (14)",
+		Vector3{ 12300.0000f, 6400.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (15)",
+		Vector3{ 13100.0000f, 5500.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (16)",
+		Vector3{ 14100.0000f, 6400.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (17)",
+		Vector3{ 15100.0000f, 5600.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (18)",
+		Vector3{ 15100.0000f, 5100.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (19)",
+		Vector3{ 15800.0000f, 5500.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (20)",
+		Vector3{ 16100.0000f, 6100.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (21)",
+		Vector3{ 16200.0000f, 6800.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (5)",
+		Vector3{ 3500.0000f, 1000.0000f, 0.0000f });
+	Instantiate<ScoreObject>(
+		"Apple (4)",
+		Vector3{ 2300.0000f, 0.0000f, 0.0000f });
 
 
 #pragma endregion

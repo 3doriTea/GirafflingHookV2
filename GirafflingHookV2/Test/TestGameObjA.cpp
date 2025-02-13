@@ -26,6 +26,8 @@ void Test::TestGameObjA::Update()
 {
 	if (Input::IsKeyDown(KeyCode::Space))
 		printfDx("A update\n");
+	if (Input::IsKeyDown(KeyCode::K))
+		Destroy();
 }
 
 void Test::TestGameObjA::End()

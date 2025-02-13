@@ -1,12 +1,12 @@
 #pragma once
-#include "GameObject.h"
 #include "Transform.h"
+#include "OccludableObject.h"
 
 namespace Play
 {
 	class Player;
 
-	class ScoreObject : public GameObject
+	class ScoreObject : public OccludableObject
 	{
 	public:
 		ScoreObject(const std::string& name, const Vector3& position);
@@ -20,6 +20,5 @@ namespace Play
 	private:
 		int hAppleModel_;
 		Player* player_;
-		Transform transform_;
 	};
 }

@@ -32,6 +32,11 @@ public:
 	virtual void End() {};
 
 	void Destroy();
+	/// <summary>
+	/// このゲームオブジェクトは削除予定か
+	/// </summary>
+	/// <returns>削除予定 true / false</returns>
+	inline bool IsToDestory() const { return toDestroy_; }
 
 	std::string GetName() const { return name; }
 	std::string GetTag() const { return tag; }
