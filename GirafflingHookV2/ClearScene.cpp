@@ -60,6 +60,9 @@ void ClearScene::Draw() const
 	DrawString(100, 500, "Next", 0x000000);
 #pragma endregion 仮レイアウト確認
 	*/
+
+	DrawFormatString(600, 200, 0x000000, "トータルスコア");
+	//DrawFormatString(600, 200, 0x000000, "%d", )
 }
 
 void ClearScene::End()
