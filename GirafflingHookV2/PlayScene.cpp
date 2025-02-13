@@ -57,6 +57,8 @@ void PlayScene::Init()
 		Vector3{ 200.f, 200.f, 200.f });
 #pragma endregion
 	ChangeLightTypeDir(VGet(1.f, -1.f, 0.5f));
+
+	playTimer_ = 0.0f;  // タイマーリセット
 }
 
 void PlayScene::Update()
@@ -100,3 +102,5 @@ void PlayScene::AddScore(const int& scorePoint)
 	score += scorePoint;
 	Sound::Play("get-apple");
 }
+
+float PlayScene::playTimer_{ 0.0f };
