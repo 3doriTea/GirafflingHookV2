@@ -104,3 +104,4 @@ void PlayScene::AddScore(const int& scorePoint)
 }
 
 float PlayScene::playTimer_{ 0.0f };
+int PlayScene::score{ 0 };
