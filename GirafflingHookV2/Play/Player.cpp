@@ -173,11 +173,11 @@ void Play::Player::StartHooking()
 		rigidbody_.velocityTorque = Vector3::Zero();
 		if (hookPosition.y < position.y)
 		{
-			moveSign_ = -1.f;
+			moveSign_ = -1;
 		}
 		else
 		{
-			moveSign_ = 1.f;
+			moveSign_ = 1;
 		}
 
 		state_ = State::Shooting;

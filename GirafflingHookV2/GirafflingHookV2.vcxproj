@@ -22,7 +22,7 @@
     <ClCompile Include="ClearScene.cpp" />
     <ClCompile Include="Clear\ClearCamera.cpp" />
     <ClCompile Include="Clear\ClearString.cpp" />
-    <ClCompile Include="OccludableObject.cpp" />
+    <ClCompile Include="Play\OccludableObject.cpp" />
     <ClCompile Include="Play\BackgroundCloud.cpp" />
     <ClCompile Include="Play\Debug.cpp" />
     <ClCompile Include="MiniEngine\ImGuiManager.cpp" />
@@ -71,6 +71,7 @@
     <ClCompile Include="MiniEngine\Transform.cpp" />
     <ClCompile Include="MiniEngine\Vector2.cpp" />
     <ClCompile Include="MiniEngine\Vector3.cpp" />
+    <ClCompile Include="Play\Occluder.cpp" />
     <ClCompile Include="Play\Player.cpp" />
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="MiniEngine\Rigidbody.cpp" />
@@ -90,7 +91,7 @@
     <ClCompile Include="Title\TitleString.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="OccludableObject.h" />
+    <ClInclude Include="Play\OccludableObject.h" />
     <ClInclude Include="Play\BackgroundCloud.h" />
     <ClInclude Include="ClearScene.h" />
     <ClInclude Include="Clear\ClearCamera.h" />
@@ -147,6 +148,7 @@
     <ClInclude Include="MiniEngine\Transform.h" />
     <ClInclude Include="MiniEngine\Vector2.h" />
     <ClInclude Include="MiniEngine\Vector3.h" />
+    <ClInclude Include="Play\Occluder.h" />
     <ClInclude Include="Play\Player.h" />
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="MiniEngine\Rigidbody.h" />

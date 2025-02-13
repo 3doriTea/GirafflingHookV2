@@ -245,7 +245,10 @@
     <ClCompile Include="Play\BackgroundCloud.cpp">
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
-    <ClCompile Include="OccludableObject.cpp">
+    <ClCompile Include="Play\OccludableObject.cpp">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Play\Occluder.cpp">
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
   </ItemGroup>
@@ -463,7 +466,10 @@
     <ClInclude Include="Play\BackgroundCloud.h">
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
-    <ClInclude Include="OccludableObject.h">
+    <ClInclude Include="Play\OccludableObject.h">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Play\Occluder.h">
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
   </ItemGroup>

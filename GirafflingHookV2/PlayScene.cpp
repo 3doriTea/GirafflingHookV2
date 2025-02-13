@@ -13,6 +13,7 @@
 #include "Play/Debug.h"
 #include "Play/ScoreObject.h"
 #include "Play/BackgroundCloud.h"
+#include "Play/Occluder.h"
 
 using namespace Play;
 
@@ -47,6 +48,7 @@ void PlayScene::Init()
 	goal_ = &AddGameObject<Goal>();
 	AddGameObject<GiraffePointRoot>(2.f);
 	AddGameObject<BackgroundCloud>();
+	AddGameObject<Occluder>();
 
 #pragma region 地面のコライダー
 	AddGameObject<GroundCollider>(

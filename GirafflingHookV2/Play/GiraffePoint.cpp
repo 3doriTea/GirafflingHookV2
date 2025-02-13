@@ -47,6 +47,8 @@ Play::GiraffePoint::~GiraffePoint()
 
 void Play::GiraffePoint::Init()
 {
+	OccludableObject::Init(transform_);  // NOTE: 基底クラスの初期化呼び出し
+
 	FindGameObject<HookArrow>()->RegisterGiraffePoint(this);
 
 	// MEMO: MV1LoadModelをすると無駄にメモリ領域食べちゃうため
@@ -73,6 +75,8 @@ void Play::GiraffePoint::Draw() const
 
 void Play::GiraffePoint::End()
 {
+	OccludableObject::End();  // NOTE: 基底クラスの終了処理呼び出し
+
 	FindGameObject<HookArrow>()->UnregisterGiraffePoint(this);
 	MV1DeleteModel(hTreeModel_);
 }

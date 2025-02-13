@@ -4,12 +4,13 @@
 #include "Transform.h"
 #include "AABBCollider.h"
 #include <string>
+#include "OccludableObject.h"
 
 namespace Play
 {
 	class Player;
 
-	class GiraffePoint : public GameObject
+	class GiraffePoint : public OccludableObject
 	{
 	public:
 		GiraffePoint(const Vector3& position);

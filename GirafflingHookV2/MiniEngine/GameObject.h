@@ -50,6 +50,7 @@ public:
 	/// </summary>
 	/// <returns>アクティブである true / false</returns>
 	inline bool GetIsActive() const { return isActive_; }
+	inline void SetIsActive(const bool& _isActive) { isActive_ = _isActive; }
 
 	std::string ToString() override;
 
