@@ -4,13 +4,14 @@
 #include "Vector3.h"
 #include "AABBCollider.h"
 #include "Transform.h"
+#include "OccludableObject.h"
 
 namespace Play
 {
 	/// <summary>
 	/// Draw.ioで設計したステージの簡易壁ゲームオブジェクト
 	/// </summary>
-	class StageBoard : public GameObject
+	class StageBoard : public OccludableObject
 	{
 	public:
 		/// <summary>
@@ -42,7 +43,6 @@ namespace Play
 
 	private:
 		AABBCollider collider_;
-		Transform transform_;
 
 		int hBoxModel_;
 	};

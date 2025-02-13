@@ -14,7 +14,6 @@ Play::GiraffePoint::GiraffePoint(
 			.Scale({ 100.f, 100.f, 100.f })
 	},
 	player_{ nullptr },
-	transform_{ *this },
 	collider_{ *this, transform_ },
 	hTreeModel_{ -1 },
 	hTreeSource_{ GiraffePointRoot::GetTreeModelSourceHandle() }
@@ -33,7 +32,6 @@ Play::GiraffePoint::GiraffePoint(
 			.Scale({ 100.f, 100.f, 100.f })
 	},
 	player_{ nullptr },
-	transform_{ *this },
 	collider_{ *this, transform_ },
 	hTreeModel_{ -1 },
 	hTreeSource_{ GiraffePointRoot::GetTreeModelSourceHandle() }
@@ -47,7 +45,7 @@ Play::GiraffePoint::~GiraffePoint()
 
 void Play::GiraffePoint::Init()
 {
-	OccludableObject::Init(transform_);  // NOTE: 基底クラスの初期化呼び出し
+	OccludableObject::Init();  // NOTE: 基底クラスの初期化呼び出し
 
 	FindGameObject<HookArrow>()->RegisterGiraffePoint(this);
 

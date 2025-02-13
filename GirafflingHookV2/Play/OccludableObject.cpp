@@ -2,7 +2,8 @@
 #include "Player.h"
 
 Play::OccludableObject::OccludableObject() :
-	occludeDistance{ 0.0f }
+	occludeDistance{ 0.0f },
+	transform_{ *this }
 {
 }
 
@@ -10,9 +11,9 @@ Play::OccludableObject::~OccludableObject()
 {
 }
 
-void Play::OccludableObject::Init(const Transform& _transform)
+void Play::OccludableObject::Init()
 {
-	Vector3 worldScale{ _transform.GetWorldScale() };
+	Vector3 worldScale{ transform_.GetWorldScale() };
 	float maxWidth
 	{
 		std::fmaxf(worldScale.x, std::fmaxf(worldScale.y, worldScale.z))

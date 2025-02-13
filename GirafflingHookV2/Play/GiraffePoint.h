@@ -30,7 +30,6 @@ namespace Play
 
 	private:
 		Player* player_;
-		Transform transform_;
 		AABBCollider collider_;
 
 		int hTreeSource_;

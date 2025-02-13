@@ -24,7 +24,6 @@ Play::StageBoard::StageBoard(
 			.Rotate(Vector3::Forward() * angle)
 			.Scale(Vector3::From(widthHeight, 100.f))
 	},
-	transform_{ *this },
 	collider_{ *this, transform_ },
 	hBoxModel_{ -1 }
 {
@@ -43,7 +42,6 @@ Play::StageBoard::StageBoard(
 			.Position(_position)
 			.Scale(_scale)
 	},
-	transform_{ *this },
 	collider_{ *this, transform_ },
 	hBoxModel_{ -1 }
 {
@@ -56,6 +54,8 @@ Play::StageBoard::~StageBoard()
 
 void Play::StageBoard::Init()
 {
+	OccludableObject::Init();
+
 	hBoxModel_ = MV1DuplicateModel(GiraffePointRoot::GetBoxModelSourceHandle());
 
 	MV1SetPosition(
@@ -79,5 +79,6 @@ void Play::StageBoard::Draw() const
 
 void Play::StageBoard::End()
 {
+	OccludableObject::End();
 	MV1DeleteModel(hBoxModel_);
 }

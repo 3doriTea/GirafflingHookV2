@@ -20,10 +20,13 @@ namespace Play
 		OccludableObject();
 		virtual ~OccludableObject();
 
+		virtual void Init() override;
 		virtual void End() override;
 
+		inline Vector3 GetWorldPosition() { return transform_.GetWorldPosition(); }
+
 	protected:
-		void Init(const Transform& _transform);
+		Transform transform_;
 	private:
 		float occludeDistance;
 	};

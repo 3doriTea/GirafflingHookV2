@@ -36,6 +36,7 @@ namespace Play
 		bool TryGetHookTargetPosition(Vector3& outPosition);
 
 		inline Transform* GetTransform() { return &transform_; }
+		inline Vector3 GetWorldPosition() { return transform_.GetWorldPosition(); }
 
 		/// <summary>
 		/// ÉSÅ[ÉãÇ∑ÇÈ

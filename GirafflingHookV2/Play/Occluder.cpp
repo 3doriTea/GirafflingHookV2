@@ -5,7 +5,7 @@
 Play::Occluder::Occluder() :
 	player_{ nullptr },
 	occludableObjects_{},
-	OCCLUDE_PLAYER_DISTANCE{ 300.f }
+	OCCLUDE_PLAYER_DISTANCE{ 3000.f }
 {
 }
 
@@ -23,7 +23,7 @@ void Play::Occluder::Update()
 {
 	for (auto&& object : occludableObjects_)
 	{
-		if (Vector3::Distance(player_->position, object->position) < object->occludeDistance)
+		if (Vector3::Distance(player_->GetWorldPosition(), object->GetWorldPosition()) < object->occludeDistance)
 		{
 			object->SetIsActive(true);
 		}
