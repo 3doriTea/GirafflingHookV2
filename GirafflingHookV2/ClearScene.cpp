@@ -7,6 +7,7 @@
 #include "Screen.h"
 #include "../Clear/ClearString.h"
 #include "../Clear/ClearCamera.h"
+#include "GameObject.h"
 
 using namespace Clear;
 
@@ -15,7 +16,6 @@ ClearScene::ClearScene() :
 	     clearTime_{0},
 	girafferingNum_{0}
 {
-
 }
 
 ClearScene::~ClearScene()
@@ -60,9 +60,14 @@ void ClearScene::Draw() const
 	DrawString(100, 500, "Next", 0x000000);
 #pragma endregion 仮レイアウト確認
 	*/
-
+	int score = 0;
+	
 	DrawFormatString(600, 200, 0x000000, "トータルスコア");
-	//DrawFormatString(600, 200, 0x000000, "%d", )
+	DrawFormatString(600, 200, 0x000000, "%d", PlayScene::GetScore());
+
+	DrawFormatString(600, 200, 0x000000, "クリア時間：%d", PlayScene::GetPlayTimer());
+	DrawFormatString(600, 200, 0x000000, "グラップル回数：%d");
+
 }
 
 void ClearScene::End()

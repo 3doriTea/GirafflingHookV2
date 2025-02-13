@@ -32,7 +32,8 @@ public:
 	/// </summary>
 	void GoalPlayer();
 
-	inline int GetScore() const { return score_; }
+	static inline int GetScore() { return score; }
+	static inline float GetPlayTimer() { return playTimer_; }
 	void AddScore(const int& scorePoint);
 
 private:
@@ -45,9 +46,9 @@ private:
 	Play::Player* player_;
 	Play::Goal* goal_;
 
-	float playTimer_;  // カウントアップタイマー
+	static float playTimer_;  // カウントアップタイマー
 	
 	bool isPlayerGoaled_;
-	int score_;
 	//static int stageNumber;
+	static int score;
 };
