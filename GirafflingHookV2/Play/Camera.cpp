@@ -89,6 +89,10 @@ void Play::Camera::Update()
 		{
 			std::atan2f(Vector3::Distance(targetPosition, player_->position) * 4.0f, cameraDistance)
 		};
+		if (cameraFOV < DEFAULT_CAMERA_FOV)
+		{
+			cameraFOV = DEFAULT_CAMERA_FOV;
+		}
 		break;
 	case Player::State::Defualt:
 	default:

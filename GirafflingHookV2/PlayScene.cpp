@@ -14,6 +14,7 @@
 #include "Play/ScoreObject.h"
 #include "Play/BackgroundCloud.h"
 #include "Play/Occluder.h"
+#include "Play/UITimer.h"
 
 using namespace Play;
 
@@ -49,13 +50,8 @@ void PlayScene::Init()
 	AddGameObject<GiraffePointRoot>(2.f);
 	AddGameObject<BackgroundCloud>();
 	AddGameObject<Occluder>();
+	AddGameObject<UITimer>();
 
-#pragma region 地面のコライダー
-	AddGameObject<GroundCollider>(
-		Vector3{ 0.f, -400.f, 0.f },
-		Vector3{ 0.f, 0.f, 0.f },
-		Vector3{ 200.f, 200.f, 200.f });
-#pragma endregion
 	ChangeLightTypeDir(VGet(1.f, -1.f, 0.5f));
 
 	playTimer_ = 0.0f;  // タイマーリセット
@@ -73,11 +69,6 @@ void PlayScene::Update()
 
 void PlayScene::Draw() const
 {
-	SetFontSize(30);
-	int sizeX{}, sizeY{}, lineCount{};
-	GetDrawFormatStringSize(&sizeX, &sizeY, &lineCount, "タイム：%f", playTimer_);
-	DrawFormatString((Screen::WIDTH - sizeX) / 2, 0, 0xffffff, "タイム：%f", playTimer_);
-	SetFontSize(DEFAULT_FONT_SIZE);
 }
 
 void PlayScene::End()

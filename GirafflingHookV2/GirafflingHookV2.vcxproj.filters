@@ -257,6 +257,7 @@
     <ClCompile Include="Play\Debug.cpp">
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
+    <ClCompile Include="Play\UITimer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\FrameManager.h">
@@ -484,6 +485,7 @@
     <ClInclude Include="Play\Debug.h">
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
+    <ClInclude Include="Play\UITimer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

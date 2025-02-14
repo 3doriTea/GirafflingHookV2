@@ -36,6 +36,14 @@ public:
 	static inline float GetPlayTimer() { return playTimer_; }
 	void AddScore(const int& scorePoint);
 
+	// MEMO: タイマーをシーンで管理することで、シーン内の各オブジェクトに共有できる
+	
+	/// <summary>
+	/// 現在のプレイ時間を取得する
+	/// </summary>
+	/// <returns>プレイ時間(秒)</returns>
+	inline float GetPlayTime() const { return playTimer_; }
+
 private:
 	void Init() override;
 	void Update() override;

@@ -89,6 +89,7 @@
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="MiniEngine\TransformManager.cpp" />
     <ClCompile Include="Title\TitleString.cpp" />
+    <ClCompile Include="Play\UITimer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Play\OccludableObject.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="MiniEngine\WorldModeVector.h" />
     <ClInclude Include="MiniEngine\TransformManager.h" />
     <ClInclude Include="Title\TitleString.h" />
+    <ClInclude Include="Play\UITimer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />
