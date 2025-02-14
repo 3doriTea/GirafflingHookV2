@@ -11,6 +11,7 @@ namespace Play
 
 	class Player : public GameObject
 	{
+	public:
 		enum struct State : int
 		{
 			Defualt,  // 普通の移動
@@ -43,6 +44,12 @@ namespace Play
 		/// </summary>
 		/// <param name="goalPosition">ゴールのワールド座標</param>
 		void StartGoalAnimation(const Vector3& goalPosition);
+
+		/// <summary>
+		/// プレイヤーのステータスを取得する
+		/// </summary>
+		/// <returns>プレイヤーのステータス</returns>
+		inline State GetState() const { return state_; }
 
 	private:
 		/// <summary>

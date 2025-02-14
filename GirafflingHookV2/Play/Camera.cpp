@@ -16,14 +16,14 @@ Play::Camera::Camera() :
 			.Position({ 0.f, 200.f, -2000.f })
 	},
 	cameraMoveRate{ 1.01f },
-	cameraDistance{ 2001.f },  // MEMO: 距離が広がるほど上から目線になる
+	cameraDistance{ 2000.f },  // MEMO: 距離が広がるほど上から目線になる
 	cameraDistanceZ{ -2000.f },
 	hSoptLight_{ -1 },
 	player_{ nullptr },
 	transform_{ *this }
 {
 	// NOTE: cameraDistanceは cameraDistanceZより大きい必要がある
-	assert(cameraDistance > std::fabsf(cameraDistanceZ));
+	//assert(cameraDistance > std::fabsf(cameraDistanceZ));
 }
 
 Play::Camera::~Camera()
@@ -75,8 +75,27 @@ void Play::Camera::Update()
 	//     : y = +-root(r^2 - x^2) になるため、
 	//     : z=100のときのy座標を求められる！！
 
-	Vector3 targetPosition{ player_->position };
-	player_->TryGetHookTargetPosition(targetPosition);
+	Vector3 targetPosition{};
+	//Vector3 
+	float cameraFOV{ 60.0f * PI / 180.0f };
+
+	switch (player_->GetState())
+	{
+	case Player::State::Hooking:
+		player_->TryGetHookTargetPosition(targetPosition);
+		targetPosition = (targetPosition - player_->position) / 2.0f + player_->position;
+		cameraFOV = float
+		{
+			std::atan2f(Vector3::Distance(targetPosition, player_->position) * 4.0f, cameraDistance)
+		};
+		break;
+	case Player::State::Defualt:
+	default:
+		targetPosition = player_->position;
+		break;
+	}
+
+	SetupCamera_Perspective(cameraFOV);
 
 	float diffX = targetPosition.x - position.x;
 	diffX /= cameraMoveRate;
