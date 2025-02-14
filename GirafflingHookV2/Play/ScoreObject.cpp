@@ -41,18 +41,10 @@ void Play::ScoreObject::Init()
 
 void Play::ScoreObject::Update()
 {
+	// ƒvƒŒƒCƒ„[‚Æ‚Ì‹——£‚ª‹ß‚¯‚ê‚ÎŽæ‚ê‚é
 	if (Vector3::Distance(GetWorldPosition(), player_->GetWorldPosition()) < GET_DISTANCE)
 	{
 		GetGameScene<PlayScene>().AddScore(10);
-
-		static int count{ 0 };
-		
-		ImGui::Begin("score object");
-		ImGui::InputInt("count", &count);
-		ImGui::End();
-
-		//printfDx("%s] Destory!!", name.c_str());
-		count++;
 		Destroy();
 	}
 

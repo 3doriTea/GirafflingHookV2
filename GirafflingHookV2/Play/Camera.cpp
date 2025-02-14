@@ -6,6 +6,7 @@
 namespace
 {
 	const float PI{ std::acosf(-1.f) };
+	const float DEFAULT_CAMERA_FOV{ 60.0f * PI / 180.0f };
 }
 
 Play::Camera::Camera() :
@@ -77,7 +78,7 @@ void Play::Camera::Update()
 
 	Vector3 targetPosition{};
 	//Vector3 
-	float cameraFOV{ 60.0f * PI / 180.0f };
+	float cameraFOV{};
 
 	switch (player_->GetState())
 	{
@@ -92,6 +93,7 @@ void Play::Camera::Update()
 	case Player::State::Defualt:
 	default:
 		targetPosition = player_->position;
+		cameraFOV = DEFAULT_CAMERA_FOV;
 		break;
 	}
 
@@ -140,6 +142,7 @@ void Play::Camera::Update()
 
 void Play::Camera::End()
 {
+	SetupCamera_Perspective(DEFAULT_CAMERA_FOV);
 	DeleteLightHandle(hSoptLight_);
 	DeleteLightHandle(hDirLight_);
 }
