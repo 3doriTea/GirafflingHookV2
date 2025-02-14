@@ -258,6 +258,8 @@
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
     <ClCompile Include="Play\UITimer.cpp" />
+    <ClCompile Include="Play\SkySphere.h" />
+    <ClCompile Include="Play\SkySphere.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\FrameManager.h">

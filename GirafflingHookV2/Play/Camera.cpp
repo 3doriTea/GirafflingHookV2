@@ -41,7 +41,6 @@ void Play::Camera::Init()
 	//	5000.f,
 	//	0.f, 0.0001f, 0.f);
 
-
 	VECTOR dirLightDir =
 	{
 		100 * PI / 180,

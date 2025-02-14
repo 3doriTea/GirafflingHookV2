@@ -77,6 +77,8 @@
     <ClCompile Include="MiniEngine\Rigidbody.cpp" />
     <ClCompile Include="MiniEngine\PhysicsManager.cpp" />
     <ClCompile Include="Play\ScoreObject.cpp" />
+    <ClCompile Include="Play\SkySphere.cpp" />
+    <ClCompile Include="Play\SkySphere.h" />
     <ClCompile Include="Play\StageBoard.cpp" />
     <ClCompile Include="MiniEngine\SoundManager.cpp" />
     <ClCompile Include="Test\TestGameObjA.cpp" />

@@ -15,6 +15,7 @@
 #include "Play/BackgroundCloud.h"
 #include "Play/Occluder.h"
 #include "Play/UITimer.h"
+#include "Play/SkySphere.h"
 
 using namespace Play;
 
@@ -51,6 +52,7 @@ void PlayScene::Init()
 	AddGameObject<BackgroundCloud>();
 	AddGameObject<Occluder>();
 	AddGameObject<UITimer>();
+	AddGameObject<SkySphere>();
 
 	ChangeLightTypeDir(VGet(1.f, -1.f, 0.5f));
 
