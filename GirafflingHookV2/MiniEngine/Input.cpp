@@ -30,7 +30,11 @@ namespace Input
 	XINPUT_STATE controllerState_[MAX_PAD_NUM];
 	XINPUT_STATE prevControllerState_[MAX_PAD_NUM];
 
-
+	struct
+	{
+		bool LDown : 1;
+		bool RDown : 1;
+	}prevTrigger[MAX_PAD_NUM], Trigger[MAX_PAD_NUM];
 
 
 	//初期化
@@ -69,10 +73,15 @@ namespace Input
 		pMouseDevice_->GetDeviceState(sizeof(mouseState_), &mouseState_);
 
 		//コントローラー
+		//コントローラー
 		for (int i = 0; i < MAX_PAD_NUM; i++)
 		{
 			memcpy(&prevControllerState_[i], &controllerState_[i], sizeof(controllerState_[i]));
 			XInputGetState(i, &controllerState_[i]);
+
+			prevTrigger[i] = Trigger[i];
+			Trigger[i].LDown = GetPadTrrigerL(i) > .2f ? true : false;
+			Trigger[i].RDown = GetPadTrrigerR(i) > .2f ? true : false;
 		}
 
 		/*int mouseX{}, mouseY{};
@@ -341,4 +350,15 @@ namespace Input
 		XInputSetState(padID, &vibration);
 	}
 
+	bool IsPadConnected(int padID)
+	{
+		XINPUT_STATE state;
+		ZeroMemory(&state, sizeof(XINPUT_STATE));
+
+		// コントローラの状態を取得
+		DWORD result = XInputGetState(padID, &state);
+
+		// 結果がERROR_SUCCESSであれば、コントローラは接続されている
+		return (result == ERROR_SUCCESS);
+	}
 }

@@ -40,7 +40,9 @@ Play::Player::Player() :
 	moveSign_{ +1 },
 	isGoalling_{ false },
 	goallingTimeLeft_{ 0.f },
-	GOALLING_TIME_MAX{ 3.f }
+	GOALLING_TIME_MAX{ 3.f },
+	usePadController{ true },
+	isJumping_{ false }
 {
 }
 
@@ -84,8 +86,16 @@ void Play::Player::Update()
 		/*rotate.y += Frame::GetDeltaTime() * 1000.f;
 		rotate.y = std::fmodf(rotate.y, 360.f);*/
 
-		// キー入力から移動方向を更新
-		UpdateMove();
+		if (usePadController)
+		{
+			// ボタン入力から更新
+			UpdateMoveUsePad();
+		}
+		else
+		{
+			// キー入力から更新
+			UpdateMove();
+		}
 
 		// 各状態の処理
 		switch (state_)
@@ -150,18 +160,31 @@ void Play::Player::UpdateMove()
 		FinishHooking();
 		Sound::Play("fire");
 	}
+
+	// スペースでジャンプ
+	if (Input::IsKeyDown(KeyCode::Space))
+	{
+		isJumping_ = true;
+	}
+	if (Input::IsKeyUp(KeyCode::Space))
+	{
+		isJumping_ = false;
+	}
 }
 
 void Play::Player::UpdateMoveUsePad()
 {
+	Vector3 stickL{ Vector3::From(Input::GetPadStickL()) };
+	Vector3 stickR{ Vector3::From(Input::GetPadStickR()) };
+
 	move_ = Vector3::Zero();
-	if (CheckHitKey(KEY_INPUT_W))
+	if (stickR.y > +0.3f)
 		move_.y += MOVE_FORCE;
-	if (CheckHitKey(KEY_INPUT_S))
+	if (stickR.y < -0.3f)
 		move_.y -= MOVE_FORCE;
-	if (CheckHitKey(KEY_INPUT_A))
+	if (stickL.x < -0.3f)
 		move_.x -= MOVE_FORCE;
-	if (CheckHitKey(KEY_INPUT_D))
+	if (stickL.x > +0.3f)
 		move_.x += MOVE_FORCE;
 
 	// Eキーが押された瞬間グラッフリング開始
@@ -175,6 +198,15 @@ void Play::Player::UpdateMoveUsePad()
 	{
 		FinishHooking();
 		Sound::Play("fire");
+	}
+
+	if (Input::IsPadButtonDown(GamePad::A))
+	{
+		isJumping_ = true;
+	}
+	if (Input::IsPadButtonUp(GamePad::A))
+	{
+		isJumping_ = false;
 	}
 }
 
@@ -240,8 +272,7 @@ float Play::Player::LengthToAnimationTime(float length)
 void Play::Player::MoveDefault()
 {
 	// ジャンプ処理
-	if (Input::IsKey(KeyCode::Space)
-		&& rigidbody_.IsGrounded())
+	if (isJumping_ && rigidbody_.IsGrounded())
 	{
 		move_.y = MOVE_FORCE * 100.f;
 		position.y += rigidbody_.gravity + 0.1f;

@@ -118,8 +118,9 @@ namespace Play
 		State state_;  // プレイヤーの状態
 		Vector3 move_;
 		int moveSign_;
+		bool isJumping_;
 
-		bool usePadController;  // ゲームパッドを使うか
+		bool usePadController;  // ゲームパッドを使うか TODO: あとでもっと上の存在に
 
 	private:
 		// MEMO: キリンの首は5000伸びる

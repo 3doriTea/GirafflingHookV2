@@ -110,17 +110,16 @@ namespace Input
 
 	//左トリガーの押し込み具合を取得
 	//戻値:押し込み具合（0～1）
-	float		GetPadTrrigerL(int padID = 0);
+	float GetPadTrrigerL(int padID = 0);
 
 	//右トリガーの押し込み具合を取得
 	//戻値:押し込み具合（0～1）
-	float		GetPadTrrigerR(int padID = 0);
+	float GetPadTrrigerR(int padID = 0);
 
 	//振動させる
 	void SetPadVibration(int l, int r, int padID = 0);
 
-
-
+	bool IsPadConnected(int padID);
 
 	//開放
 	void Release();
