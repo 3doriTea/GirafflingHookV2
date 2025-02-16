@@ -1,11 +1,12 @@
 #pragma once
-//#define DIRECTINPUT_VERSION 0x0800
+#define DIRECTINPUT_VERSION 0x0800
+
 #include <dInput.h>
 #include <DirectXMath.h>
 //#include "DxLib.h"
-//#include "XInput.h"
 #include "KeyCode.h"
 #include "ButtonCode.h"
+#include "GamePad.h"
 
 #pragma comment(lib, "dxguid.lib")
 #pragma comment(lib, "dInput8.lib")
@@ -85,16 +86,19 @@ namespace Input
 	//引数：buttonCode	調べたいボタンの番号
 	//戻値：押されていればtrue
 	bool IsPadButton(int buttonCode, int padID = 0);
+	bool IsPadButton(GamePad buttonCode, int padID = 0);
 
 	//コントローラーのボタンを今押したか調べる（押しっぱなしは無効）
 	//引数：buttonCode	調べたいボタンの番号
 	//戻値：押した瞬間だったらtrue
 	bool IsPadButtonDown(int buttonCode, int padID = 0);
+	bool IsPadButtonDown(GamePad buttonCode, int padID = 0);
 
 	//コントローラーのボタンを今放したか調べる
 	//引数：buttonCode	調べたいボタンの番号
 	//戻値：放した瞬間だったらtrue
 	bool IsPadButtonUp(int buttonCode, int padID = 0);
+	bool IsPadButtonUp(GamePad buttonCode, int padID = 0);
 
 	//左スティックの傾きを取得
 	//戻値:傾き具合（-1～1）

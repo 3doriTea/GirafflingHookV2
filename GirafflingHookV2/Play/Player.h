@@ -56,6 +56,10 @@ namespace Play
 		/// 移動の更新 キー入力を移動方向に更新
 		/// </summary>
 		void UpdateMove();
+		/// <summary>
+		/// ゲームパッドを使用した入力更新
+		/// </summary>
+		void UpdateMoveUsePad();
 
 		/// <summary>
 		/// 普通の移動
@@ -114,6 +118,8 @@ namespace Play
 		State state_;  // プレイヤーの状態
 		Vector3 move_;
 		int moveSign_;
+
+		bool usePadController;  // ゲームパッドを使うか
 
 	private:
 		// MEMO: キリンの首は5000伸びる

@@ -87,21 +87,6 @@ void Play::Player::Update()
 		// キー入力から移動方向を更新
 		UpdateMove();
 
-		// Eキーが押された瞬間グラッフリング開始
-		//if (Input::IsKeyDown(KeyCode::LeftShift))
-		if (Input::IsMouseButtonDown(ButtonCode::MosueLeft))
-		{
-			StartHooking();
-		}
-
-		// Eキーが離された瞬間グラッフリング辞める
-		//if (Input::IsKeyUp(KeyCode::LeftShift))
-		if (Input::IsMouseButtonUp(ButtonCode::MosueLeft))
-		{
-			FinishHooking();
-			Sound::Play("fire");
-		}
-
 		// 各状態の処理
 		switch (state_)
 		{
@@ -153,14 +138,44 @@ void Play::Player::UpdateMove()
 	if (CheckHitKey(KEY_INPUT_D))
 		move_.x += MOVE_FORCE;
 
-	ImGui::Begin("Rigidbody");
-	ImGui::InputFloat("velo.x", &rigidbody_.velocity.x);
-	ImGui::InputFloat("velo.y", &rigidbody_.velocity.y);
-	ImGui::InputFloat("velo.z", &rigidbody_.velocity.z);
-	ImGui::InputFloat("refl.x", &rigidbody_.reflection.x);
-	ImGui::InputFloat("refl.y", &rigidbody_.reflection.y);
-	ImGui::InputFloat("refl.z", &rigidbody_.reflection.z);
-	ImGui::End();
+	// Eキーが押された瞬間グラッフリング開始
+	if (Input::IsMouseButtonDown(ButtonCode::MosueLeft))
+	{
+		StartHooking();
+	}
+
+	// Eキーが離された瞬間グラッフリング辞める
+	if (Input::IsMouseButtonUp(ButtonCode::MosueLeft))
+	{
+		FinishHooking();
+		Sound::Play("fire");
+	}
+}
+
+void Play::Player::UpdateMoveUsePad()
+{
+	move_ = Vector3::Zero();
+	if (CheckHitKey(KEY_INPUT_W))
+		move_.y += MOVE_FORCE;
+	if (CheckHitKey(KEY_INPUT_S))
+		move_.y -= MOVE_FORCE;
+	if (CheckHitKey(KEY_INPUT_A))
+		move_.x -= MOVE_FORCE;
+	if (CheckHitKey(KEY_INPUT_D))
+		move_.x += MOVE_FORCE;
+
+	// Eキーが押された瞬間グラッフリング開始
+	if (Input::IsPadButtonDown(GamePad::RIGHT_SHOULDER))
+	{
+		StartHooking();
+	}
+
+	// Eキーが離された瞬間グラッフリング辞める
+	if (Input::IsPadButtonUp(GamePad::RIGHT_SHOULDER))
+	{
+		FinishHooking();
+		Sound::Play("fire");
+	}
 }
 
 void Play::Player::StartHooking()

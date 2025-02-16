@@ -260,6 +260,9 @@
     <ClCompile Include="Play\UITimer.cpp" />
     <ClCompile Include="Play\SkySphere.h" />
     <ClCompile Include="Play\SkySphere.cpp" />
+    <ClCompile Include="MiniEngine\GamePad.cpp">
+      <Filter>MiniEngine\Service</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniEngine\FrameManager.h">
@@ -488,6 +491,9 @@
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
     <ClInclude Include="Play\UITimer.h" />
+    <ClInclude Include="MiniEngine\GamePad.h">
+      <Filter>MiniEngine\Service</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />

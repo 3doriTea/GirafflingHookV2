@@ -33,7 +33,6 @@ void Play::SkySphere::Init()
 	hSkySphere_ = MV1LoadModel("Assets/SkySphere.mv1");
 	assert(hSkySphere_ > 0);  // SkySphereモデルは読み込まれる
 
-	MV1SetUseOrigShader(TRUE);
 	hVS = LoadVertexShader("Assets/Shader/NoShadePS.vso");
 	//hVS = LoadVertexShader("./NoShadeVS.vso");
 	assert(hVS > 0);  // NoShadeVシェーダは読み込まれる
@@ -62,13 +61,15 @@ void Play::SkySphere::Update()
 
 void Play::SkySphere::Draw() const
 {
+	MV1SetUseOrigShader(TRUE);
 	SetUseVertexShader(hVS);
 	SetUsePixelShader(hPS);
 
 	MV1DrawModel(hSkySphere_);
 
-	SetUseVertexShader(FALSE);
-	SetUsePixelShader(FALSE);
+	MV1SetUseOrigShader(FALSE);
+	//SetUseVertexShader(FALSE);
+	//SetUsePixelShader(FALSE);
 }
 
 void Play::SkySphere::End()

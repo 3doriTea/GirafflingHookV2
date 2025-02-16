@@ -22,6 +22,7 @@
     <ClCompile Include="ClearScene.cpp" />
     <ClCompile Include="Clear\ClearCamera.cpp" />
     <ClCompile Include="Clear\ClearString.cpp" />
+    <ClCompile Include="MiniEngine\GamePad.cpp" />
     <ClCompile Include="Play\OccludableObject.cpp" />
     <ClCompile Include="Play\BackgroundCloud.cpp" />
     <ClCompile Include="Play\Debug.cpp" />
@@ -94,6 +95,7 @@
     <ClCompile Include="Play\UITimer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MiniEngine\GamePad.h" />
     <ClInclude Include="Play\OccludableObject.h" />
     <ClInclude Include="Play\BackgroundCloud.h" />
     <ClInclude Include="ClearScene.h" />

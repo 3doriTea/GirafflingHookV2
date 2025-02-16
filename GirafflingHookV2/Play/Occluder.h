@@ -5,7 +5,7 @@
 namespace Play
 {
 	class OccludableObject;
-	class Player;
+	class Camera;
 
 	class Occluder : public GameObject
 	{
@@ -22,7 +22,7 @@ namespace Play
 
 		const float OCCLUDE_PLAYER_DISTANCE;  // 非アクティブにするプレイヤーとの距離
 	private:
-		Player* player_;
+		Camera* camera_;
 		std::set<OccludableObject*> occludableObjects_;
 	};
 }

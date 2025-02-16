@@ -1,11 +1,11 @@
 #include "Occluder.h"
 #include "OccludableObject.h"
-#include "Player.h"
+#include "Camera.h"
 
 Play::Occluder::Occluder() :
-	player_{ nullptr },
+	camera_{ nullptr },
 	occludableObjects_{},
-	OCCLUDE_PLAYER_DISTANCE{ 3000.f }
+	OCCLUDE_PLAYER_DISTANCE{ 5000.f }
 {
 }
 
@@ -15,15 +15,15 @@ Play::Occluder::~Occluder()
 
 void Play::Occluder::Init()
 {
-	player_ = FindGameObject<Player>();
-	assert(player_ != nullptr);  // プレイヤーは見つかる
+	camera_ = FindGameObject<Camera>();
+	assert(camera_ != nullptr);  // プレイヤーは見つかる
 }
 
 void Play::Occluder::Update()
 {
 	for (auto&& object : occludableObjects_)
 	{
-		if (Vector3::Distance(player_->GetWorldPosition(), object->GetWorldPosition()) < object->occludeDistance)
+		if (Vector3::Distance(camera_->position, object->GetWorldPosition()) < object->occludeDistance)
 		{
 			object->SetIsActive(true);
 		}
