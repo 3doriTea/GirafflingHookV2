@@ -119,6 +119,16 @@ void Play::Player::Update()
 		}
 	}
 
+
+	if (Input::IsKeyDown(KeyCode::F))
+	{
+		Frame::SetTimeScale(0.5f);
+	}
+	if (Input::IsKeyUp(KeyCode::F))
+	{
+		Frame::SetTimeScale(1.0f);
+	}
+
 	DxLib::MV1SetRotationXYZ(hGiraffeMV1_, transform_.GetRotateRadian());
 	DxLib::MV1SetPosition(hGiraffeMV1_, position);
 	DxLib::MV1SetScale(hGiraffeMV1_, scale * 0.002f);

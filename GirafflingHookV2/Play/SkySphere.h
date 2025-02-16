@@ -20,6 +20,9 @@ namespace Play
 	private:
 		int hSkySphere_;
 
+		int hVS;
+		int hPS;
+
 		Transform transform_;
 		Camera* camera_;
 	};
