@@ -20,6 +20,7 @@ Play::ScoreObject::ScoreObject(
 			.Name(name)
 			.Position(position)
 			.Scale({ 100.0f, 100.0f, 100.0f })
+			.Rotate({ 0.0f, 180.0f, 0.0f})
 	},
 	hAppleModel_{ -1 },
 	player_{ nullptr }

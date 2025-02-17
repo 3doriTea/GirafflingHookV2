@@ -28,6 +28,8 @@ PlayScene::PlayScene() :
 	player_{ nullptr },
 	isPlayerGoaled_{ false }
 {
+	playTimer_ = 0.f;
+	score = 0;
 }
 
 PlayScene::~PlayScene()
@@ -61,10 +63,10 @@ void PlayScene::Init()
 
 void PlayScene::Update()
 {
-	/*if (Input::IsKeyDown(DIK_SPACE))
+	if (Input::IsKeyDown(KEY_INPUT_C))
 	{
-		SceneManager::Move<TitleScene>();
-	}*/
+		SceneManager::Move<ClearScene>();
+	}
 
 	playTimer_ += Frame::GetDeltaTime();
 }
@@ -81,7 +83,7 @@ void PlayScene::End()
 void PlayScene::FinishedGoalAnimation()
 {
 	// TODO: スコアシーンに遷移
-	SceneManager::Move<TitleScene>();
+	SceneManager::Move<ClearScene>();
 }
 
 void PlayScene::GoalPlayer()

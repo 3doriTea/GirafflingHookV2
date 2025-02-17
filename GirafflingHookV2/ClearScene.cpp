@@ -20,7 +20,6 @@ ClearScene::ClearScene() :
 
 ClearScene::~ClearScene()
 {
-
 }
 
 void ClearScene::Init()
@@ -63,10 +62,10 @@ void ClearScene::Draw() const
 	int score = 0;
 	
 	DrawFormatString(600, 200, 0x000000, "トータルスコア");
-	DrawFormatString(600, 200, 0x000000, "%d", PlayScene::GetScore());
+	DrawFormatString(600, 500, 0x000000, "%d", PlayScene::GetScore());
 
-	DrawFormatString(600, 200, 0x000000, "クリア時間：%d", PlayScene::GetPlayTimer());
-	DrawFormatString(600, 200, 0x000000, "グラップル回数：%d");
+	DrawFormatString(600, 600, 0x000000, "クリア時間：%f", PlayScene::GetPlayTimer());
+	DrawFormatString(600, 700, 0x000000, "グラップル回数：%d");
 
 }
 
