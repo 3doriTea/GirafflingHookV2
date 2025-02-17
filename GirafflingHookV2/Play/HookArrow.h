@@ -33,6 +33,9 @@ namespace Play
 		GiraffePoint* foundGiraffePoint_;
 
 		float animationTimer_;
+		int hArrowImage_;
+		Vector2 arrowImageCenter_;
+		float arrowAngle_;
 
 		// MEMO: ‰æ–Ê‚ÌƒTƒCƒY‚Í•Ï‚í‚é‚±‚Æ‚È‚¢
 		const Vector2 SCREEN_CENTER;

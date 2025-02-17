@@ -5,6 +5,7 @@
 #include "GiraffePointRoot.h"
 #include "Draw2D.h"
 #include "Player.h"
+#include <cassert>
 
 namespace
 {
@@ -12,6 +13,11 @@ namespace
 }
 
 Play::HookArrow::HookArrow() :
+	GameObject
+	{
+		GameObjectBuilder{}
+			.LayerOrder(LayerOrderType::UI)
+	},
 	transform_{ *this },
 	SCREEN_CENTER
 	{
@@ -24,7 +30,10 @@ Play::HookArrow::HookArrow() :
 	giraffePoints_{},
 	giraffePointRoot_{ nullptr },
 	foundGiraffePoint_{ nullptr },
-	animationTimer_{ 0.f }
+	animationTimer_{ 0.f },
+	hArrowImage_{ -1 },
+	arrowImageCenter_{},
+	arrowAngle_{ 0.0f }
 {
 }
 
@@ -40,6 +49,12 @@ void Play::HookArrow::Init()
 	giraffePointRoot_ =
 		FindGameObject<GiraffePointRoot>()
 		->GetGroundTransform();
+
+	hArrowImage_ = LoadGraph("Assets/Play/arrow.png");
+	assert(hArrowImage_ > 0);
+
+	GetGraphSizeF(hArrowImage_, &arrowImageCenter_.x, &arrowImageCenter_.y);
+	arrowImageCenter_ /= 2.0f;
 }
 
 void Play::HookArrow::Update()
@@ -61,6 +76,8 @@ void Play::HookArrow::Update()
 	};
 
 	Draw2D::Vector(diff, 0xff00ff);
+
+	arrowAngle_ = std::atan2f(diff.x, diff.y);
 
 	Vector3 worldPosition{ transform_.GetWorldPosition() };
 
@@ -112,6 +129,13 @@ void Play::HookArrow::Draw() const
 		}
 	}
 
+	int cx{ static_cast<int>(arrowImageCenter_.x) };
+	int cy{ static_cast<int>(arrowImageCenter_.y) };
+	DrawRotaGraph2(
+		Screen::WIDTH / 2, Screen::HEIGHT / 2,
+		cx * 2.0f, cy,
+		1.0f, PI / 2.0f + arrowAngle_,
+		hArrowImage_, TRUE);
 }
 
 void Play::HookArrow::End()
