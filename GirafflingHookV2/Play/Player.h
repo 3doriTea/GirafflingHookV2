@@ -138,5 +138,7 @@ namespace Play
 
 		// ˆÚ“®‚·‚é—Í
 		static const float MOVE_FORCE;
+
+		static const float MAX_SPEED;
 	};
 }

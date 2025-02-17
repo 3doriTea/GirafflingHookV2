@@ -10,6 +10,7 @@
 #include <imgui.h>
 #include "ClearScene.h"
 #include "TestScene.h"
+#include "GirafflingHook.h"
 
 using namespace Title;
 
@@ -94,8 +95,18 @@ void TitleScene::Update()
 	{
 		SceneManager::Move<TestScene>();
 	}
-	if (CheckHitKey(KEY_INPUT_P))
+
+	// PƒL[‚ª‰Ÿ‚³‚ê‚½‚È‚çƒvƒŒƒCƒV[ƒ“‚É
+	if (Input::IsKeyDown(KeyCode::P))
 	{
+		GirafflingHook::SetPlayStyle(PlayStyle::KeyBoardAndMouse);
+		SceneManager::Move<PlayScene>();
+	}
+
+	// Aƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚È‚çƒvƒŒƒCƒV[ƒ“‚É
+	if (Input::IsPadButtonDown(GamePad::A))
+	{
+		GirafflingHook::SetPlayStyle(PlayStyle::GamePad);
 		SceneManager::Move<PlayScene>();
 	}
 
@@ -103,11 +114,6 @@ void TitleScene::Update()
 	{
 		SceneManager::Move<ClearScene>();
 	}
-
-	ImGui::Begin("giraffe position");
-	ImGui::DragInt("selectionButton", &selectionButton);
-	ImGui::SliderInt("y", &y, 0, Screen::HEIGHT);
-	ImGui::End();
 }
 
 void TitleScene::Draw() const // ‚±‚ÌŠÖ”‚Ì’†‚Å‚Íƒƒ“ƒo•Ï”‚ğˆêØ‘‚«Š·‚¦‚é‚±‚Æ‚Í‚È‚¢
@@ -115,9 +121,6 @@ void TitleScene::Draw() const // ‚±‚ÌŠÖ”‚Ì’†‚Å‚Íƒƒ“ƒo•Ï”‚ğˆêØ‘‚«Š·‚¦‚é‚±‚Æ‚
 	MV1DrawModel(hPlayButtonModel_);
 	MV1DrawModel(hInfoButtonModel_);
 	MV1DrawModel(hQuitButtonModel_);
-
-	/*DrawGraph(posX, posY, hGiraffeImageBody_, TRUE);
-	DrawGraph(posX, posY, hGiraffeImageHead_, TRUE);*/
 
 	DrawExtendGraph(371, Screen::HEIGHT - y, 371 + 280, Screen::HEIGHT, hGiraffeImageBody_, TRUE);
 	DrawGraph(371, Screen::HEIGHT - y, hGiraffeImageHead_, TRUE);

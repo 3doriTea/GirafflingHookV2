@@ -36,3 +36,5 @@ void GirafflingHook::End()
 {
 	Manager::ReleaseAll();
 }
+
+PlayStyle GirafflingHook::playStyle{ PlayStyle::KeyBoardAndMouse };

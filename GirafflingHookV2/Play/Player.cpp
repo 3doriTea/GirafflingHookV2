@@ -10,6 +10,7 @@
 #include "../PlayScene.h"
 #include "Sound.h"
 #include <imgui.h>
+#include "../GirafflingHook.h"
 
 namespace
 {
@@ -41,7 +42,7 @@ Play::Player::Player() :
 	isGoalling_{ false },
 	goallingTimeLeft_{ 0.f },
 	GOALLING_TIME_MAX{ 3.f },
-	usePadController{ true },
+	usePadController{ false },
 	isJumping_{ false }
 {
 }
@@ -52,6 +53,8 @@ Play::Player::~Player()
 
 void Play::Player::Init()
 {
+	usePadController = GirafflingHook::GetPlayStyle() == PlayStyle::GamePad;
+
 	Sound::Load(AudioInfo{}
 		.File("Assets/Sounds/fire.mp3")
 		.Name("fire"));
@@ -358,6 +361,14 @@ void Play::Player::MoveHooking()
 	MV1SetAttachAnimTime(hGiraffeMV1_, 0, animationTime_);
 
 	transform_.LookAt({ 0.f, 1.f, 0.f }, hookPosition);
+
+#pragma region 速度リミッタ
+	if (rigidbody_.velocity.Length() > MAX_SPEED)
+	{
+		rigidbody_.velocity.Normalize();
+		rigidbody_.velocity *= MAX_SPEED;
+	}
+#pragma endregion
 }
 
 void Play::Player::MoveGoalling()
@@ -404,12 +415,14 @@ bool Play::Player::TryGetHookTargetPosition(Vector3& outPosition)
 	}
 }
 
-const float Play::Player::NECK_LENGTH_MAX{ 5000.f };
-const float Play::Player::HOOKING_ANIMATION_TIME_MAX{ 249.f };
-const float Play::Player::HOOKING_ANIMATION_SPEED{ 500.f };
-const float Play::Player::HOOKING_ANIMATION_OFFSET_IDOL_TIME{ 8.f };
-const float Play::Player::HOOKING_ANIMATION_OFFSET_TIME{ 8.f };
+const float Play::Player::NECK_LENGTH_MAX{ 5000.0f };
+const float Play::Player::HOOKING_ANIMATION_TIME_MAX{ 249.0f };
+const float Play::Player::HOOKING_ANIMATION_SPEED{ 500.0f };
+const float Play::Player::HOOKING_ANIMATION_OFFSET_IDOL_TIME{ 8.0f };
+const float Play::Player::HOOKING_ANIMATION_OFFSET_TIME{ 8.0f };
 
-const float Play::Player::MOVE_SPEED{ 1.f };
+const float Play::Player::MOVE_SPEED{ 1.0f };
 
-const float Play::Player::MOVE_FORCE{ 50.f };
+const float Play::Player::MOVE_FORCE{ 50.0f };
+
+const float Play::Player::MAX_SPEED{ 10000.0f };

@@ -76,7 +76,6 @@ void Play::Camera::Update()
 	//     : z=100‚Ì‚Æ‚«‚ÌyÀ•W‚ğ‹‚ß‚ç‚ê‚éII
 
 	Vector3 targetPosition{};
-	//Vector3 
 	float cameraFOV{};
 
 	switch (player_->GetState())
