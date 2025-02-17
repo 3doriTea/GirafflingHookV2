@@ -6,6 +6,7 @@
 #include "Draw2D.h"
 #include "Player.h"
 #include <cassert>
+#include "../GirafflingHook.h"
 
 namespace
 {
@@ -32,8 +33,13 @@ Play::HookArrow::HookArrow() :
 	foundGiraffePoint_{ nullptr },
 	animationTimer_{ 0.f },
 	hArrowImage_{ -1 },
+	hExtendImage_{ -1 },
+	hShrinkImage_{ -1 },
 	arrowImageCenter_{},
-	arrowAngle_{ 0.0f }
+	arrowAngle_{ 0.0f },
+	arrowForce_{ 0.0f },
+	player_{ nullptr },
+	diff_{}
 {
 }
 
@@ -43,6 +49,9 @@ Play::HookArrow::~HookArrow()
 
 void Play::HookArrow::Init()
 {
+	player_ = FindGameObject<Player>();
+	assert(player_ != nullptr);  // ÉvÉåÉCÉÑÅ[ÇÕå©Ç¬Ç©ÇÈ
+
 	transform_.SetParent(
 		FindGameObject<Player>()->GetTransform());
 
@@ -51,7 +60,11 @@ void Play::HookArrow::Init()
 		->GetGroundTransform();
 
 	hArrowImage_ = LoadGraph("Assets/Play/arrow.png");
-	assert(hArrowImage_ > 0);
+	assert(hArrowImage_ > 0);  // ñÓàÛÇÃâÊëúÇì«Ç›çûÇﬁ
+	hExtendImage_ = LoadGraph("Assets/Play/extend.png");
+	assert(hExtendImage_ > 0);  // êLÇ—ÇÃâÊëúÇì«Ç›çûÇﬁ
+	hShrinkImage_ = LoadGraph("Assets/Play/shrink.png");
+	assert(hShrinkImage_ > 0);  // èkÇ›ÇÃâÊëúÇì«Ç›çûÇﬁ
 
 	GetGraphSizeF(hArrowImage_, &arrowImageCenter_.x, &arrowImageCenter_.y);
 	arrowImageCenter_ /= 2.0f;
@@ -59,25 +72,50 @@ void Play::HookArrow::Init()
 
 void Play::HookArrow::Update()
 {
-	int mouseX{}, mouseY{};
-	GetMousePoint(&mouseX, &mouseY);
-
-	mouseY = Screen::HEIGHT - mouseY;
-
-	Vector2 mousePosition
+	if (GirafflingHook::GetPlayStyle() == PlayStyle::KeyBoardAndMouse)
 	{
-		static_cast<float>(mouseX),
-		static_cast<float>(mouseY)
-	};
+		int mouseX{}, mouseY{};
+		GetMousePoint(&mouseX, &mouseY);
 
-	Vector3 diff
+		mouseY = Screen::HEIGHT - mouseY;
+
+		Vector2 mousePosition
+		{
+			static_cast<float>(mouseX),
+			static_cast<float>(mouseY)
+		};
+
+		diff_ = Vector3::From(mousePosition - SCREEN_CENTER);
+
+		Draw2D::Vector(diff_, 0xff00ff);
+
+	}
+	else if (GirafflingHook::GetPlayStyle() == PlayStyle::GamePad)
 	{
-		Vector3::From(mousePosition - SCREEN_CENTER)
-	};
+		Vector3 stickR{ Vector3::From(Input::GetPadStickR()) };
+		
+		if (player_->GetState() == Player::State::Defualt)
+		{
+			float stickMagnitude{ stickR.Length() };
+			if (stickMagnitude > 0.3f)
+			{
+				arrowForce_ = stickMagnitude;
+				diff_ = stickR;
+			}
+			else
+			{
+				arrowForce_ = 0.3f;
+			}
+			extendShrinkForce_ = 0.0f;
+		}
+		else
+		{
+			extendShrinkForce_ = stickR.y;
+			arrowForce_ = 0.0f;
+		}
+	}
 
-	Draw2D::Vector(diff, 0xff00ff);
-
-	arrowAngle_ = std::atan2f(diff.x, diff.y);
+	arrowAngle_ = std::atan2f(diff_.x, diff_.y);
 
 	Vector3 worldPosition{ transform_.GetWorldPosition() };
 
@@ -95,7 +133,7 @@ void Play::HookArrow::Update()
 
 		float result
 		{
-			VDot(diff.Normalize(), (pointWorldPoint - worldPosition).Normalize())
+			VDot(Vector3::Normalize(diff_), (pointWorldPoint - worldPosition).Normalize())
 		};
 		if (result > maxCosineSimilarity && result >= 0.f)
 		{
@@ -131,11 +169,31 @@ void Play::HookArrow::Draw() const
 
 	int cx{ static_cast<int>(arrowImageCenter_.x) };
 	int cy{ static_cast<int>(arrowImageCenter_.y) };
+	
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(255.0f * arrowForce_));
 	DrawRotaGraph2(
 		Screen::WIDTH / 2, Screen::HEIGHT / 2,
 		cx * 2.0f, cy,
 		1.0f, PI / 2.0f + arrowAngle_,
 		hArrowImage_, TRUE);
+
+	int image{ -1 };
+	if (extendShrinkForce_ < 0.0f)
+	{
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(255.0f * -extendShrinkForce_));
+		image = hShrinkImage_;
+	}
+	else
+	{
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(255.0f * extendShrinkForce_));
+		image = hExtendImage_;
+	}
+	DrawRotaGraph2(
+		Screen::WIDTH / 2, Screen::HEIGHT / 2,
+		cx, cy,
+		1.0f, PI / 2.0f + (PI * 2.0f - player_->GetTransform()->GetRotateRadian().z),
+		image, TRUE);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
 void Play::HookArrow::End()

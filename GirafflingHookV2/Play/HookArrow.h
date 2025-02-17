@@ -6,6 +6,7 @@
 namespace Play
 {
 	class GiraffePoint;
+	class Player;
 
 	/// <summary>
 	/// フックポイントを選ぶための矢印オブジェクト
@@ -34,8 +35,15 @@ namespace Play
 
 		float animationTimer_;
 		int hArrowImage_;
+		int hExtendImage_;
+		int hShrinkImage_;
 		Vector2 arrowImageCenter_;
 		float arrowAngle_;
+		float arrowForce_;
+		float extendShrinkForce_;  // 伸び縮み
+		Vector3 diff_;
+
+		Player* player_;
 
 		// MEMO: 画面のサイズは変わることない
 		const Vector2 SCREEN_CENTER;
