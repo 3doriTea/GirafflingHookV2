@@ -16,6 +16,7 @@
 #include "Play/Occluder.h"
 #include "Play/UITimer.h"
 #include "Play/SkySphere.h"
+#include "ClearScene.h"
 
 using namespace Play;
 
