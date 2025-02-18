@@ -83,6 +83,12 @@ void PhysicsManager::Update()
 #pragma region コライダ当たり判定更新と反発ベクトルを求める
 		for (auto&& targetCollider : colliders_)
 		{
+			// アクティブではないオブジェクトなら回帰
+			if (false == targetCollider->gameObject.GetIsActive())
+			{
+				continue;
+			}
+			
 			// 自分自身のコライダーなら回帰
 			if (rigidbody->colliderPtr_ == targetCollider)
 			{

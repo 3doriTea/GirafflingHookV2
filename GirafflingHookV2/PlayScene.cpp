@@ -55,7 +55,8 @@ void PlayScene::Init()
 	AddGameObject<BackgroundCloud>();
 	AddGameObject<Occluder>();
 	AddGameObject<UITimer>();
-	//AddGameObject<SkySphere>();
+
+	AddGameObject<SkySphere>();
 
 	ChangeLightTypeDir(VGet(1.f, -1.f, 0.5f));
 
