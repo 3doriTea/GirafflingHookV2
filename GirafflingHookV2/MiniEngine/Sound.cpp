@@ -19,14 +19,35 @@ void Sound::Load(const AudioInfo& info)
 	sounds.insert({ info.name, hSound });
 }
 
-void Sound::Play(const std::string& name)
+void Sound::Play(const std::string& name, const bool& isLoop)
 {
-	PlaySoundMem(sounds[name], DX_PLAYTYPE_BACK);
+	PlaySoundMem(
+		sounds[name],
+		isLoop
+		? DX_PLAYTYPE_LOOP
+		: DX_PLAYTYPE_BACK);
+}
+
+void Sound::PlayBGM(const std::string& name)
+{
+	if (playingBGM.length() > 0)
+	{
+		Stop(playingBGM);
+	}
+
+	Play(name, true);
+	playingBGM = name;
 }
 
 void Sound::Stop(const std::string& name)
 {
 	StopSoundMem(sounds[name]);
+
+	// BGM‚È‚çÄ¶BGM‚ğ‰ğ•ú
+	if (playingBGM == name)
+	{
+		playingBGM = "";
+	}
 }
 
 void Sound::Release()
@@ -38,3 +59,4 @@ void Sound::Release()
 }
 
 std::map<std::string, SoundHandle> Sound::sounds{};
+std::string Sound::playingBGM{};

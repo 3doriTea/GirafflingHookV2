@@ -13,7 +13,7 @@ Play::SkySphere::SkySphere() :
 		GameObjectBuilder{}
 			.LayerOrder(LayerOrderType::Background - 20)
 			.Name("SkySphere")
-			.Rotate({ -90.0f, 0.0f, 0.0f })
+			.Rotate({ 90.0f, 0.0f, 0.0f })
 			.Scale({ 100.0f, 100.0f, 100.0f })
 	},
 	hSkySphere_{ -1 },

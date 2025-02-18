@@ -48,7 +48,8 @@ class Sound  // static class
 
 public:
 	static void Load(const AudioInfo& info);
-	static void Play(const std::string& name);
+	static void Play(const std::string& name, const bool& isLoop = false);
+	static void PlayBGM(const std::string& name);
 	static void Stop(const std::string& name);
 
 private:
@@ -56,4 +57,6 @@ private:
 
 private:
 	static std::map<std::string, SoundHandle> sounds;
+	static std::string playingBGM;
+	static unsigned char volumeBGM;
 };

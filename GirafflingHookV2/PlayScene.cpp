@@ -42,6 +42,11 @@ void PlayScene::Init()
 	Sound::Load(AudioInfo{}
 		.File("Assets/Sounds/getApple.mp3")
 		.Name("get-apple"));
+	Sound::Load(AudioInfo{}
+		.File("Assets/BGM/Dance_With_Powder.mp3")
+		.Name("play-bgm"));
+
+	Sound::PlayBGM("play-bgm");
 
 	SetBackgroundColor(0x08, 0xC2, 0xFF);
 
@@ -80,6 +85,7 @@ void PlayScene::Draw() const
 void PlayScene::End()
 {
 	//SetupCamera_Perspective(60 * (DX_PI_F / 180.f));
+	Sound::Stop("play-bgm");
 }
 
 void PlayScene::FinishedGoalAnimation()
