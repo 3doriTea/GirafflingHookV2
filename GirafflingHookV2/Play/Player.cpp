@@ -80,6 +80,10 @@ void Play::Player::Update()
 	if (isGoalling_)
 	{
 		// ƒS[ƒ‹‚µ‚Ä‚¢‚é‚È‚ç
+		if (state_ != State::Defualt)
+		{
+			FinishHooking();
+		}
 		MoveGoalling();
 	}
 	else

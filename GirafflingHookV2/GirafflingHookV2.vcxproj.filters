@@ -257,11 +257,17 @@
     <ClCompile Include="Play\Debug.cpp">
       <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
-    <ClCompile Include="Play\UITimer.cpp" />
-    <ClCompile Include="Play\SkySphere.h" />
-    <ClCompile Include="Play\SkySphere.cpp" />
     <ClCompile Include="MiniEngine\GamePad.cpp">
       <Filter>MiniEngine\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="Play\SkySphere.h">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Play\SkySphere.cpp">
+      <Filter>GH\GameObject\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Play\UITimer.cpp">
+      <Filter>GH\GameObject\Play</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -490,9 +496,11 @@
     <ClInclude Include="Play\Debug.h">
       <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
-    <ClInclude Include="Play\UITimer.h" />
     <ClInclude Include="MiniEngine\GamePad.h">
       <Filter>MiniEngine\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Play\UITimer.h">
+      <Filter>GH\GameObject\Play</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

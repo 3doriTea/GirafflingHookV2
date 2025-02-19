@@ -45,7 +45,7 @@ void Play::SkySphere::Init()
 	assert(camera_ != nullptr);  // ƒJƒƒ‰‚ÍŒ©‚Â‚©‚é
 
 	//MV1SetDifColorScale(hSkySphere_, GetColorF(1.0f, 1.0f, 1.0f, 1.0f));
-	SetUseLighting(FALSE);
+	//SetUseLighting(FALSE);
 
 	MV1SetScale(hSkySphere_, scale);
 }
