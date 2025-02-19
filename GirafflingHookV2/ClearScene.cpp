@@ -8,6 +8,7 @@
 #include "../Clear/ClearString.h"
 #include "../Clear/ClearCamera.h"
 #include "GameObject.h"
+#include "../Clear/ClearUI.h"
 
 using namespace Clear;
 
@@ -27,6 +28,7 @@ void ClearScene::Init()
 	ClearString& clearString{ AddGameObject<ClearString>() };
 	ClearCamera& clearCamera{ AddGameObject<ClearCamera>() };
 	Vector3 direction{ clearCamera.position - clearString.position };
+	ClearUI& clearUI{ AddGameObject<ClearUI>() };
 
 	CreateDirLightHandle(direction);
 	CreateDirLightHandle(direction);

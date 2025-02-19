@@ -21,8 +21,8 @@ void Clear::ClearUI::Init()
 {
 	for (int i = 0; i < 10; i++)
 	{
-		std::string path = "Assets/UI/numModel_";
-		path.push_back(i);
+		std::string path = "Assets/UI/numModel_"; // 分離してね
+		path.push_back('0' + i); // intの数値をcharにキャストすると、文字コードになるのである！
 		hNumModel.push_back(MV1LoadModel(path.c_str()));
 	}
 }
