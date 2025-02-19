@@ -3,8 +3,6 @@
 #include <map>
 #include <initializer_list>
 
-using SoundHandle = int;
-
 class SoundManager;
 
 /// <summary>
@@ -42,6 +40,9 @@ struct AudioInfo
 	std::string name;  // 再生するときの識別ニックネーム
 };
 
+using SoundHandle = int;
+using AudioVolume = unsigned char;
+
 class Sound  // static class
 {
 	friend SoundManager;
@@ -51,12 +52,29 @@ public:
 	static void Play(const std::string& name, const bool& isLoop = false);
 	static void PlayBGM(const std::string& name);
 	static void Stop(const std::string& name);
+	/// <summary>
+	/// BGMの音量をセット
+	/// </summary>
+	/// <param name="_volume">ボリューム 0..255</param>
+	static void SetVolumeBGM(const AudioVolume& _volume);
+	/// <summary>
+	/// 現在セットされているBGMの音量を取得
+	/// </summary>
+	/// <returns>ボリューム 0..255</returns>
+	static inline AudioVolume SetVolumeBGM() { return volumeBGM; }
 
 private:
+	/// <summary>
+	/// BGMのボリュームを適用する
+	/// </summary>
+	static void RefleshVolumeBGM();
+	/// <summary>
+	/// ハンドルをすべて解放する
+	/// </summary>
 	static void Release();
 
 private:
 	static std::map<std::string, SoundHandle> sounds;
 	static std::string playingBGM;
-	static unsigned char volumeBGM;
+	static AudioVolume volumeBGM;
 };

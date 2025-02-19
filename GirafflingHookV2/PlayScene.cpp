@@ -46,6 +46,7 @@ void PlayScene::Init()
 		.File("Assets/BGM/Dance_With_Powder.mp3")
 		.Name("play-bgm"));
 
+	Sound::SetVolumeBGM(100);
 	Sound::PlayBGM("play-bgm");
 
 	SetBackgroundColor(0x08, 0xC2, 0xFF);

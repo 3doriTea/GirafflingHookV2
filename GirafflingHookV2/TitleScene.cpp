@@ -11,6 +11,7 @@
 #include "ClearScene.h"
 #include "TestScene.h"
 #include "GirafflingHook.h"
+#include "Sound.h"
 
 using namespace Title;
 
@@ -32,6 +33,13 @@ TitleScene::~TitleScene()
 
 void TitleScene::Init()
 {
+	Sound::Load(AudioInfo{}
+		.File("Assets/BGM/Blackmoor Colossus.mp3")
+		.Name("title-bgm"));
+	
+	Sound::PlayBGM("title-bgm");
+	Sound::SetVolumeBGM(100);
+
 	hGiraffeImageBody_ = LoadGraph("Assets/Title/giraffeBody.png");
 	assert(hGiraffeImageBody_ > 0);  // ‰æ‘œ‚Í“Ç‚İ‚Ü‚ê‚éI
 	hGiraffeImageHead_ = LoadGraph("Assets/Title/giraffeHead.png");

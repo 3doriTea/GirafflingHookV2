@@ -37,6 +37,7 @@ void Sound::PlayBGM(const std::string& name)
 
 	Play(name, true);
 	playingBGM = name;
+	RefleshVolumeBGM();
 }
 
 void Sound::Stop(const std::string& name)
@@ -50,6 +51,17 @@ void Sound::Stop(const std::string& name)
 	}
 }
 
+void Sound::SetVolumeBGM(const AudioVolume& _volume)
+{
+	volumeBGM = _volume;
+	RefleshVolumeBGM();
+}
+
+void Sound::RefleshVolumeBGM()
+{
+	ChangeVolumeSoundMem(volumeBGM, sounds[playingBGM]);
+}
+
 void Sound::Release()
 {
 	for (auto&& sound : sounds)
@@ -60,3 +72,4 @@ void Sound::Release()
 
 std::map<std::string, SoundHandle> Sound::sounds{};
 std::string Sound::playingBGM{};
+AudioVolume Sound::volumeBGM{ 255 };
