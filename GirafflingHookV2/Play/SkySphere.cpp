@@ -33,12 +33,10 @@ void Play::SkySphere::Init()
 	hSkySphere_ = MV1LoadModel("Assets/SkySphere.mv1");
 	assert(hSkySphere_ > 0);  // SkySphereモデルは読み込まれる
 
-	//hVS = LoadVertexShader("Assets/Shader/NoShadePS.vso");
-	////hVS = LoadVertexShader("./NoShadeVS.vso");
-	//assert(hVS > 0);  // NoShadeVシェーダは読み込まれる
-	//hPS = LoadPixelShader("Assets/Shader/NoShadePS.pso");
-	////hPS = LoadPixelShader("./NoShadePS.pso");
-	//assert(hPS > 0);  // NoShadeSシェーダは読み込まれる
+	hVS = LoadVertexShader("Assets/Shader/NoShadePS.vso");
+	assert(hVS > 0);  // NoShadeVシェーダは読み込まれる
+	hPS = LoadPixelShader("Assets/Shader/NoShadePS.pso");
+	assert(hPS > 0);  // NoShadeSシェーダは読み込まれる
 
 
 	camera_ = FindGameObject<Camera>();
@@ -61,15 +59,15 @@ void Play::SkySphere::Update()
 
 void Play::SkySphere::Draw() const
 {
-	/*MV1SetUseOrigShader(TRUE);
+	MV1SetUseOrigShader(TRUE);
 	SetUseVertexShader(hVS);
-	SetUsePixelShader(hPS);*/
+	SetUsePixelShader(hPS);
 
 	MV1DrawModel(hSkySphere_);
 
-	//MV1SetUseOrigShader(FALSE);
-	//SetUseVertexShader(FALSE);
-	//SetUsePixelShader(FALSE);
+	MV1SetUseOrigShader(FALSE);
+	SetUseVertexShader(FALSE);
+	SetUsePixelShader(FALSE);
 }
 
 void Play::SkySphere::End()
