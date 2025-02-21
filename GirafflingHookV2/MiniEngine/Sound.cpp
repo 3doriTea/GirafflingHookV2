@@ -28,8 +28,12 @@ void Sound::Play(const std::string& name, const bool& isLoop)
 		: DX_PLAYTYPE_BACK);
 }
 
-void Sound::PlayBGM(const std::string& name)
+void Sound::PlayBGM(const std::string& name, const bool& isForce)
 {
+	if (isForce == false && playingBGM == name)
+	{
+		return;
+	}
 	if (playingBGM.length() > 0)
 	{
 		Stop(playingBGM);

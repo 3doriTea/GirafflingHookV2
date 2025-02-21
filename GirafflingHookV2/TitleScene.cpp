@@ -1,6 +1,7 @@
 #include "TitleScene.h"
 #include "MiniEngine.h"
 #include "PlayScene.h"
+#include "InfoScene.h"
 #include <DxLib.h>
 #include <cassert>
 #include "Screen.h"
@@ -71,20 +72,6 @@ void TitleScene::Init()
 
 void TitleScene::Update()
 {
-	if (Input::IsKey(KeyCode::Space))
-	{
-		printfDx("タイトルシーン%f\n", Frame::GetDeltaTime());
-	}
-
-	if (Input::IsKeyDown(KeyCode::J))
-	{
-		printfDx("テステスDown%f\n", Frame::GetDeltaTime());
-	}
-	if (Input::IsKeyUp(KeyCode::J))
-	{
-		printfDx("テステスUp%f\n", Frame::GetDeltaTime());
-	}
-	
 	if (Input::IsKeyDown(KeyCode::Up))
 	{
 		selectionButton++;
@@ -103,6 +90,12 @@ void TitleScene::Update()
 	{
 		SceneManager::Move<TestScene>();
 	}
+
+	if (Input::IsKeyDown(KeyCode::I))
+	{
+		SceneManager::Move<InfoScene>();
+	}
+
 
 	// Pキーが押されたならプレイシーンに
 	if (Input::IsKeyDown(KeyCode::P))

@@ -23,6 +23,9 @@
     <ClCompile Include="Clear\ClearCamera.cpp" />
     <ClCompile Include="Clear\ClearString.cpp" />
     <ClCompile Include="Clear\ClearUI.cpp" />
+    <ClCompile Include="InfoScene.cpp" />
+    <ClCompile Include="Info\AboutText.cpp" />
+    <ClCompile Include="Info\Projector.cpp" />
     <ClCompile Include="MiniEngine\GamePad.cpp" />
     <ClCompile Include="Play\OccludableObject.cpp" />
     <ClCompile Include="Play\BackgroundCloud.cpp" />
@@ -97,6 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clear\ClearUI.h" />
+    <ClInclude Include="InfoScene.h" />
+    <ClInclude Include="Info\AboutText.h" />
+    <ClInclude Include="Info\Projector.h" />
     <ClInclude Include="MiniEngine\GamePad.h" />
     <ClInclude Include="Play\OccludableObject.h" />
     <ClInclude Include="Play\BackgroundCloud.h" />
@@ -177,7 +183,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="MiniEngine\Rule.md" />
-    <None Include="Shader\Compile.bat" />
     <None Include="StageBoardTemplate.md" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

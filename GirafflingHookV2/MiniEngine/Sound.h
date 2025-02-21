@@ -50,7 +50,7 @@ class Sound  // static class
 public:
 	static void Load(const AudioInfo& info);
 	static void Play(const std::string& name, const bool& isLoop = false);
-	static void PlayBGM(const std::string& name);
+	static void PlayBGM(const std::string& name, const bool& isForce = false);
 	static void Stop(const std::string& name);
 	/// <summary>
 	/// BGM‚Ì‰¹—Ê‚ðƒZƒbƒg
